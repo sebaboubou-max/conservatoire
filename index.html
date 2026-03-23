@@ -2937,14 +2937,14 @@ function initHeroCanvas() {
     const meltY = Math.sin(time * 0.8) * melt * 0.3 + melt * 0.5;
     ctx.beginPath();
     ctx.ellipse(0, meltY * 0.3, r, r * (1 - melt * 0.4 + Math.sin(time) * 0.05), 0, 0, Math.PI * 2);
-    ctx.fillStyle = daliColors.flesh + '30';
+    ctx.fillStyle = daliColors.flesh + '90';
     ctx.fill();
-    ctx.strokeStyle = daliColors.amber + '40';
+    ctx.strokeStyle = daliColors.amber + 'a0';
     ctx.lineWidth = 1.5;
     ctx.stroke();
 
     // Clock face numbers (12, 3, 6, 9)
-    ctx.fillStyle = daliColors.amber + '25';
+    ctx.fillStyle = daliColors.amber + '70';
     ctx.font = `${r * 0.25}px 'Playfair Display', serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
@@ -2962,7 +2962,7 @@ function initHeroCanvas() {
     const hx = Math.cos(hAngle) * r * 0.4;
     const hy = Math.sin(hAngle) * r * 0.4 + meltY * 0.15;
     ctx.quadraticCurveTo(hx * 0.5, hy + meltY * 0.2, hx, hy + meltY * 0.1);
-    ctx.strokeStyle = daliColors.amber + '35';
+    ctx.strokeStyle = daliColors.amber + '90';
     ctx.lineWidth = 2.5;
     ctx.stroke();
 
@@ -2990,7 +2990,7 @@ function initHeroCanvas() {
           dx + Math.sin(time * 0.5 + d) * r * 0.05,
           r * 0.8 + dripLen
         );
-        ctx.strokeStyle = daliColors.flesh + '18';
+        ctx.strokeStyle = daliColors.flesh + '50';
         ctx.lineWidth = r * 0.08;
         ctx.lineCap = 'round';
         ctx.stroke();
@@ -3009,7 +3009,7 @@ function initHeroCanvas() {
     const sway = Math.sin(time * 0.3) * 3;
 
     // Spider legs — very long and thin
-    const legColor = daliColors.amber + '18';
+    const legColor = daliColors.amber + '50';
     ctx.strokeStyle = legColor;
     ctx.lineWidth = 1.2;
     const legH = s * 3.5;
@@ -3026,16 +3026,16 @@ function initHeroCanvas() {
       // Tiny foot
       ctx.beginPath();
       ctx.arc(lx + wobble + sway * 0.5, legH + 2, 2, 0, Math.PI * 2);
-      ctx.fillStyle = daliColors.amber + '12';
+      ctx.fillStyle = daliColors.amber + '40';
       ctx.fill();
     }
 
     // Body — small oval at top of legs
     ctx.beginPath();
     ctx.ellipse(sway, -s * 0.5, s * 0.7, s * 0.4, 0, 0, Math.PI * 2);
-    ctx.fillStyle = daliColors.flesh + '12';
+    ctx.fillStyle = daliColors.flesh + '40';
     ctx.fill();
-    ctx.strokeStyle = daliColors.amber + '15';
+    ctx.strokeStyle = daliColors.amber + '45';
     ctx.lineWidth = 1;
     ctx.stroke();
 
@@ -3047,7 +3047,7 @@ function initHeroCanvas() {
       -s * 1.0 + sway, s * 0.1,
       -s * 0.8 + sway + Math.sin(time * 0.7) * 5, s * 0.3
     );
-    ctx.strokeStyle = daliColors.flesh + '15';
+    ctx.strokeStyle = daliColors.flesh + '45';
     ctx.lineWidth = 2;
     ctx.stroke();
 
@@ -3058,7 +3058,7 @@ function initHeroCanvas() {
     ctx.lineTo(s * 0.1 + sway, -s * 1.4);
     ctx.lineTo(-s * 0.1 + sway, -s * 1.4);
     ctx.closePath();
-    ctx.fillStyle = daliColors.azure + '08';
+    ctx.fillStyle = daliColors.azure + '25';
     ctx.fill();
     ctx.strokeStyle = daliColors.azure + '12';
     ctx.lineWidth = 0.8;
@@ -3107,12 +3107,12 @@ function initHeroCanvas() {
   ];
 
   const blobs = [
-    {x:0.15, y:0.55, r:0.08, c:daliColors.vermillion+'0a', seed:0},
+    {x:0.15, y:0.55, r:0.08, c:daliColors.vermillion+'30', seed:0},
     {x:0.6, y:0.3, r:0.1, c:daliColors.azure+'08', seed:3},
-    {x:0.4, y:0.7, r:0.07, c:daliColors.violet+'07', seed:7},
-    {x:0.88, y:0.6, r:0.06, c:daliColors.amber+'09', seed:5},
-    {x:0.5, y:0.5, r:0.12, c:daliColors.flesh+'06', seed:2},
-    {x:0.08, y:0.4, r:0.05, c:daliColors.gold+'08', seed:9},
+    {x:0.4, y:0.7, r:0.07, c:daliColors.violet+'22', seed:7},
+    {x:0.88, y:0.6, r:0.06, c:daliColors.amber+'28', seed:5},
+    {x:0.5, y:0.5, r:0.12, c:daliColors.flesh+'20', seed:2},
+    {x:0.08, y:0.4, r:0.05, c:daliColors.gold+'25', seed:9},
   ];
 
   function draw() {
