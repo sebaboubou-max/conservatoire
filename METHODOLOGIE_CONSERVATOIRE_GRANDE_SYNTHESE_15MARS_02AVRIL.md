@@ -5,7 +5,7 @@
 - Référence proche du 15 mars : `/home/sebas/Smash_App/docs/notepads/METHODOLOGIE_RECHERCHE.md` en `V2.0` du `12 mars 2026`.
 - Référence consolidée : `/home/sebas/Smash_App/docs/notepads/METHODOLOGIE_RECHERCHE.md` en `V4.0` du `30 mars 2026`.
 - Archive HTML poétique de référence : `/home/sebas/Téléchargements/conservatoire.html`.
-- Généré le `2026-04-02T12:45:58+02:00`.
+- Généré le `2026-04-02T12:55:20+02:00`.
 
 ## Thèse
 
@@ -32,9 +32,9 @@ La version légère précédente ratait trois choses:
 
 ## Ce que disent vraiment les 15 derniers jours
 
-- commits relus sur la fenêtre `2026-03-18 -> 2026-04-02` : `1765`
+- commits relus sur la fenêtre `2026-03-18 -> 2026-04-02` : `1764`
 - jours actifs : `14`
-- pics de chauffe : `2026-03-19 (445), 2026-03-26 (442), 2026-03-27 (223), 2026-03-28 (159), 2026-03-29 (119), 2026-03-25 (97), 2026-03-18 (94)`
+- pics de chauffe : `2026-03-19 (445), 2026-03-26 (442), 2026-03-27 (223), 2026-03-28 (159), 2026-03-29 (119), 2026-03-25 (97), 2026-03-18 (93)`
 
 ### Jours les plus denses
 
@@ -46,7 +46,7 @@ La version légère précédente ratait trois choses:
 | 2026-03-28 | 159 |
 | 2026-03-29 | 119 |
 | 2026-03-25 | 97 |
-| 2026-03-18 | 94 |
+| 2026-03-18 | 93 |
 
 ## Strates du basculement
 
@@ -137,6 +137,55 @@ Le projet n'est pas seulement `méthodologie + conservatoire + LHC`. Il est au m
 | Formalisation, fouille, archéologie | Formalization Spectrum, Fouille Archeology Post-Completion | GRAMMAIRE_COMBINATOIRE.md, CODEX_RESEARCH_SECOND_RING_PROGRAMME_02AVRIL.md | Le laboratoire qui décide ce qui survit à la nomination, ce qui devient loi, ce qui meurt comme pseudo-rigueur, et ce que la fouille rouvre. |
 | Philosophie, linguistique, esthétique, transmission | Philosophical Foundations, Linguistics Pragmatics Mentalese, Operative Aesthetics, Transmission Curriculum | PIERRE_DE_ROSETTE.md, EXTRACTION_20260329_LINGUA_MENTIS.md, CONSERVATOIRE_GRAMMAIRE.md | Le sous-sol conceptuel du projet: Austin, Peirce, Vygotsky, cognition distribuée, mais aussi la question décisive de la justesse et de la transmission. |
 
+## Trajectoires de lecture et d’entrée
+
+| Lecteur | Parcours conseillé |
+| --- | --- |
+| Si tu es ami du projet | Lis d'abord la thèse, l'avant / maintenant, puis les pivots. Cela suffit pour comprendre le changement de nature du projet. |
+| Si tu es collaborateur potentiel | Ajoute ensuite les noyaux invariants, la constellation directrice et l'atlas des axes. Tu verras comment la méthode se gouverne et où elle veut aller. |
+| Si tu es reviewer ou sceptique | Va directement vers LHC/Ralph, les truth surfaces, A32, les axes/pipelines et les implications pour la recherche. C'est là que se joue l'opposabilité. |
+
+## Modes de jeu et méta-mode
+
+Le projet n’opère pas dans un seul régime. Il bascule entre plusieurs modes de travail, et le maestro vaut précisément comme compétence de routage entre ces modes.
+
+| Mode | Température | Intention | Relation | Geste |
+| --- | --- | --- | --- | --- |
+| Primitif | brûlant | chaotique | solo | Découverte brute avant la grammaire. Le potier touche la glaise avant d’avoir le geste juste. |
+| Archéologue | froid | rétrospectif | solo | Ce qui était perdu. Permafrost, sessions mortes, sessions oubliées, résidus redevenus lisibles. |
+| Philosophe | tiède | contemplatif | solo/duo | Clarifie le cadre, ouvre les présupposés, prépare le groove et la manufacture sans les confondre. |
+| Artisan | chaud | intentionnel | duo | Un objet à la fois, avec soin. Théorème, équation, note de méthode, correction précise. |
+| Compositeur | chaud | structuré-émergent | duo | Méthode et émergence en temps réel. LHC organique, spirale maestro, architecture qui se forme en jouant. |
+| Musicien / Groove | brûlant | émergent | duo/triade | Improvisation pure sur la grammaire. Le canon asymétrique, la collision vivante, la trouvaille avant sa formalisation. |
+| Manufacture | froid | planifié | solo | Ralph, batch, nuit autonome, machine sans humain. Production sans célébration immédiate. |
+| Veilleur | latent | retenu | hors-jeu actif | Présent sans agir. Laisser respirer le corpus, reconnaître la valeur, ne pas confondre silence et absence. |
+| Maestro | métarégime | routing | orchestral | Ne produit pas directement: choisit quel mode jouer, quand basculer, où couper, où ouvrir, et quelle preuve exiger. |
+
+## Pupitres et EEG du Conservatoire
+
+### Les pupitres
+
+| Pupitre | Famille | Instruments | Rôle |
+| --- | --- | --- | --- |
+| Cordes | Lentilles | violon, alto, violoncelle, contrebasse | Les cordes portent le tissu harmonique. Les lentilles portent le tissu perceptif sur lequel tout le reste devient visible. |
+| Percussions | Gestes | batterie, timbales, xylophone | Les gestes frappent, déclenchent et scandent. Sans percussions, la musique flotte; sans gestes, la grammaire contemple. |
+| Vents | Connecteurs | trompette, cor, trombone | Les connecteurs font circuler le sens entre les concepts comme l’air circule entre les cuivres. |
+| Claviers | Modulateurs | piano, orgue, clavecin | Les modulateurs changent de registre, de seuil, de tonalité et de résolution. Ils règlent la couleur plus que le contenu. |
+| Le Chef | Temporels Ψ | baguette, regard, pupitre | Le chef ne joue pas: il crée le gradient, le rythme, le déphasage, la possibilité d’un vrai travail cognitif. |
+| Le Chœur | Pipeline apicole | soprano, alto, ténor, basse | Le chœur est le pupitre qui porte les mots. Avec lui, l’orchestre cesse de produire du son seulement et commence à produire du sens. |
+
+### La partition comme EEG
+
+| Onde | Traduction grammaticale | Rôle |
+| --- | --- | --- |
+| Delta | permafrost, mémoire lente, drone | ce qui structure sans apparaître |
+| Theta | exploration, fourmillement, flow | ce qui multiplie les connexions possibles |
+| Alpha | bascule, seuil, inhibition sélective | ce qui décide quand changer de régime |
+| Beta | intégration, syntaxe, rasoir | ce qui donne une forme aux trouvailles |
+| Gamma | collision, insight, émergence | ce qui apparaît avant même d’être formulé |
+
+Le gain méthodologique ici n’est pas métaphorique seulement. Le projet sait désormais parler de `flow`, de `bascule`, de `consolidation`, de `collision` et de `silence` comme de régimes de session, pas seulement comme d’images.
+
 ## Axes, familles et routes
 
 ### Les 32 axes comme carte de recherche
@@ -187,6 +236,13 @@ Le projet n'est pas seulement `méthodologie + conservatoire + LHC`. Il est au m
 | H11-apples-of-hesperides | Fouille vers famille vers équation puis retour | frontier à brancher |
 | H12-cerberus | Garde des portes maestro | frontier à brancher |
 
+## Mendeleïev, carte et territoire
+
+- `Mendeleïev` n’est pas un axe de plus. C’est la capacité prédictive de la carte: voir la case manquante avant qu’elle soit remplie.
+- les `eka-axes` les plus pressurisés actuellement sont : `A30-rebuttal-companion-governance, A29-publication-strategy, A20-exogenous, A27-transmission-curriculum, A25-fouille-archeology`
+- les ponts immédiatement fertiles sur la carte sont : `A12-ralph::feeds_runtime_truth::A32-evidence-ops-reproducibility, A17-plumbing::contracts::A32-evidence-ops-reproducibility, A28-reviewer-program-reading::converts_to_tests::A22-empirical-tests, A28-reviewer-program-reading::specifies::A32-evidence-ops-reproducibility, A30-rebuttal-companion-governance::requires::A32-evidence-ops-reproducibility, A21-applied-field::branches_into::A31-field-labs-measurable-terrain`
+- le critère dur reste celui-ci : si une case annoncée ne change aucune commande, aucun consumer et aucun artefact aval, elle n’est pas un territoire. C’est un dessin.
+
 ## LHC, Ralph et le droit du runtime
 
 ### Four collisionnel
@@ -202,9 +258,9 @@ Le projet n'est pas seulement `méthodologie + conservatoire + LHC`. Il est au m
 | --- | --- |
 | État du run | running |
 | Batch running | true |
-| Collisions runtime | 55 |
-| Entrées gouvernées | 1769 |
-| Cross-ratio gouverné | 0.4912 |
+| Collisions runtime | 191 |
+| Entrées gouvernées | 1905 |
+| Cross-ratio gouverné | 0.4913 |
 | Cross-ratio non gouverné | 0.1613 |
 | Surface | AVEUGLE |
 | Preuve positive | false |
@@ -213,7 +269,7 @@ Le projet n'est pas seulement `méthodologie + conservatoire + LHC`. Il est au m
 Lecture froide :
 
 - `E489 can speak = yes`
-- `cross_ratio_governed = 0.4912`
+- `cross_ratio_governed = 0.4913`
 - `cross_ratio_ungoverned = 0.1613`
 - `next_step = attendre la chute du batch puis rejouer E489/E493/E500`
 
@@ -370,7 +426,7 @@ Le vieux HTML n'était pas seulement plus décoré. Il portait une vérité du p
 
 - HTML legacy : `conservatoire.html`
 - Archive legacy : `methodologie_conservatoire_archive_20260324.html`
-- Archive précédente de la synthèse HTML : `methodologie_conservatoire_archive_20260402_124558.html`
+- Archive précédente de la synthèse HTML : `methodologie_conservatoire_archive_20260402_125520.html`
 - Nouvelle synthèse HTML : `methodologie_conservatoire.html`
 - Markdown source : `METHODOLOGIE_CONSERVATOIRE_GRANDE_SYNTHESE_15MARS_02AVRIL.md`
 
