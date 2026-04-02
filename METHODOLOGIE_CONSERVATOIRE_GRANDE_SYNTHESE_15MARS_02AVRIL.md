@@ -5,7 +5,7 @@
 - Référence proche du 15 mars : `/home/sebas/Smash_App/docs/notepads/METHODOLOGIE_RECHERCHE.md` en `V2.0` du `12 mars 2026`.
 - Référence consolidée : `/home/sebas/Smash_App/docs/notepads/METHODOLOGIE_RECHERCHE.md` en `V4.0` du `30 mars 2026`.
 - Archive HTML poétique de référence : `/home/sebas/Téléchargements/conservatoire.html`.
-- Généré le `2026-04-02T12:58:25+02:00`.
+- Généré le `2026-04-02T13:06:32+02:00`.
 
 ## Thèse
 
@@ -32,9 +32,9 @@ La version légère précédente ratait trois choses:
 
 ## Ce que disent vraiment les 15 derniers jours
 
-- commits relus sur la fenêtre `2026-03-18 -> 2026-04-02` : `1764`
+- commits relus sur la fenêtre `2026-03-18 -> 2026-04-02` : `1762`
 - jours actifs : `14`
-- pics de chauffe : `2026-03-19 (445), 2026-03-26 (442), 2026-03-27 (223), 2026-03-28 (159), 2026-03-29 (119), 2026-03-25 (97), 2026-03-18 (93)`
+- pics de chauffe : `2026-03-19 (445), 2026-03-26 (442), 2026-03-27 (223), 2026-03-28 (159), 2026-03-29 (119), 2026-03-25 (97), 2026-03-18 (91)`
 
 ### Jours les plus denses
 
@@ -46,7 +46,7 @@ La version légère précédente ratait trois choses:
 | 2026-03-28 | 159 |
 | 2026-03-29 | 119 |
 | 2026-03-25 | 97 |
-| 2026-03-18 | 93 |
+| 2026-03-18 | 91 |
 
 ## Strates du basculement
 
@@ -110,7 +110,7 @@ Le projet s'est doté d'une carte explicite: axes, pipelines, familles, triades,
 - `2026-03-29 064a5547` — feat(collision): Big LHC Scientifique — pipeline multi-sources + 121 collisions
 - `2026-03-29 7bd155c6` — feat(E276+pipeline): Phonologie×Bifurcation + gamme scientifique domain-agnostique
 - `2026-03-28 93bddc0e` — fix(hooks): post-bash-error-capture.py — pipeline de persistence re-enabled
-### Partitions / Sonnets / Poétique du geste — 38 commits chauds
+### Partitions / Sonnets / Poétique du geste — 37 commits chauds
 
 La poésie n'est pas un habillage. Les partitions, sonnets et gestes musicaux restent des instruments de transmission, de calibration et de reprise, à condition d'être retendus par la preuve.
 
@@ -256,22 +256,22 @@ Le gain méthodologique ici n’est pas métaphorique seulement. Le projet sait 
 
 | Mesure | Valeur |
 | --- | --- |
-| État du run | running |
-| Batch running | true |
-| Collisions runtime | 241 |
-| Entrées gouvernées | 1955 |
-| Cross-ratio gouverné | 0.4859 |
+| État du run | complete |
+| Batch running | false |
+| Collisions runtime | 291 |
+| Entrées gouvernées | 2005 |
+| Cross-ratio gouverné | 0.4813 |
 | Cross-ratio non gouverné | 0.1613 |
-| Surface | AVEUGLE |
-| Preuve positive | false |
-| Fenêtre runtime | BLOCKED_BATCH_RUNNING |
+| Surface | PREUVE |
+| Preuve positive | true |
+| Fenêtre runtime | OPEN_POSTRUN_WINDOW |
 
 Lecture froide :
 
 - `E489 can speak = yes`
-- `cross_ratio_governed = 0.4859`
+- `cross_ratio_governed = 0.4813`
 - `cross_ratio_ungoverned = 0.1613`
-- `next_step = attendre la chute du batch puis rejouer E489/E493/E500`
+- `next_step = capturer la preuve puis preparer la passe suivante sans relire l'intuition`
 
 Le point décisif n'est pas seulement la performance du sous-ensemble gouverné. C'est la transformation de la méthode en juridiction machine : `truth surface`, `launch authority`, `replay gate`, `tribunal runtime`, `factory anchor`, `manifest contract`.
 
@@ -426,7 +426,7 @@ Le vieux HTML n'était pas seulement plus décoré. Il portait une vérité du p
 
 - HTML legacy : `conservatoire.html`
 - Archive legacy : `methodologie_conservatoire_archive_20260324.html`
-- Archive précédente de la synthèse HTML : `methodologie_conservatoire_archive_20260402_125825.html`
+- Archive précédente de la synthèse HTML : `methodologie_conservatoire_archive_20260402_130632.html`
 - Nouvelle synthèse HTML : `methodologie_conservatoire.html`
 - Markdown source : `METHODOLOGIE_CONSERVATOIRE_GRANDE_SYNTHESE_15MARS_02AVRIL.md`
 
