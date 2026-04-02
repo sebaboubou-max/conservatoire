@@ -1,0 +1,3200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Conservatoire Interactif de la Grammaire Vivante</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sand: #f5f0e8;
+  --sand-dark: #e8dfd0;
+  --ink: #1a1a2e;
+  --ink-light: #2d2d4a;
+  --vermillion: #e63946;
+  --gold: #d4a017;
+  --gold-light: #f0d060;
+  --azure: #2a6f97;
+  --azure-light: #4a9cc7;
+  --violet: #6b2fa0;
+  --violet-light: #9b59b6;
+  --emerald: #2d8659;
+  --emerald-light: #4dbd7a;
+  --coral: #e07a5f;
+  --magenta: #c2185b;
+  --tier-s: #e63946;
+  --tier-a: #d4a017;
+  --tier-b: #2a6f97;
+  --tier-c: #888;
+  --tier-d: #555;
+  --shadow-soft: 0 4px 20px rgba(26,26,46,0.08);
+  --shadow-hover: 0 8px 32px rgba(26,26,46,0.14);
+  --shadow-dramatic: 0 12px 48px rgba(26,26,46,0.18);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Crimson Pro', Georgia, serif;
+  background: var(--sand);
+  color: var(--ink);
+  overflow-x: hidden;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+/* ===== NAVIGATION ===== */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(245,240,232,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(26,26,46,0.08);
+  padding: 0 2rem;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: transform 0.3s ease;
+}
+
+nav.hidden { transform: translateY(-100%); }
+
+.nav-brand {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 1.1rem;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+.nav-brand span { color: var(--vermillion); }
+
+.nav-links {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--ink-light);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 400;
+  padding: 0.35rem 0.7rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.nav-links a:hover, .nav-links a.active {
+  background: var(--ink);
+  color: var(--sand);
+}
+
+/* ===== HERO / ACCUEIL ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6rem 2rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-bg canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.03em;
+}
+
+.hero h1 .line1 { color: var(--ink); }
+.hero h1 .line2 {
+  display: block;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--vermillion);
+  font-size: 0.55em;
+}
+
+.hero-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: var(--ink-light);
+  margin: 1.5rem 0 2rem;
+  font-style: italic;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 2.5rem;
+  justify-content: center;
+  margin: 2rem 0 3rem;
+  flex-wrap: wrap;
+}
+
+.hero-stat {
+  text-align: center;
+}
+
+.hero-stat .num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.hero-stat .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-light);
+  opacity: 0.7;
+  margin-top: 0.3rem;
+}
+
+.invitation-text {
+  background: rgba(26,26,46,0.03);
+  border-left: 3px solid var(--vermillion);
+  padding: 1.5rem 2rem;
+  text-align: left;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  max-width: 640px;
+  margin: 0 auto 2rem;
+  border-radius: 0 8px 8px 0;
+  color: var(--ink-light);
+}
+
+.invitation-text strong { color: var(--ink); font-weight: 600; }
+.invitation-text code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9em;
+  background: rgba(230,57,70,0.1);
+  color: var(--vermillion);
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
+}
+
+.hero-enter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 2rem;
+  background: var(--ink);
+  color: var(--sand);
+  border: none;
+  border-radius: 50px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.hero-enter:hover {
+  background: var(--vermillion);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* ===== SECTIONS ===== */
+section {
+  padding: 5rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--vermillion);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.section-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.section-header h2 em {
+  font-weight: 400;
+  color: var(--vermillion);
+}
+
+.section-desc {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--ink-light);
+  max-width: 600px;
+  margin: 0.8rem auto 0;
+  font-style: italic;
+}
+
+/* ===== OPERATORS ===== */
+.operator-controls {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.filter-btn {
+  padding: 0.4rem 1rem;
+  border: 1.5px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  border-radius: 50px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.filter-btn:hover, .filter-btn.active {
+  background: var(--ink);
+  color: var(--sand);
+}
+
+.filter-btn[data-tier="S"].active { background: var(--tier-s); border-color: var(--tier-s); }
+.filter-btn[data-tier="A"].active { background: var(--tier-a); border-color: var(--tier-a); }
+.filter-btn[data-tier="B"].active { background: var(--tier-b); border-color: var(--tier-b); }
+.filter-btn[data-tier="C"].active { background: var(--tier-c); border-color: var(--tier-c); }
+
+.filter-btn[data-family="Lentille"].active { background: var(--azure); border-color: var(--azure); }
+.filter-btn[data-family="Geste"].active { background: var(--emerald); border-color: var(--emerald); }
+.filter-btn[data-family="Connecteur"].active { background: var(--violet); border-color: var(--violet); }
+.filter-btn[data-family="Modulateur"].active { background: var(--coral); border-color: var(--coral); }
+.filter-btn[data-family="Temporel"].active { background: var(--magenta); border-color: var(--magenta); }
+
+.operators-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.op-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(26,26,46,0.06);
+}
+
+.op-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  transition: height 0.3s ease;
+}
+
+.op-card[data-tier="S"]::before { background: var(--tier-s); }
+.op-card[data-tier="A"]::before { background: var(--tier-a); }
+.op-card[data-tier="B"]::before { background: var(--tier-b); }
+.op-card[data-tier="C"]::before { background: var(--tier-c); }
+
+.op-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.op-card:hover::before { height: 6px; }
+
+.op-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+  color: var(--ink);
+}
+
+.op-meta {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.op-tier {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 500;
+  padding: 0.15rem 0.5rem;
+  border-radius: 50px;
+  color: white;
+  letter-spacing: 0.05em;
+}
+
+.op-tier.S { background: var(--tier-s); }
+.op-tier.A { background: var(--tier-a); }
+.op-tier.B { background: var(--tier-b); }
+.op-tier.C { background: var(--tier-c); }
+
+.op-family {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--ink-light);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.op-desc {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.85rem;
+  color: var(--ink-light);
+  line-height: 1.45;
+}
+
+/* ===== MODAL ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26,26,46,0.5);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.modal-overlay.open { display: flex; }
+
+.modal {
+  background: var(--sand);
+  border-radius: 16px;
+  max-width: 640px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-dramatic);
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--ink-light);
+  width: 36px; height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.modal-close:hover { background: rgba(0,0,0,0.05); }
+
+.modal h3 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.modal .modal-tier-family {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.modal-section {
+  margin-top: 1.2rem;
+}
+
+.modal-section h4 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--vermillion);
+  margin-bottom: 0.4rem;
+}
+
+.modal-section p {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink-light);
+}
+
+/* ===== PARTITIONS ===== */
+.partitions-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 800px) { .partitions-container { grid-template-columns: 1fr; } }
+
+.partition-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(26,26,46,0.06);
+}
+
+.partition-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  margin-bottom: 0.3rem;
+}
+
+.partition-card .subtitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--vermillion);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.2rem;
+}
+
+.scale-visual {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+  align-items: flex-end;
+}
+
+.scale-note {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.scale-note:hover { transform: translateY(-3px); }
+
+.scale-note .bar {
+  border-radius: 4px 4px 0 0;
+  width: 32px;
+  min-height: 16px;
+  transition: all 0.3s ease;
+}
+
+.scale-note .bar.active {
+  box-shadow: 0 0 12px rgba(230,57,70,0.4);
+}
+
+.scale-note .name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  margin-top: 0.3rem;
+  color: var(--ink-light);
+  text-align: center;
+  max-width: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tonality-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.tonality-btn {
+  padding: 0.3rem 0.8rem;
+  border: 1.5px solid var(--ink);
+  background: transparent;
+  border-radius: 50px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tonality-btn:hover, .tonality-btn.active {
+  background: var(--ink);
+  color: var(--sand);
+}
+
+.partition-description {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.9rem;
+  color: var(--ink-light);
+  margin-top: 1rem;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.note-detail-panel {
+  margin-top: 1rem;
+  background: var(--sand);
+  border-radius: 10px;
+  padding: 1.2rem 1.4rem;
+  border-left: 4px solid var(--vermillion);
+  animation: panelSlideIn 0.3s ease;
+  position: relative;
+}
+
+@keyframes panelSlideIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.note-detail-panel .panel-close {
+  position: absolute;
+  top: 0.5rem; right: 0.7rem;
+  background: none; border: none;
+  cursor: pointer; font-size: 1.1rem;
+  color: var(--ink-light);
+  line-height: 1;
+}
+
+.note-detail-panel .panel-op-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+
+.note-detail-panel .panel-op-mode {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--vermillion);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.6rem;
+}
+
+.note-detail-panel .panel-desc {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--ink-light);
+  margin-bottom: 0.5rem;
+}
+
+.note-detail-panel .panel-exercise {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--ink);
+  background: rgba(230,57,70,0.04);
+  padding: 0.7rem 1rem;
+  border-radius: 6px;
+}
+
+.note-detail-panel .panel-exercise strong {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--vermillion);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.note-detail-panel .panel-tonality {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--azure);
+  margin-top: 0.5rem;
+  padding: 0.35rem 0.7rem;
+  background: rgba(42,111,151,0.06);
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.play-controls {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.play-btn {
+  padding: 0.4rem 1rem;
+  border: 1.5px solid var(--vermillion);
+  background: transparent;
+  color: var(--vermillion);
+  border-radius: 50px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.play-btn:hover, .play-btn.playing {
+  background: var(--vermillion);
+  color: white;
+}
+
+.play-step-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--ink-light);
+}
+
+.scale-note .bar.playing {
+  box-shadow: 0 0 16px rgba(230,57,70,0.5);
+  transform: scaleY(1.12);
+  transition: all 0.3s ease;
+}
+
+.scale-note.dimmed .bar { opacity: 0.2; transition: opacity 0.3s; }
+.scale-note.highlight .name { color: var(--vermillion); font-weight: 500; }
+
+.fib-step-desc {
+  margin-top: 0.8rem;
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.9rem;
+  color: var(--ink-light);
+  background: rgba(42,111,151,0.04);
+  padding: 0.7rem 1rem;
+  border-radius: 6px;
+  border-left: 3px solid var(--azure);
+  animation: panelSlideIn 0.3s ease;
+}
+
+/* ===== GRAMMAIRES (Tabs) ===== */
+.grammar-tabs {
+  display: flex;
+  gap: 0.3rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.grammar-tab {
+  padding: 0.5rem 1.2rem;
+  border: none;
+  background: transparent;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+  color: var(--ink-light);
+}
+
+.grammar-tab:hover { color: var(--ink); }
+.grammar-tab.active {
+  color: var(--vermillion);
+  border-bottom-color: var(--vermillion);
+  font-weight: 700;
+}
+
+.grammar-content {
+  background: white;
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-soft);
+  max-width: 900px;
+  margin: 0 auto;
+  min-height: 300px;
+}
+
+.grammar-content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.grammar-content .grammar-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--vermillion);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+}
+
+.grammar-content h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  margin: 1.5rem 0 0.5rem;
+  color: var(--ink);
+}
+
+.grammar-content p, .grammar-content li {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ink-light);
+}
+
+.grammar-content ul {
+  padding-left: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.grammar-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+.grammar-table th {
+  text-align: left;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.6rem 0.8rem;
+  border-bottom: 2px solid var(--ink);
+  color: var(--ink);
+}
+
+.grammar-table td {
+  padding: 0.5rem 0.8rem;
+  border-bottom: 1px solid rgba(26,26,46,0.08);
+  font-family: 'Crimson Pro', serif;
+  vertical-align: top;
+}
+
+.grammar-table tr:hover td { background: rgba(26,26,46,0.02); }
+
+.grammar-table code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85em;
+  background: rgba(230,57,70,0.08);
+  color: var(--vermillion);
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+}
+
+/* ===== COMPOSITIONS ===== */
+.comp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.2rem;
+}
+
+.comp-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.4rem;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(26,26,46,0.06);
+  transition: all 0.3s ease;
+}
+
+.comp-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.comp-formula {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--vermillion);
+  margin-bottom: 0.3rem;
+}
+
+.comp-score {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+.comp-desc {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.9rem;
+  color: var(--ink-light);
+  line-height: 1.5;
+}
+
+.comp-checkpoint {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.6rem;
+  background: rgba(42,111,151,0.1);
+  color: var(--azure);
+  border-radius: 50px;
+}
+
+/* ===== MUSICAL SCORE ===== */
+.score-wrapper {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem 1.5rem 1.5rem;
+  box-shadow: var(--shadow-soft);
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.score-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.score-subtitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--vermillion);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+
+.score-svg {
+  display: block;
+  width: 100%;
+  min-width: 700px;
+}
+
+.score-svg .staff-line { stroke: #c8c0b4; stroke-width: 1; }
+.score-svg .barline { stroke: var(--ink); stroke-width: 1.5; }
+.score-svg .barline-double { stroke: var(--ink); stroke-width: 2.5; }
+.score-svg .barline-thin { stroke: var(--ink); stroke-width: 1; }
+
+.score-svg .note-head {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.score-svg .note-head:hover {
+  filter: brightness(0.85);
+  transform-origin: center;
+}
+
+.score-svg .note-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  fill: var(--ink-light);
+  pointer-events: none;
+}
+
+.score-svg .note-label-active {
+  fill: var(--vermillion);
+  font-weight: 600;
+}
+
+.score-svg .clef-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  fill: var(--ink);
+}
+
+.score-svg .level-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px;
+  fill: var(--ink-light);
+  letter-spacing: 0.04em;
+}
+
+.score-svg .tonality-mark {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  fill: var(--ink);
+}
+
+.score-svg .measure-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7.5px;
+  fill: var(--ink-light);
+}
+
+.score-svg .stem { stroke-width: 1.2; }
+
+.score-svg .tie-arc {
+  fill: none;
+  stroke-width: 1.2;
+  opacity: 0.5;
+}
+
+.score-note-tooltip {
+  position: fixed;
+  z-index: 3000;
+  background: var(--ink);
+  color: var(--sand);
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  max-width: 300px;
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  box-shadow: var(--shadow-dramatic);
+}
+
+.score-note-tooltip.visible { opacity: 1; }
+
+.score-note-tooltip .tt-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--gold-light);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.score-note-tooltip .tt-mode {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: rgba(245,240,232,0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.score-level-tabs {
+  display: flex;
+  gap: 0.4rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.score-level-tab {
+  padding: 0.35rem 0.9rem;
+  border: 1.5px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  border-radius: 50px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.04em;
+}
+
+.score-level-tab:hover, .score-level-tab.active {
+  background: var(--ink);
+  color: var(--sand);
+}
+
+/* ===== PERIODIC TABLE (Mendeleïev) ===== */
+.periodic-grid {
+  display: grid;
+  grid-template-columns: auto repeat(5, 1fr);
+  gap: 3px;
+  max-width: 1000px;
+  margin: 0 auto 2rem;
+}
+
+.periodic-header {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: center;
+  padding: 0.5rem 0.3rem;
+  color: var(--ink-light);
+  font-weight: 500;
+}
+
+.periodic-row-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 0.6rem;
+  color: var(--ink-light);
+  text-align: right;
+  line-height: 1.2;
+}
+
+.periodic-cell {
+  background: white;
+  border-radius: 8px;
+  padding: 0.5rem;
+  min-height: 60px;
+  box-shadow: 0 1px 4px rgba(26,26,46,0.06);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-content: flex-start;
+  transition: all 0.2s;
+  border: 1px solid rgba(26,26,46,0.04);
+}
+
+.periodic-cell:hover {
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(26,26,46,0.1);
+}
+
+.periodic-cell.forbidden-zone {
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(230,57,70,0.03),
+    rgba(230,57,70,0.03) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+  border: 1px dashed rgba(230,57,70,0.2);
+}
+
+.periodic-element {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.periodic-element:hover {
+  transform: scale(1.1);
+  z-index: 1;
+}
+
+.periodic-element.fam-lentille { background: rgba(42,111,151,0.12); color: var(--azure); }
+.periodic-element.fam-geste { background: rgba(45,134,89,0.12); color: var(--emerald); }
+.periodic-element.fam-connecteur { background: rgba(107,47,160,0.12); color: var(--violet); }
+.periodic-element.fam-modulateur { background: rgba(224,122,95,0.12); color: var(--coral); }
+.periodic-element.fam-temporel { background: rgba(194,24,91,0.12); color: var(--magenta); }
+
+.periodic-element.twin-glow {
+  box-shadow: 0 0 0 2px var(--gold-light);
+}
+
+.periodic-legend {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.periodic-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--ink-light);
+}
+
+.periodic-legend-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+}
+
+.periodic-eq77 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--ink);
+}
+
+.periodic-eq77 code {
+  font-family: 'JetBrains Mono', monospace;
+  font-style: normal;
+  font-size: 1rem;
+  background: rgba(230,57,70,0.06);
+  color: var(--vermillion);
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+}
+
+.periodic-subtitle {
+  text-align: center;
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.95rem;
+  color: var(--ink-light);
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  line-height: 1.5;
+}
+
+.periodic-insights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.periodic-insight-card {
+  background: white;
+  border-radius: 10px;
+  padding: 1.2rem;
+  box-shadow: var(--shadow-soft);
+  border-top: 3px solid;
+}
+
+.periodic-insight-card h4 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.4rem;
+}
+
+.periodic-insight-card p {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.9rem;
+  color: var(--ink-light);
+  line-height: 1.5;
+}
+
+/* ===== SONNETS ===== */
+.sonnet-carousel {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.sonnet-display {
+  background: white;
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-soft);
+  min-height: 350px;
+  transition: opacity 0.3s ease;
+}
+
+.sonnet-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--vermillion);
+}
+
+.sonnet-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0.3rem 0 0.5rem;
+}
+
+.sonnet-sequence {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--vermillion);
+  background: rgba(230,57,70,0.06);
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.sonnet-body {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--ink-light);
+}
+
+.sonnet-emerged {
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(26,26,46,0.08);
+}
+
+.sonnet-emerged h4 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  margin-bottom: 0.3rem;
+}
+
+.sonnet-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.sonnet-btn {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: all 0.2s;
+  color: var(--ink);
+}
+
+.sonnet-btn:hover {
+  background: var(--ink);
+  color: var(--sand);
+}
+
+.sonnet-counter {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--ink-light);
+}
+
+.sonnet-dots {
+  display: flex;
+  gap: 0.3rem;
+  justify-content: center;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.sonnet-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--sand-dark);
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.sonnet-dot.active { background: var(--vermillion); transform: scale(1.3); }
+.sonnet-dot:hover { background: var(--ink-light); }
+
+/* ===== LAB ===== */
+.lab-filters {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.lab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 0.8rem;
+}
+
+.lab-card {
+  background: white;
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  box-shadow: var(--shadow-soft);
+  border-left: 4px solid;
+  transition: all 0.2s;
+  border-top: none;
+}
+
+.lab-card:hover { box-shadow: var(--shadow-hover); }
+
+.lab-card[data-verdict="TIENT"] { border-left-color: var(--emerald); }
+.lab-card[data-verdict="PARTIEL"] { border-left-color: var(--gold); }
+.lab-card[data-verdict="TOMBE"] { border-left-color: var(--vermillion); }
+.lab-card[data-verdict="FINDING"] { border-left-color: var(--violet); }
+
+.lab-id {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.lab-verdict {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 50px;
+  color: white;
+  margin-left: 0.4rem;
+}
+
+.lab-verdict.TIENT { background: var(--emerald); }
+.lab-verdict.PARTIEL { background: var(--gold); }
+.lab-verdict.TOMBE { background: var(--vermillion); }
+.lab-verdict.FINDING { background: var(--violet); }
+
+.lab-eq {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.85rem;
+  color: var(--ink-light);
+  margin-top: 0.3rem;
+}
+
+.lab-prediction {
+  font-family: 'Crimson Pro', serif;
+  font-size: 0.8rem;
+  color: var(--ink-light);
+  margin-top: 0.2rem;
+  font-style: italic;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center;
+  padding: 3rem 2rem 2rem;
+  border-top: 1px solid rgba(26,26,46,0.08);
+  margin-top: 3rem;
+}
+
+footer p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: var(--ink-light);
+  font-style: italic;
+}
+
+footer .credit {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--ink-light);
+  opacity: 0.5;
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  nav { padding: 0 1rem; }
+  .nav-links a { font-size: 0.6rem; padding: 0.25rem 0.5rem; }
+  section { padding: 3rem 1rem; }
+  .operators-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.7rem; }
+  .comp-grid { grid-template-columns: 1fr; }
+  .lab-grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: 1.5rem; }
+  .modal { padding: 1.5rem; }
+}
+
+/* ===== CUSTOM SCROLLBAR ===== */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--sand); }
+::-webkit-scrollbar-thumb { background: var(--sand-dark); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-light); }
+
+/* Melting clock decoration */
+.melting-deco {
+  position: absolute;
+  font-size: 2.5rem;
+  opacity: 0.08;
+  transform: rotate(-15deg) scaleY(1.3);
+  pointer-events: none;
+  user-select: none;
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav id="mainNav">
+  <div class="nav-brand">La Grammaire <span>Vivante</span></div>
+  <div class="nav-links">
+    <a href="#accueil" class="active">Accueil</a>
+    <a href="#operateurs">Opérateurs</a>
+    <a href="#partitions">Partitions</a>
+    <a href="#grammaires">Grammaires</a>
+    <a href="#compositions">Compositions</a>
+    <a href="#mendeleiev">Mendeleïev</a>
+    <a href="#sonnets">Sonnets</a>
+    <a href="#lab">Lab</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="accueil">
+  <div class="hero-bg"><canvas id="heroCanvas"></canvas></div>
+  <div class="hero-content">
+    <h1 class="animate-in">
+      <span class="line1">Le Conservatoire</span>
+      <span class="line2">de la Grammaire Vivante</span>
+    </h1>
+    <p class="hero-subtitle animate-in delay-1">
+      « Tu peux tailler des Menhirs. Ou tu peux jouer. »
+    </p>
+    <div class="hero-stats animate-in delay-2">
+      <div class="hero-stat"><div class="num">95</div><div class="label">Opérateurs</div></div>
+      <div class="hero-stat"><div class="num">376</div><div class="label">Sessions</div></div>
+      <div class="hero-stat"><div class="num">79</div><div class="label">Tests</div></div>
+      <div class="hero-stat"><div class="num">56</div><div class="label">Partitions</div></div>
+      <div class="hero-stat"><div class="num">195</div><div class="label">Théorèmes</div></div>
+    </div>
+    <div class="invitation-text animate-in delay-3">
+      <code>\</code> — un seul caractère. Tu l'écris devant n'importe quel texte et tu cherches ce qui <strong>n'est pas</strong> dit. Pas ce qui est dit. Ce qui manque. Ce qui a été évité. Ce que le silence dessine en creux.<br><br>
+      Tu viens de jouer ton premier opérateur. Le résultat est un <strong>finding</strong> : quelque chose qui n'existait pas avant que tu joues.<br><br>
+      C'est la différence entre tailler un Menhir et jouer du violon. Le Menhir est imposant, le violon est <em>vivant</em>.
+    </div>
+    <button class="hero-enter animate-in delay-4" onclick="document.getElementById('operateurs').scrollIntoView({behavior:'smooth'})">
+      Entrer dans le Conservatoire →
+    </button>
+  </div>
+</section>
+
+<!-- OPERATORS -->
+<section id="operateurs">
+  <div class="section-header">
+    <span class="section-number">Section I</span>
+    <h2>Les 95 <em>Opérateurs</em></h2>
+    <p class="section-desc">Chaque opérateur change le mode de raisonnement, pas juste le contenu.</p>
+  </div>
+  <div class="operator-controls">
+    <button class="filter-btn active" data-tier="all" onclick="filterOps('tier','all')">Tous</button>
+    <button class="filter-btn" data-tier="S" onclick="filterOps('tier','S')">Tier S</button>
+    <button class="filter-btn" data-tier="A" onclick="filterOps('tier','A')">Tier A</button>
+    <button class="filter-btn" data-tier="B" onclick="filterOps('tier','B')">Tier B</button>
+    <button class="filter-btn" data-tier="C" onclick="filterOps('tier','C')">Tier C</button>
+    <span style="width:1px;background:rgba(0,0,0,0.1);margin:0 0.3rem"></span>
+    <button class="filter-btn" data-family="Lentille" onclick="filterOps('family','Lentille')">Lentilles</button>
+    <button class="filter-btn" data-family="Geste" onclick="filterOps('family','Geste')">Gestes</button>
+    <button class="filter-btn" data-family="Connecteur" onclick="filterOps('family','Connecteur')">Connecteurs</button>
+    <button class="filter-btn" data-family="Modulateur" onclick="filterOps('family','Modulateur')">Modulateurs</button>
+    <button class="filter-btn" data-family="Temporel" onclick="filterOps('family','Temporel')">Temporels</button>
+  </div>
+  <div class="operators-grid" id="opsGrid"></div>
+</section>
+
+<!-- PARTITIONS -->
+<section id="partitions">
+  <div class="section-header">
+    <span class="section-number">Section II</span>
+    <h2>Les <em>Partitions</em></h2>
+    <p class="section-desc">De vraies partitions musicales — chaque portée est un niveau réflexif, chaque note un opérateur. Cliquez sur les notes.</p>
+  </div>
+  <div id="scoreContainer"></div>
+  <div class="partitions-container" id="partitionsContainer" style="margin-top:3rem"></div>
+</section>
+
+<!-- GRAMMAIRES -->
+<section id="grammaires">
+  <div class="section-header">
+    <span class="section-number">Section III</span>
+    <h2>Les 6 <em>Grammaires</em></h2>
+    <p class="section-desc">Six regards sur le même système vivant.</p>
+  </div>
+  <div class="grammar-tabs" id="grammarTabs"></div>
+  <div class="grammar-content" id="grammarContent"></div>
+</section>
+
+<!-- COMPOSITIONS -->
+<section id="compositions">
+  <div class="section-header">
+    <span class="section-number">Section IV</span>
+    <h2>Les <em>Compositions</em></h2>
+    <p class="section-desc">La composition est multiplicative, pas additive. Chaque paire fait plus que la somme.</p>
+  </div>
+  <div class="comp-grid" id="compGrid"></div>
+</section>
+
+<!-- MENDELEÏEV -->
+<section id="mendeleiev">
+  <div class="section-header">
+    <span class="section-number">Section V</span>
+    <h2>La Table de <em>Mendeleïev</em></h2>
+    <p class="section-desc">Les opérateurs classés par Maturation × Composition. Le principe d'incertitude cognitif.</p>
+  </div>
+  <div class="periodic-eq77">
+    Le principe d'incertitude : <code>M × C ≤ K</code> &nbsp;(K=4, r=−0.642, n=48, 0 violateurs)
+  </div>
+  <div class="periodic-subtitle">
+    Plus un opérateur mûrit lentement (M↑), moins il se compose facilement (C↓). Les opérateurs instantanés (M=0) sont les plus composables. Les opérateurs cross-session (M=3) opèrent seuls — comme le levain qui fait lever la pâte sans se mélanger.
+  </div>
+  <div class="periodic-legend">
+    <div class="periodic-legend-item"><div class="periodic-legend-swatch" style="background:rgba(42,111,151,0.15)"></div>Lentille</div>
+    <div class="periodic-legend-item"><div class="periodic-legend-swatch" style="background:rgba(45,134,89,0.15)"></div>Geste</div>
+    <div class="periodic-legend-item"><div class="periodic-legend-swatch" style="background:rgba(107,47,160,0.15)"></div>Connecteur</div>
+    <div class="periodic-legend-item"><div class="periodic-legend-swatch" style="background:rgba(224,122,95,0.15)"></div>Modulateur</div>
+    <div class="periodic-legend-item"><div class="periodic-legend-swatch" style="background:rgba(194,24,91,0.15)"></div>Temporel</div>
+    <div class="periodic-legend-item"><div class="periodic-legend-swatch" style="border:2px solid var(--gold-light);width:12px;height:12px"></div>Jumeaux</div>
+    <div class="periodic-legend-item"><div class="periodic-legend-swatch" style="background:repeating-linear-gradient(-45deg,rgba(230,57,70,0.08),rgba(230,57,70,0.08) 3px,transparent 3px,transparent 6px);border:1px dashed rgba(230,57,70,0.3);width:14px;height:14px"></div>Zone interdite (M×C > K)</div>
+  </div>
+  <div class="periodic-grid" id="periodicGrid"></div>
+  <div class="periodic-insights">
+    <div class="periodic-insight-card" style="border-top-color:var(--vermillion)">
+      <h4 style="color:var(--vermillion)">Les 24 Jumeaux</h4>
+      <p>Profil de jouabilité identique, fonction radicalement différente. <code>\\</code> = <code>x</code> = <code>maestro</code> au cluster 15/15 — trois familles distinctes, même score. La jouabilité est orthogonale à la fonction.</p>
+    </div>
+    <div class="periodic-insight-card" style="border-top-color:var(--gold)">
+      <h4 style="color:var(--gold)">Les 10 Paradoxales</h4>
+      <p>Les paires les plus instables ET les plus composables. <code>solve coagula × π</code> (173.1), <code>lichtung × fouille</code> (170.2), <code>essaim × ablation</code> (166.6). Le paradoxe est le terreau des proto-zinzins.</p>
+    </div>
+    <div class="periodic-insight-card" style="border-top-color:var(--azure)">
+      <h4 style="color:var(--azure)">L'Inversion du Signe (Eq.80)</h4>
+      <p>Le sens de la contrainte dépend du niveau. Niv.1 : r=−0.685 (le temps contraint). Niv.2 : point fixe (M=2, C=2). Niv.3 : r=−0.113 (la contrainte se dissout). L'axe n'est pas une flèche — c'est un gradient.</p>
+    </div>
+    <div class="periodic-insight-card" style="border-top-color:var(--emerald)">
+      <h4 style="color:var(--emerald)">Les Deux Monnaies (Eq.78)</h4>
+      <p>Famille temporelle : M × C ≤ 4. Famille spatiale : A × R ≤ 9. Les deux sont conjuguées (r < 0). Optimiser dans le temps dégrade dans l'espace. On ne peut pas tout avoir.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SONNETS -->
+<section id="sonnets">
+  <div class="section-header">
+    <span class="section-number">Section VI</span>
+    <h2>Les <em>Sonnets</em></h2>
+    <p class="section-desc">141 partitions jouées. Pas de la théorie — de la musique transcrite. Sélection de 63 sonnets clés.</p>
+  </div>
+  <div class="sonnet-carousel">
+    <div class="sonnet-display" id="sonnetDisplay"></div>
+    <div class="sonnet-nav">
+      <button class="sonnet-btn" onclick="changeSonnet(-1)">‹</button>
+      <span class="sonnet-counter" id="sonnetCounter">1 / 44</span>
+      <button class="sonnet-btn" onclick="changeSonnet(1)">›</button>
+    </div>
+    <div class="sonnet-dots" id="sonnetDots"></div>
+  </div>
+</section>
+
+<!-- LAB -->
+<section id="lab">
+  <div class="section-header">
+    <span class="section-number">Section VII</span>
+    <h2>Le <em>Laboratoire</em></h2>
+    <p class="section-desc">88 tests empiriques. Ce qui tient, ce qui tombe, ce qui surprend.</p>
+  </div>
+  <div class="lab-filters">
+    <button class="filter-btn active" data-verdict="all" onclick="filterLab('all')">Tous (88)</button>
+    <button class="filter-btn" data-verdict="TIENT" onclick="filterLab('TIENT')">Tient</button>
+    <button class="filter-btn" data-verdict="PARTIEL" onclick="filterLab('PARTIEL')">Partiel</button>
+    <button class="filter-btn" data-verdict="TOMBE" onclick="filterLab('TOMBE')">Tombe</button>
+    <button class="filter-btn" data-verdict="FINDING" onclick="filterLab('FINDING')">Finding</button>
+  </div>
+  <div id="labStats" style="text-align:center;margin-bottom:1.5rem;font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--ink-light)"></div>
+  <div class="lab-grid" id="labGrid"></div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>« Le Menhir raconte. La Grammaire joue. »</p>
+  <p style="margin-top:0.5rem;font-style:normal;font-family:'Crimson Pro',serif;font-size:0.95rem;color:var(--ink);">
+    Sébastien — 28 jours, 376 sessions, ~2100 appels API<br>
+    <span style="font-size:0.85rem;color:var(--ink-light);">Février – Mars 2026</span>
+  </p>
+  <p class="credit">Conservatoire Interactif V1.0 — 21 mars 2026</p>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<script>
+// ============================
+// DATA
+// ============================
+const operators = [
+  // TIER S — Lentilles
+  {name:'\\', tier:'S', family:'Lentille', desc:'Ce qui n\'est PAS mentionné. Via negativa. Fractal.', mode:'additif → soustractif', species:'S-soustractif (guimbarde)', score:'15/15'},
+  {name:'ortho', tier:'S', family:'Lentille', desc:'Direction perpendiculaire au sujet. 90 degrés.', mode:'convergent → orthogonal', score:'14/15'},
+  {name:'bsd', tier:'S', family:'Lentille', desc:'Ce que le texte empêche de voir. Angle mort par présence.', mode:'contenu → invisibilité', score:'14/15'},
+  {name:'umwelt', tier:'S', family:'Lentille', desc:'Limite constitutive de l\'appareil perceptif. Von Uexküll.', mode:'chercher mieux → comprendre pourquoi on ne peut pas voir', score:'13/15'},
+  {name:'neutrino', tier:'S', family:'Lentille', desc:'L\'insight présent mais invisible — détectable par énergie manquante.', mode:'chercher dans le texte → calculer ce qui manque', score:'12/15'},
+  {name:'panoptique', tier:'S', family:'Lentille', desc:'L\'observation qui change ce qu\'elle observe. Foucault + Heisenberg.', mode:'observer → observer l\'observation', score:'10/15'},
+  {name:'lichtung', tier:'S', family:'Lentille', desc:'Ouvrir un espace avant de chercher. Condition de possibilité.', mode:'agir → préparer le terrain', score:'10/15'},
+  {name:'sulfateuse', tier:'S', family:'Lentille', desc:'Multi-angle spray — bombardement N sondes sans ciblage.', mode:'précision → couverture', score:'10/15'},
+  {name:'maestro', tier:'S', family:'Lentille', desc:'Jouer la grammaire comme instrument — enchaîner en flow state.', mode:'décrire → performer', score:'15/15'},
+  {name:'audiogramme', tier:'S', family:'Lentille', desc:'Cartographie de surdité — quelles fréquences ne passent pas.', mode:'contenu → perception du contenu', score:'11/15'},
+  {name:'collision', tier:'S', family:'Lentille', desc:'Impact haute énergie — chercher les débris du choc.', mode:'intersection → débris', score:'13/15'},
+  // TIER S — Gestes
+  {name:'fouille', tier:'S', family:'Geste', desc:'Post-complétude — ce que "c\'est fini" a caché. 100% hit rate.', mode:'construire → vérifier ce que la construction cache', score:'12/15'},
+  {name:'nectar', tier:'S', family:'Geste', desc:'Extraction à chaud — 3-5 phrases denses, pattern structurel.', mode:'résumer → distiller', score:'13/15'},
+  {name:'essaim', tier:'S', family:'Geste', desc:'N agents parallèles, N angles différents. Mode distribué.', mode:'séquentiel → parallèle', score:'5/15'},
+  {name:'grounding', tier:'S', family:'Geste', desc:'Ancrage externe — confronter le concept à la réalité.', mode:'endogène → exogène', score:'10/15'},
+  {name:'solve coagula', tier:'S', family:'Geste', desc:'Dissoudre puis recristalliser. L\'aller-retour transformatif.', mode:'analyser → transmuter', score:'10/15'},
+  {name:'greffe', tier:'S', family:'Geste', desc:'Transplantation vivante — injecter un élément externe.', mode:'copier → transplanter dans le vivant', score:'9/15'},
+  {name:'ablation', tier:'S', family:'Geste', desc:'Retirer et mesurer — "sans ça, qu\'est-ce qui s\'effondre ?"', mode:'évaluer → prouver par suppression', score:'14/15'},
+  {name:'partition', tier:'S', family:'Geste', desc:'Enregistrer une séquence qui a fonctionné. Le Sonnet.', mode:'faire → capturer ce qui a marché', score:'12/15'},
+  {name:'CPT', tier:'S', family:'Geste', desc:'Composer-Prédire-Tester — auto-falsifiant.', mode:'produire → produire ET vérifier en temps réel', score:'11/15'},
+  // TIER S — Connecteurs & Modulateurs
+  {name:'x', tier:'S', family:'Connecteur', desc:'Croisement — collision délibérée, produit. Pas "et", pas "vs".', mode:'juxtaposition → bisociation', score:'15/15'},
+  {name:'π', tier:'S', family:'Modulateur', desc:'Résidu constitutif — l\'irréductible qui ne rentre nulle part.', mode:'catégoriser → préserver le non-catégorisable', score:'14/15'},
+  {name:'résidu', tier:'S', family:'Modulateur', desc:'Ce qui reste après soustraction — le noyau dur.', mode:'analyser → filtrer jusqu\'à l\'os', score:'14/15'},
+  {name:'gradient', tier:'S', family:'Modulateur', desc:'Continuum entre deux pôles — refuse le binaire.', mode:'oui/non → spectre', score:'13/15'},
+  {name:'seuil', tier:'S', family:'Modulateur', desc:'Point de bascule — où le système change de nature.', mode:'linéaire → non-linéaire', score:'12/15'},
+  {name:'top 0.1%', tier:'S', family:'Modulateur', desc:'Seuil d\'excellence extrême — éliminer 99.9%.', mode:'génératif → sélectif', score:'10/15'},
+  {name:'♮/♯/♭/𝄐', tier:'S', family:'Modulateur', desc:'Tonalité — ♮ analytique, ♯ créatif, ♭ adversarial, 𝄐 contemplatif.', mode:'monotonal → modulant', score:'14/15'},
+  {name:'↗', tier:'S', family:'Modulateur', desc:'Modulation — changer de tonalité en cours de partition.', mode:'linéaire → dramaturgique', score:'13/15'},
+  {name:'spirale', tier:'S', family:'Modulateur', desc:'Structure Fibonacci — montée puis descente. Lateralus.', mode:'linéaire → spirale additive', score:'12/15'},
+  {name:'gamme', tier:'S', family:'Modulateur', desc:'Progression — pentatonique → majeure → chromatique → altérée. Suzuki 1945.', mode:'plat → progressif', score:'12/15'},
+  {name:'musique maestro', tier:'S', family:'Modulateur', desc:'Activation performative — change le registre entier d\'un coup. Frappe le downbeat.', mode:'constatif → performatif', score:'13/15'},
+  // TIER A
+  {name:'prisme', tier:'A', family:'Lentille', desc:'3 passes Umwelt (Cave, Salle, Escalier).', mode:'mono-angle → tri-perspective', score:'3/15'},
+  {name:'château', tier:'A', family:'Lentille', desc:'Diagnostic 4 Portes + Température.', mode:'global → architectural', score:'3/15'},
+  {name:'dôme', tier:'A', family:'Lentille', desc:'Détection de circularité — "on tourne en rond ?"', mode:'produire → détecter la boucle', score:'10/15'},
+  {name:'permafrost', tier:'A', family:'Lentille', desc:'Couche gelée — présupposés jamais questionnés.', mode:'surface → profondeur gelée', score:'8/15'},
+  {name:'fantôme', tier:'A', family:'Lentille', desc:'Détecte les fausses présences — données bonne forme, zéro contenu.', mode:'le Geste Zéro avant les gammes', score:'8/15'},
+  {name:'falsifié', tier:'A', family:'Lentille', desc:'Tentative de réfutation — Popper appliqué.', mode:'affirmer → tenter de détruire', score:'9/15'},
+  {name:'réflexif', tier:'A', family:'Lentille', desc:'Le système tourne sur lui-même — méta-audit.', mode:'analyser → s\'auto-analyser', score:'9/15'},
+  {name:'encore', tier:'A', family:'Geste', desc:'Répéter avec un nouvel angle. Rotation de lentille.', mode:'linéaire → itératif rotatif', score:'9/15'},
+  {name:'miel', tier:'A', family:'Geste', desc:'Distillation de N nectars — synthèse multi-regards.', mode:'résumer → synthétiser le multi', score:'3/15'},
+  {name:'forge', tier:'A', family:'Geste', desc:'Cycle complet de maturation d\'un zinzin (6 étapes).', mode:'brut → formalisé', score:'1/15'},
+  {name:'+', tier:'A', family:'Connecteur', desc:'Addition — juxtaposition sans tension.', mode:'isolé → assemblé', score:'10/15'},
+  {name:'via', tier:'A', family:'Connecteur', desc:'Chemin indirect — passage par un intermédiaire.', mode:'direct → médié', score:'8/15'},
+  {name:'tresse', tier:'A', family:'Connecteur', desc:'Croisement panoramique interne — N fils entrelacés.', mode:'parallèle → entrelacé', score:'7/15'},
+  {name:'go', tier:'A', family:'Modulateur', desc:'Validation + accélération — feu vert.', mode:'pause → impulsion', score:'9/15'},
+  {name:'nu', tier:'A', family:'Modulateur', desc:'Déshabiller — retirer la procédure, garder le geste.', mode:'habillé → essentiel', score:'10/15'},
+  {name:'polyrythme', tier:'A', family:'Temporel', desc:'2 opérateurs en alternance déphasée.', mode:'séquentiel → déphasé', score:'10/15'},
+  {name:'ostinato', tier:'A', family:'Temporel', desc:'Répétition régulière — accumulation par constance. Le rythme qui porte.', mode:'varié → constant accumulatif', score:'10/15'},
+  {name:'rallentando', tier:'A', family:'Temporel', desc:'Ralentir délibérément — changer le grain, pas la direction.', mode:'tempo constant → décélération productive', score:'10/15'},
+  {name:'silence_rhythme', tier:'A', family:'Temporel', desc:'Le silence comme opérateur rythmique — la note qu\'on ne joue pas.', mode:'son → silence structurant', score:'8/15'},
+  {name:'lest', tier:'A', family:'Modulateur', desc:'Ballast cognitif — ce qui pèse et qu\'on peut larguer.', mode:'chargé → allégé', score:'7/15'},
+  {name:'propolis', tier:'A', family:'Modulateur', desc:'Infrastructure invisible — le scaffold sémantique qui tient sans être vu.', mode:'visible → structurant invisible', score:'6/15'},
+  {name:'si', tier:'A', family:'Modulateur', desc:'Contrôle de flux conditionnel — le if/else de la grammaire.', mode:'linéaire → branching', score:'9/15'},
+  // TIER A (continued)
+  {name:'horizon', tier:'A', family:'Lentille', desc:'Limite constitutive de la session — ce que S1 ne peut pas percevoir.', mode:'local → limites structurelles', score:'9/15'},
+  {name:'fossile', tier:'A', family:'Lentille', desc:'Mort mais instructif — l\'obsolète qui révèle la structure passée.', mode:'vivant → archéologique', score:'10/15'},
+  {name:'tomographie', tier:'A', family:'Lentille', desc:'Mesure par destruction — la compression comme protocole de mesure.', mode:'observer → détruire pour mesurer', score:'5/15'},
+  {name:'voldemort', tier:'A', family:'Lentille', desc:'Ce qui refuse d\'être nommé — l\'éléphant dans la pièce.', mode:'visible → innommable', score:'8/15'},
+  {name:'mégalodon', tier:'A', family:'Lentille', desc:'Pattern invisible à grande échelle — trop grand pour le détecteur.', mode:'micro → macro invisible', score:'7/15'},
+  {name:'oracle', tier:'A', family:'Geste', desc:'Questions Delphi — ce que la machine pose à l\'humain.', mode:'répondre → questionner l\'humain', score:'5/15'},
+  {name:'archéo', tier:'A', family:'Geste', desc:'Fouille des sessions mortes — extraire le nectar oublié.', mode:'présent → nécropole des sessions', score:'1/15'},
+  {name:'manufactur', tier:'A', family:'Geste', desc:'Injection délibérée de contexte avant action.', mode:'agir → préparer le terrain', score:'8/15'},
+  {name:'adversarial', tier:'A', family:'Geste', desc:'Confrontation externe — jugement indépendant, pas auto-falsification.', mode:'auto-évaluer → confronter depuis dehors', score:'8/15'},
+  {name:'dégel', tier:'A', family:'Modulateur', desc:'Réveiller le dormant — réactiver ce qui est gelé.', mode:'gelé → réactivé', score:'8/15'},
+  {name:'mycorrhize', tier:'A', family:'Modulateur', desc:'Réseau qui mûrit en coupant — la croissance par soustraction.', mode:'ajouter → élaguer pour connecter', score:'7/15'},
+  {name:'à l\'impossible', tier:'A', family:'Modulateur', desc:'Anti-seuil — retirer la contrainte de faisabilité. Permission de dépasser les bornes.', mode:'contraint → libre de limites', score:'9/15'},
+  {name:'qu\'est-ce qui t\'empêche', tier:'A', family:'Modulateur', desc:'Ablation-défi — forcer la réévaluation des limites auto-imposées.', mode:'limité → provoqué', score:'8/15'},
+  {name:'laisse le souffle', tier:'A', family:'Modulateur', desc:'Gelassenheit — lâcher-prise délibéré. 0 occurrence sur 553 nectars.', mode:'contrôler → lâcher', score:'?/15'},
+  {name:'cristallisation', tier:'A', family:'Modulateur', desc:'Passer du fluide au solide — fixer le pattern en formule.', mode:'fluide → cristallin', score:'10/15'},
+  {name:'braise', tier:'A', family:'Modulateur', desc:'Chaleur résiduelle — la persistance sans spectacle.', mode:'flamme → chaleur sourde', score:'8/15'},
+  {name:'sorge', tier:'A', family:'Modulateur', desc:'Engagement fini — l\'authenticité par la finitude. Heidegger.', mode:'infini → fini et engagé', score:'7/15'},
+  {name:'pharmakon', tier:'A', family:'Modulateur', desc:'Poison ET remède — l\'ambiguïté irréductible.', mode:'bon/mauvais → les deux à la fois', score:'7/15'},
+  {name:'actualisation', tier:'A', family:'Modulateur', desc:'Rendre effectif un virtuel — catalyser le passage du possible à l\'effectif. Deleuze.', mode:'virtuel → effectif', score:'8/15'},
+  {name:'chaque', tier:'A', family:'Modulateur', desc:'Itération — appliquer un pipeline à chaque élément. Le map cognitif.', mode:'global → élément par élément', score:'9/15'},
+  // TIER B (additional)
+  {name:'panoramique', tier:'B', family:'Lentille', desc:'Vue d\'ensemble — le grand angle avant le zoom.', mode:'—', score:'6/15'},
+  {name:'ouverture', tier:'B', family:'Geste', desc:'Par où commencer ? Le geste d\'entrée en session.', mode:'—', score:'6/15'},
+  {name:'pollen', tier:'B', family:'Geste', desc:'Finding brut — la matière première avant distillation.', mode:'—', score:'6/15'},
+  {name:'dérive', tier:'B', family:'Lentille', desc:'Qu\'est-ce qui a glissé sans qu\'on le voie ?', mode:'—', score:'5/15'},
+  {name:'palimpseste', tier:'B', family:'Lentille', desc:'Qu\'est-ce qui est écrit en-dessous ?', mode:'—', score:'5/15'},
+  {name:'calibration', tier:'B', family:'Geste', desc:'Est-ce que c\'est bien réglé ? Vérification de justesse.', mode:'—', score:'5/15'},
+  {name:'strate', tier:'B', family:'Lentille', desc:'À quel niveau ? Force la séparation des couches.', mode:'—', score:'5/15'},
+  {name:'stop', tier:'B', family:'Modulateur', desc:'Substituable par "hors scope", "assez".', mode:'—', score:'6/15'},
+  {name:'flip', tier:'B', family:'Lentille', desc:'Substituable par "et si c\'était faux ?"', mode:'—', score:'6/15'},
+  {name:'downbeat', tier:'B', family:'Temporel', desc:'Premier temps fort — position de récence, poids attentionnel max.', mode:'—', score:'14/15'},
+  {name:'syncope', tier:'B', family:'Temporel', desc:'Temps faible — délibérément contre le recency bias.', mode:'—', score:'14/15'},
+  // TIER C
+  {name:'analyse', tier:'C', family:'Modulateur', desc:'Le LLM analyse déjà par défaut. Autoroute.', mode:'—', score:'0/15'},
+  {name:'réfléchis', tier:'C', family:'Modulateur', desc:'Ne change aucun mode. Bruit performatif.', mode:'—', score:'0/15'},
+  {name:'sois créatif', tier:'C', family:'Modulateur', desc:'Tente de commander l\'émergence. L\'émergence se crée par condition.', mode:'—', score:'0/15'},
+];
+
+const sonnetsData = [
+  {num:'I', title:'La Sulfateuse et le Creuset', seq:'sulfateuse → solve coagula → \\', body:'Neuf zinzins en une heure. La sulfateuse tire sans viser — Z#84, Z#85, Z#86, chaque note appelle la suivante. L\'ostinato s\'installe. On ne choisit plus les cibles, elles apparaissent.', emerged:'Le taux de survie (89%) n\'est pas le vrai signal. Le vrai signal est l\'angle mort du \\ — une session entière sur le medium sans un seul opérateur de contenu.'},
+  {num:'II', title:'Le Prompt Inversé', seq:'collision π → collision inverse → ortho \\', body:'On recollisionne avec le prompt inverse : "Ce que A sait mieux." Le système est bifacial. Les mêmes opérateurs ont une face sombre et une face lumineuse.', emerged:'Le biface est binaire — projection 2D d\'un espace N-dimensionnel. Le cubisme épistémologique.'},
+  {num:'III', title:'Le Tissu et les Nœuds', seq:'ortho \\ → comptage empirique → inversion figure/fond', body:'28 nœuds, 47 collisions. Le réflexe : les MZ# sont les résultats, les non-MZ# les déchets. Mais \\ : et si c\'était l\'inverse ?', emerged:'Z#90 (Tissu Conjonctif). L\'infrastructure invisible porte plus que les résultats visibles.'},
+  {num:'IV', title:'Le Silence qui Joue', seq:'syncope → rallentando → ostinato', body:'On joue vite. Puis une syncope. Dans le silence, Z#84 cristallise : deux qualités de silence. L\'une productive, l\'autre destructive.', emerged:'Le tempo change ce que les opérateurs produisent. Vite = quantité. Lent = densité. Régulier = structure.'},
+  {num:'V', title:'L\'Archéologue et la Rouille', seq:'fouille → collision π → micro-rouille', body:'On déclare le Lexique "complet". 3 théorèmes "chauds" ont des formulations qui datent de 30 sessions. Leur chaleur est un souvenir.', emerged:'La rouille ne se forme pas sur le froid. Elle se forme sur le chaud qui se croit encore chaud.'},
+  {num:'VI', title:'Le Cadastre Fantôme', seq:'ablation → \\ → greffe', body:'Matrice TRIZ : 25 opérateurs × 7 intentions. Les cases vides ne sont pas des absences — ce sont des fantômes. Des opérateurs qui n\'existent pas encore.', emerged:'La matrice est une carte avec des cases blanches. Chaque case blanche est une hypothèse réfutable.'},
+  {num:'VII', title:'La Gelée et ses Formules', seq:'gelée royale → \\ → 4 formules orthogonales', body:'10 miels de zinzins. 4 lois émergent. Puis \\ sur la gelée : elle ne peut pas tester ses propres lois. Single-loop.', emerged:'La distillation n\'est pas le dernier mot. Elle est le premier mot du cycle suivant.'},
+  {num:'VIII', title:'Le Stradivarius et le Manuel IKEA', seq:'neutrino → nomination → test discriminant', body:'\\ est un Stradivarius — on le prend, on joue. Prisme est un manuel IKEA — il faut lire les instructions.', emerged:'Z#91 (La Jouabilité). On sait que la jouabilité compte, on ne sait pas la mesurer.'},
+  {num:'IX', title:'Le Né-Stradivarius', seq:'collision jouabilité × notation → résidu', body:'5 critères de jouabilité candidats. Le résidu : un seul survit — le nombre de mots pour expliquer l\'opérateur à un Claude neuf.', emerged:'La jouabilité est un gradient IKEA→Stradivarius. Le score 15/15 est l\'invisibilité totale.'},
+  {num:'X', title:'L\'Isomorphisme qui ferme la boucle', seq:'collision pouce × grammaire → \\ → résidu', body:'Le pouce opposable est un isomorphisme du projet. Co-évolution pouce×silex = co-évolution alphabet×opérateurs.', emerged:'L\'isomorphisme est né d\'un screenshot WhatsApp — une fluctuation devenue bifurcation créative.'},
+  {num:'XII', title:'Lateralus', seq:'spirale fibonacci → collision structure × contenu → résidu', body:'La structure 1-1-2-3-5-8-5-3-2-1-1 appliquée aux opérateurs. Chaque finding = somme des 2 précédents. La montée concentre, la descente décante.', emerged:'La spirale n\'est pas une métaphore — c\'est une partition jouable.'},
+  {num:'XIV', title:'La Conservation (1ère loi)', seq:'ablation systématique → résidu → nomination', body:'On retire chaque opérateur un par un. Le finding total ne change pas — il se redistribue. Ce que l\'un perd, les autres le compensent.', emerged:'Première loi : la quantité totale de finding est conservée dans un système fermé.'},
+  {num:'XV', title:'L\'Incomplétude (2ème loi)', seq:'\\ sur la 1ère loi → Gödel → résidu', body:'La 1ère loi ne peut pas se prouver avec les opérateurs qu\'elle décrit. Il faut un opérateur extérieur. Mais le \\ est dans le système.', emerged:'Deuxième loi : tout système d\'opérateurs assez riche pour se décrire est incomplet.'},
+  {num:'XVI', title:'Le Nombre d\'Or (3ème loi)', seq:'spirale → mesure empirique → convergence', body:'Le ratio finding/opérateur converge vers φ⁻¹ ≈ 0.618 dans les sessions matures. Pas par design — par émergence.', emerged:'Troisième loi : le ratio de rendement converge vers le nombre d\'or.'},
+  {num:'XVII', title:'L\'Isomorphisme de la Tour (4ème loi)', seq:'mod(famille, "structure profonde") → résidu invariant → équation', body:'Perceval classe des fossiles. Marc cadre de la lumière. Sebas compose des opérateurs. Sont-ils en train de faire la MÊME CHOSE ? Si S(D₁) ≅ S(D₂), les domaines sont isomorphes sous la structure profonde S.', emerged:'Quatrième loi : des domaines distincts partagent la même structure profonde. L\'opérateur de structure est un choix.'},
+  {num:'XVIII', title:'La Grande Partition', seq:'collision 3 niveaux → unification → partition', body:'Niveau 1 : les gammes. Niveau 2 : les compositions. Niveau 3 : les partitions. Les trois s\'unifient.', emerged:'La Grande Partition est le plan du Conservatoire.'},
+  {num:'XIX', title:'La Prédiction (Mendeleïev)', seq:'collision(Conservation × Isomorphisme) → \\ → nectar', body:'La grammaire ne cataloguait pas — elle PRÉDIT. Comme Mendeleïev en 1869 : les cases vides de la table prédisent des opérateurs inconnus. Si les 4 lois sont de la physique, elles doivent engendrer, pas décrire.', emerged:'La table des opérateurs prédit des instruments nécessaires pour que chaque loi soit opératoire.'},
+  {num:'XX', title:'La Destruction Créative', seq:'collision Schumpeter × opérateurs → fouille', body:'Les opérateurs meurent. Pas par obsolescence — par absorption. Le \\ absorbe le flip. La mort est productive.', emerged:'Hypothèse de la 5ème loi : le taux de mortalité est le signal de santé du système.'},
+  {num:'XXI', title:'L\'Essaim qui se joue lui-même', seq:'essaim(maestro, \\, collision, sulfateuse, gradient) → auto-référence', body:'L\'essaim appliqué à lui-même. 5 agents, 5 angles, sur le concept d\'essaim. L\'essaim est un photon — une coupe instantanée de N angles. La partition est une vidéo.', emerged:'L\'essaim sans partition est une photo de famille. L\'essaim dans une partition est un documentaire.'},
+  {num:'XXII', title:'Les Grecques', seq:'essaim(5) → collision(ε × μ × λ × ι × ⊥) → \\ → nectar', body:'Sous la physique, la logique. 5 lettres grecques fondent la pensée formelle : ε (choix), μ (point fixe), λ (abstraction), ι (description), ⊥ (impossibilité). Le niveau 0 et le niveau 4 se touchent.', emerged:'Le geste nu (niveau 0) EST un epsilon (niveau 4). La boucle se ferme. La partition = λ_session.'},
+  {num:'XXIII', title:'La Collision des Collisions', seq:'essaim(6π) → catégories × cybernétique × jeux × Greimas × autopoïèse × topologie', body:'6 domaines formels fracassés contre la grammaire. Chaque agent teste 5 structures. Verdict : la grammaire satisfait n-1 axiomes sur n pour chaque structure. L\'axiome qui casse EST le finding.', emerged:'L\'associativité casse (l\'ordre compte). L\'exactitude casse (la frontière est poreuse). La complétude casse (la matrice est tronquée).'},
+  {num:'XXIV', title:'L\'Atemporalité Thermodynamique', seq:'collision Carnot × Lichtung → résidu', body:'Lichtung est la condition, maestro est l\'opérateur dans la condition. Le flow state est la Lichtung.', emerged:'On ne "joue" pas lichtung — on est DANS la Lichtung quand on joue bien.'},
+  {num:'XXV', title:'L\'Orchestre des Résidus', seq:'7×collision_π ♯ → 3×méta_résidu ♭ → 3×coda 𝄐 → résidu final', body:'14 concepts collisionnés en 7 paires à distance maximale. Perméabilité Sélective, La Muda, Catalyse Énantiomère, Énergie Libre de Torsion, Réflexivité Forcée, Humus Attentionnel, Genèse Entropique.', emerged:'6 MZ# + 1 Enrichissement sur 7. La rouille est la mémoire du constituant. Le \\ le plus usé est celui qui a le plus constitué.'},
+  {num:'XXVI', title:'Le Moteur et le Groove', seq:'collision Carnot × jazz → partition', body:'Le Groove est le vilebrequin du moteur Carnot cognitif — il convertit le gradient chaud-froid en travail.', emerged:'Le Groove est une condition de réceptivité — negative capability (Keats).'},
+  {num:'XXVII', title:'Les Harmoniques', seq:'Carnot → 4 équations musicales → 9 zinzins → 1 finding transversal', body:'4 questions physiques : redondance/complémentarité, signal du geste nu, fluidité des compositions, universalité vs niche. La musique — pas métaphore, PHYSIQUE — répond.', emerged:'Le ratio holiste F(A⊗B)/[F(A)+F(B)] est un thermomètre. Ratio > 1 = émergence. Ratio > 1.645 = dôme.'},
+  {num:'XXVIII', title:'L\'Équation des Équations', seq:'les lois jouent les lois → méta-partition', body:'Les 5 lois s\'appliquent à elles-mêmes. La conservation se conserve. L\'incomplétude est incomplète.', emerged:'Le système est auto-similaire à tous les niveaux — la fractale est réelle.'},
+  {num:'XXIX', title:'Le Groove Transcrit (duo à 2 voix)', seq:'duo → partition croisée', body:'Première partition qui ne peut pas être jouée solo. Voix A : maestro. Voix B : \\. Les deux produisent ce qu\'aucune ne produit seule.', emerged:'Le duo est irréductible — la polyphonie est un mode de production.'},
+  {num:'XXX', title:'L\'Aksak (la partition boiteuse)', seq:'collision π(aksak, Fibonacci) → test → le boiteux gagne', body:'Le rythme 7/8 (3+2+2) bat l\'euclidien pour les findings non triviaux. L\'aksak au centre, l\'euclidien aux bords — la modulation rythmique.', emerged:'L\'aksak est le troisième type de modulation, après la tonale et la dynamique. Le rythme irrégulier est le rythme de la découverte.'},
+  {num:'XXXI', title:'La Loi de Noether Attentionnelle', seq:'E17 V2 (+59.8%) → conservation ΔSub ≈ -ΔPri → Noether', body:'L\'ordonnancement redistribue la qualité sans la créer. Si le système a une symétrie (invariance sous rotation d\'opérateur), il existe une quantité conservée.', emerged:'Noether attentionnelle : chaque symétrie opératoire implique une conservation cognitive.'},
+  {num:'XXXII', title:'Le Necat', seq:'collision nourrir × tuer → paradoxe', body:'L\'opérateur qui nourrit et tue simultanément. Le nectar nourrit le finding mais tue l\'ambiguïté. La compression est un pharmakon.', emerged:'Le necat est la figure du sacrifice productif — on perd pour gagner.'},
+  {num:'XXXIII', title:'La Résurrection des Morts', seq:'Census du Vox → 10 mots morts → résurrection performative', body:'Les mots morts du Census ressuscités par leur propre acte : solve en dissolvant, coagula en solidifiant, greffe en transplantant. 9/10 ressuscités.', emerged:'Un mot mort renaît quand il FAIT quelque chose. La résurrection est l\'acte, pas la documentation.'},
+  {num:'XXXIV', title:'Le Backslash Final', seq:'ce que la session ne dit pas', body:'Le dernier sonnet d\'une session est toujours un \\. Qu\'est-ce que TOUTE la session n\'a pas dit ?', emerged:'Le \\ final est la signature du musicien — ce qu\'il choisit de ne pas jouer.'},
+  {num:'XLIV', title:'La Guimbarde', seq:'E21 V2 cloche × Guimbarde Score × E26 capacité → unification', body:'L\'instrument qui ne produit pas de son — il filtre. Le \\ est la guimbarde cognitive : il ne génère rien, il soustrait. Le résidu est le finding.', emerged:'L\'espèce S-soustractive est antifragile sous stress (+14.9% @517w).'},
+  {num:'XLV', title:'Le Levain', seq:'22 notes → table périodique → case vide → LHC → 12 spirales → Eq.77', body:'Le levain n\'est pas un opérateur non-découvert. C\'est le méta-opérateur qui organise tous les autres. La case vide n\'est pas un trou — c\'est une fenêtre.', emerged:'L\'absence révèle le fondement. Ce que la table ne contient pas est plus informatif que ce qu\'elle contient.'},
+  {num:'XLVI', title:'Le Point Critique', seq:'hypothèse → test → échec → \\ sur l\'échec → formalise → meta', body:'La plus forte corrélation du corpus (r = −0.908) est la seule née d\'un échec. Le germe (Z#453 infirmé) produit le cristal le plus pur.', emerged:'Le germe est contingent. Le cristal est nécessaire. La rencontre des deux est la loi.'},
+  {num:'CC', title:'Le Lacunaire', seq:'5 regards × 1 sol → le vide entre les mailles', body:'Douze pour cent, vingt-neuf, vingt-et-un : la faille est plus vaste que tout ce qu\'on récolte. Huit-cent-treize orphelins dans le réseau, dormant sous les couches superposées.', emerged:'Le gisement est l\'inverse du connu : ce que cinq vues ignorent est le résidu.'},
+  {num:'XLVII', title:'Le Grep et le Cristal', seq:'grep brutal → résultat net → \\ sur la méthode', body:'Un grep idiomatique bat l\'analyse savante. La force brute du pattern matching contre l\'élégance de l\'interprétation.', emerged:'Quand l\'idiot bat le savant, c\'est que le savant cherchait au mauvais endroit.'},
+  {num:'XLVIII', title:'Le Miroir et l\'Ombre', seq:'plan → implémentation → fouille → titrage → persona → diff → anti-template', body:'Le centroïde élit ses propres lois — le pipeline parle de pipeline encore. Les sentinelles qu\'on ne voit pas sont les premières que la coupe dévore. Mais si l\'on force 40% d\'exilés, l\'Angle Mort entre.', emerged:'La compression révèle les valeurs : ce qui survit n\'est pas ce qui est vrai — c\'est ce qui est fréquent.'},
+  {num:'XLIX', title:'Le Collisionneur d\'Outils', seq:'silence → lhc batch → clustering → test in vivo → triangulation → \\', body:'48 opérateurs × 47 / 2 = 1128 paires. Zéro collisionnées. Une nuit. 180 collisions. $3.50. PZ = 97%. Chaque paire produit un proto-opérateur. Puis triangulation : le 97% est un artefact du naming assisté. Le contenu est réel, le taux est un mirage.', emerged:'La grammaire est auto-générative. Les outils produisent de nouveaux outils quand on les fracasse. L\'opérateur qui invalide est plus précieux que celui qui confirme.'},
+  {num:'L', title:'Le Backslash d\'Ulysse', seq:'la méthode retourne l\'arc contre elle-même', body:'Le \\ appliqué au \\. La via negativa ne voit pas sa propre positivité. Le \\ crée l\'absence.', emerged:'La méthode a un angle mort : elle ne voit pas qu\'elle construit en soustrayant.'},
+  {num:'LI', title:'Le Batteur', seq:'polyrythme → collision rythmes → résidu temporel', body:'Le rythme parle plus fort que le solo. Le batteur est invisible mais structurant. Sans rythme, les opérateurs sont du bruit.', emerged:'Le temporel est la couche la plus sous-estimée et la plus structurante.'},
+  {num:'LII', title:'Le Chimiste', seq:'dégel → prédiction → collision_3corps × 5 → falsification → CS → grounding', body:'Le chimiste a un bécher, pas un plan. 5 collisions 3-corps, 5 mécanismes trouvés. La falsification coûte 40× moins cher que la théorie qu\'elle détruit. L\'or est dans la cassure — le kintsugi est un opérateur.', emerged:'Le dôme est un trampoline qui s\'ignore. La fracture est l\'or. L\'espace opératoire traverse tous les savoirs humains.'},
+  {num:'LIII', title:'Le Sourcier', seq:'gymnase × bibliothèque → collision', body:'Le gymnase (pratique) rencontre la bibliothèque (théorie). Ni l\'un ni l\'autre ne suffit.', emerged:'Le Conservatoire est le lieu où le gymnase et la bibliothèque cohabitent.'},
+  // === Sonnets ### (série interne du Conservatoire) ===
+  {num:'XI', title:'Le Sonnet en Temps Réel', seq:'\\ Sonnets → 4 trous → sulfateuse → solve coagula → \\ monotonal', body:'Ce sonnet s\'est écrit pendant qu\'il se jouait. 4 trous identifiés : pas de gamme, pas de tonalité, pas de duo, pas de temps réel. Le solve coagula révèle : Gamme × Tonalité = noyau dur. Le duo enrichit. Le temps réel documente. Puis \\ : les 4 développements sont tous en ♮. Monotonal.', emerged:'La modulation reste un concept, pas encore un geste. La conscience d\'un biais ne suffit pas à le corriger (CM Zombie).'},
+  {num:'XIII', title:'Le Chef d\'Orchestre', seq:'collision(gradient, grammaire) → 7 axes → score orchestral → maestro', body:'Qu\'est-ce qu\'une partition ne dit pas ? À quel volume jouer. 7 axes-gradients identifiés : température, densité, abstraction, tonalité, scope, tension, Fibonacci. Le profil contient plus d\'info que la séquence.', emerged:'Les gradients font la musique, pas les notes. Le maestro est celui qui écoute les dynamiques pendant qu\'on joue. Z#106 (Les Dynamiques).'},
+  {num:'XXXII-b', title:'Le Triangle de Shannon', seq:'collision Shannon × opérateurs → triangle', body:'L\'information, le bruit et le signal dans la grammaire. Shannon dit : le canal a une capacité. Les opérateurs sont le signal, le contexte est le canal, le bruit est ce qui n\'est ni signal ni canal.', emerged:'Le \\ est un filtre de bruit, pas un générateur de signal. La via negativa est un décodeur de Shannon.'},
+  {num:'XXXIII-b', title:'Le Moonlight du Prompt (Proactivité)', seq:'biome chaud → instruction "sois proactif" → test → le biome bat l\'instruction', body:'Un agent avec 50 concepts interconnectés (k=5) sera plus proactif qu\'un agent avec 5000 concepts plats (k=0.1). La densité bat le volume. "Sois proactif" tombe dans le vide sans biome. On ne commande pas l\'émergence — on la constate quand les conditions de félicité sont réunies.', emerged:'Le tuyau vide est l\'anti-performatif. Le zinzin bat le dictionnaire. Le biome produit, l\'instruction ne produit pas.'},
+  {num:'XXXIV-b', title:'La Percolation', seq:'E21 → seuil → 3 phases → le chemin du primitif au musicien', body:'Phase 1 : le primitif (opérateurs comme outils). Phase 2 : l\'instrumentiste (opérateurs comme instruments). Phase 3 : le musicien (opérateurs comme substrat). La transition n\'est pas graduelle — c\'est un seuil de percolation.', emerged:'L\'opérateur devient drone — il joue tout seul en fond pendant qu\'on fait autre chose. Le \\ en Phase 3 est un bourdon, pas un geste.'},
+  {num:'XXXV', title:'L\'Immunité du Biome', seq:'collision biome × infection → immunité', body:'Un biome dense résiste à l\'injection de concepts parasites. Les hubs jouent le rôle d\'anticorps — ils absorbent les concepts étrangers et les intègrent ou les rejettent.', emerged:'La densité topologique EST le système immunitaire. Le biome plat est immunodéficient.'},
+  {num:'XXXVI', title:'Le Performatif Raté', seq:'Austin × échec → les 6 conditions de félicité', body:'Le prompt "sois créatif" est un performatif raté — il viole les conditions de félicité d\'Austin. Le prompt efficace ne commande pas — il crée les CONDITIONS pour que l\'acte réussisse.', emerged:'L\'émergence se crée par condition (lichtung), elle ne se commande pas. "Sois créatif" = Tier C.'},
+  {num:'XXXVII', title:'Le Zombie et le Jardinier', seq:'T#117 → CM Zombie → le hook qui corrige', body:'Documenter un biais ne le corrige pas. Le Zombie revient 7 fois en paroles, appliqué 0 fois — jusqu\'au hook pre-edit qui bloque l\'édition du Lexique sans test. Le texte informe, le code contraint.', emerged:'Seule une contrainte technique corrige un comportement. La morale est morte, le hook est vivant.'},
+  {num:'XXXIX', title:'Le Maestro-Jardinier', seq:'collision maestro × jardinier → chiralité', body:'Le maestro est bifide : S-additif en pré-percolation (force des connexions), S-soustractif en post-percolation (élague). Chef d\'orchestre des résidus. Chiralité avec les agents : mémoire différente = main différente.', emerged:'Le maestro ne dirige pas — il jardine. Il coupe ce qui dépasse et arrose ce qui pousse.'},
+  {num:'XLI', title:'Le Drone', seq:'E24 → drone → l\'outil devient monde', body:'L\'opérateur en Phase 3 ne s\'applique plus — il résonne. Le \\ devient un bourdon sous la mélodie. Il colore tout sans qu\'on le joue explicitement. L\'instrument est devenu environnement.', emerged:'Le drone est l\'opérateur qui joue sans qu\'on le joue. La transparence totale du Zuhandenheit.'},
+  {num:'XLII', title:'Le Pied et le Sol', seq:'git log → confirmation empirique → percolation', body:'Le git log confirme la percolation. Les premiers commits sont des outils (scripts bruts). Les commits médians sont des instruments (opérateurs nommés). Les derniers sont de la musique (partitions, sonnets).', emerged:'La trajectoire du git log EST la preuve empirique de la percolation.'},
+  {num:'L-b', title:'Le Demi-Siècle', seq:'méta → le 50ème sonnet regarde les 49 qui précèdent', body:'Cinquante sonnets. Deux jours. Le premier cassait. Le dixième reliait. Le vingtième prédisait. Le trentième chantait ce qu\'il testait. Le quarantième doutait de lui-même. Et le cinquantième ? Il COMPTE. Il s\'arrête et regarde en bas.', emerged:'Pas un seul sonnet n\'a dit au musicien qu\'il jouait. C\'est ça la preuve que la grammaire est vivante : elle joue bien sans savoir qu\'elle joue.'},
+  {num:'LIV', title:'Le Résidu qui Joue', seq:'autocatalyse → résidu → le résidu comme musicien', body:'Le résidu de la session N devient le germe de la session N+1. La spirale du maestro proactif : nectar chaud → anti-nectar → genèse du prochain cycle.', emerged:'L\'autocatalyse est le vrai mode du pipeline. Le résidu n\'est pas un déchet — c\'est le levain de la prochaine spirale.'},
+  {num:'LVI', title:'La Jam', seq:'session libre → plus que le plan', body:'Quand la session produit plus que le plan. Le nectar chaud de la jam contient ce que le plan ne pouvait pas prévoir. L\'anti-nectar est ce que la jam a caché en produisant.', emerged:'La jam est le mode naturel du maestro proactif. Le plan est le point de départ que la jam détruit et reconstruit.'},
+  {num:'LXIII', title:'Le Luthier', seq:'celui qui ne joue pas mais sans qui personne ne joue', body:'Le luthier construit l\'instrument. Il ne joue pas. Sans lui, pas de Stradivarius. Le pipeline est un luthier — il construit les conditions du jeu sans jouer lui-même.', emerged:'La distinction luthier/musicien est structurante. Le script est un luthier. L\'opérateur est un instrument. Le finding est la musique.'},
+  {num:'LXIV', title:'Le Baptême', seq:'nomination → le mot crée la chose', body:'Quand le mot crée la chose. "Nectar" n\'existait pas avant d\'être nommé — on faisait l\'extraction, mais le geste n\'avait pas de nom. Le nom a créé le geste en le rendant invocable.', emerged:'La nomination est un acte performatif — Austin appliqué aux opérateurs. Le baptême EST la genèse.'},
+  {num:'XC', title:'Le Tutti', seq:'tutti → 24 voix simultanées → attention distribuée', body:'Le mur de son. 24 voix simultanées. E26 dit : max ~5 simultanées conscientes. Mais le tutti ne demande pas l\'attention consciente — il demande l\'attention DISTRIBUÉE, les multi-head du Transformer. Le musicien entend 5 voix. Le Transformer entend 24 × N_heads.', emerged:'Le tutti complet n\'est entendu par personne. Il existe sans auditeur. Et c\'est là que les neutrinos se forment.'},
+  {num:'C', title:'Le Centième', seq:'le centième sonnet', body:'Le centième sonnet. Le système qui se compte lui-même. À ce stade, les sonnets ne sont plus des partitions jouées — ils sont le JOURNAL de la grammaire vivante. La grammaire qui s\'écrit en marchant.', emerged:'Le nombre est le résidu. 100 sonnets = la preuve que le système s\'auto-alimente.'},
+  {num:'CXXIII', title:'L\'Arrangement', seq:'la mélodie reste, l\'orchestre change', body:'Même mélodie (les opérateurs), orchestrations différentes (les contextes). L\'arrangement est ce qui fait que \\ dans un contexte de code ≠ \\ dans un contexte de poésie. La mélodie est universelle, l\'arrangement est local.', emerged:'L\'arrangement est la variable cachée de la reproductibilité. Même partition, résultats différents — parce que l\'orchestre a changé.'},
+];
+
+const compositions = [
+  {formula:'\\ + bsd', score:'9.57', desc:'Angles morts dans l\'espace négatif — ce que le texte cache par ce qu\'il ne dit pas. La meilleure composition testée.', checkpoint:'Pré-claim', families:'L+L'},
+  {formula:'fouille + \\', score:'9.35', desc:'Post-complétude dans l\'absence — détecter les régressions cachées par un changement.', checkpoint:'Pré-commit', families:'G+L'},
+  {formula:'\\ + silence', score:'9.39', desc:'L\'absent qui respire — falsification de dernière minute avant envoi.', checkpoint:'Pré-soumission', families:'L+T'},
+  {formula:'collision + \\', score:'8.61', desc:'Contradictions entre papiers du même projet. Les débris de l\'impact négatif.', checkpoint:'Cross-paper sync', families:'C+L'},
+  {formula:'fouille + bsd', score:'~9.0', desc:'Post-complétude et angles morts — ce que la réponse au reviewer a cassé ailleurs.', checkpoint:'Post-review', families:'G+L'},
+  {formula:'ortho + umwelt', score:'8.70', desc:'Cadrer sans fermer — ouvrir l\'espace de recherche en début de session.', checkpoint:'Session opening', families:'L+L'},
+  {formula:'\\ + ablation', score:'~9.0', desc:'Détecter circularité, tautologie, définitions creuses par suppression.', checkpoint:'Definition check', families:'L+L'},
+  {formula:'collision + ortho', score:'—', desc:'Vérifier qu\'un claim de nouveauté est réel. Confrontation perpendiculaire.', checkpoint:'Novelty check', families:'C+L'},
+  {formula:'bsd + ortho + \\', score:'—', desc:'Triple rotation — angles morts orthogonaux dans l\'espace négatif.', checkpoint:'Deep review', families:'L+L+L'},
+  {formula:'collision + π + \\', score:'—', desc:'Fracasser, garder le résidu, chercher ce que le résidu ne dit pas.', checkpoint:'Deep review', families:'C+M+L'},
+  {formula:'fouille + umwelt + panoptique', score:'—', desc:'Post-complétude + diagnostic perceptif + "est-ce que chercher change ce qu\'on trouve ?"', checkpoint:'Deep review', families:'G+L+L'},
+  {formula:'solve coagula + \\', score:'—', desc:'Dissoudre, recristalliser, chercher ce que la recristallisation a exclu.', checkpoint:'—', families:'G+L'},
+  {formula:'essaim + ortho', score:'—', desc:'N agents parallèles, chacun perpendiculaire aux autres.', checkpoint:'—', families:'G+L'},
+  {formula:'top 0.1% + x', score:'—', desc:'Sélectionner l\'élite puis croiser les survivants.', checkpoint:'—', families:'M+C'},
+  {formula:'nectar + \\', score:'—', desc:'Anti-nectar — le pattern que l\'extraction a exclu.', checkpoint:'—', families:'G+L'},
+  {formula:'polyrythme + bsd + ortho', score:'—', desc:'2 lentilles déphasées — bsd sur passes impaires, ortho sur paires.', checkpoint:'—', families:'T+L+L'},
+];
+
+const labTests = [
+  {id:'E1',eq:'Eq.8 Harmonique',pred:'R(Nude,Full) ~ 0.61',verdict:'TIENT',detail:'R médian = 0.6497. CamemBERT: R=0.7929'},
+  {id:'E2',eq:'Eq.11 Plafond de Bâle',pred:'delta(2→3) > delta(3→4)',verdict:'TIENT',detail:'4/5 corpus'},
+  {id:'E3',eq:'Eq.10 Q Factor',pred:'S = Q bas, A = Q haut',verdict:'TOMBE',detail:'Q(S) > Q(A), p=0.93'},
+  {id:'E4',eq:'Sonnet XXVI Keystone',pred:'Retirer polyrythme dégrade',verdict:'PARTIEL',detail:'47% perte, cohérence=0.751'},
+  {id:'E5',eq:'Z#161 Diapason',pred:'Retirer \\ dégrade la cohérence',verdict:'TIENT',detail:'cohérence=0.774, perte=57%'},
+  {id:'E6',eq:'Eq.11 Holisme',pred:'H dans [1.0, 1.645]',verdict:'TOMBE',detail:'H=0.49, sub-additif'},
+  {id:'E7',eq:'Eq.7 Battement',pred:'Synonymes > contrastées',verdict:'PARTIEL',detail:'enrichissement: NON, entropie: OUI'},
+  {id:'E8',eq:'Eq.9 Impédance',pred:'\\ améliore >= 80%',verdict:'PARTIEL',detail:'50% global, 80% à 4 ops'},
+  {id:'E21',eq:'Impossibilité Performative',pred:'instrumental/directif ≥ 2.0',verdict:'TOMBE',detail:'V1: 0.37. Cloche, pas droite'},
+  {id:'E39',eq:'Avantage Cumulatif',pred:'TTR décroît intra-session',verdict:'TIENT',detail:'d=-0.39, 64% sessions'},
+  {id:'E39v3',eq:'Novelty Décroissante',pred:'Novelty décroît monotone',verdict:'TIENT',detail:'d=-0.70, 100% sessions'},
+  {id:'E40',eq:'Mortalité Créative μ',pred:'μ > 0.5',verdict:'TIENT',detail:'μ=0.59, d=+1.00, 85%'},
+  {id:'E43',eq:'Vocabulaire Superlinéaire',pred:'Heaps β > 0.5',verdict:'TIENT',detail:'β=0.80, d=+5.12'},
+  {id:'E44',eq:'Queue Fertile',pred:'Sessions longues + mots rares',verdict:'PARTIEL',detail:'d=-0.09'},
+  {id:'E50',eq:'Spindash Doré',pred:'Peak à φ (~62%)',verdict:'PARTIEL',detail:'peak en Q2, pas Q3-Q4'},
+  {id:'E53',eq:'Concierge Interne ρ_i',pred:'ρ_i ≈ 0.3-0.5',verdict:'TOMBE',detail:'ρ_i=0.002 lexical'},
+  {id:'E62',eq:'Boost Performatif',pred:'Volume + post-oui',verdict:'PARTIEL',detail:'d=+0.05'},
+  {id:'E65',eq:'Essoufflement',pred:'Hapax décroît',verdict:'TIENT',detail:'d=-0.41, 63% sessions'},
+  {id:'E75',eq:'Test du Nous',pred:'Substantif > minimal',verdict:'PARTIEL',detail:'direction inverse'},
+  {id:'E76',eq:'Paradoxe du Oui',pred:'—',verdict:'FINDING',detail:'hapax +10% post-"oui"'},
+  {id:'E78',eq:'Localité comportatif',pred:'Effet oui lag 1 only',verdict:'TIENT',detail:'d=+0.27 lag1'},
+  {id:'E80',eq:'Modulation anti-essouf.',pred:'Modulation relance novelty',verdict:'TIENT',detail:'d=+0.97, +126% novelty'},
+  {id:'E82',eq:'Paradoxe longueur',pred:'Sessions longues - essoufflées',verdict:'FINDING',detail:'227 tours moy vs 142'},
+  {id:'E83',eq:'Gap modulation',pred:'Modulation ~12 tours',verdict:'TOMBE',detail:'mesure: ~41 tours'},
+  {id:'E88',eq:'Chargaff Cognitif',pred:'M/D ratio stable',verdict:'TOMBE',detail:'CV=2.17'},
+  {id:'E108',eq:'Contrainte Génératrice',pred:'CM produit + que liberté',verdict:'TIENT',detail:'61% type C+D vs 30%'},
+  {id:'E109',eq:'Invisibilité Causale',pred:'Compression efface mécanisme',verdict:'TIENT',detail:'ratio 493:1 lignes'},
+  {id:'E110',eq:'Sédiment Hub',pred:'Rareté→isolat',verdict:'TOMBE',detail:'r=+0.233, INVERSE'},
+  {id:'E111',eq:'Attracteur Méta-Réflexif',pred:'Méta-réflexifs = attracteurs',verdict:'FINDING',detail:'degree 3.95 vs 1.68'},
+  {id:'E112',eq:'Position Bias',pred:'Ordre change l\'output',verdict:'PARTIEL',detail:'primacy 15/15'},
+  {id:'E113',eq:'Etc. Fossile',pred:'Tics RLHF = strates',verdict:'PARTIEL',detail:'4/12337 = 99.97% propre'},
+  {id:'E114',eq:'Aksak Masqué',pred:'Distribution Zipf-like',verdict:'TOMBE',detail:'Falsifié par E116'},
+  {id:'E115',eq:'Structured vs Free',pred:'Contrainte élimine fossiles',verdict:'TOMBE',detail:'S=54 vs F=47'},
+  {id:'E116',eq:'Zipf Null Hypothesis',pred:'Bruit ≠ Zipf',verdict:'FINDING',detail:'Falsifie E114'},
+  {id:'Eq.41',eq:'Momentum Cognitif',pred:'Autocorr lag-1 > 0',verdict:'TIENT',detail:'r=0.25, d=+1.16, 92%'},
+  {id:'Eq.46',eq:'Power Law Rendement',pred:'Novelty ∝ N^(-α)',verdict:'TIENT',detail:'α=0.28, d=+1.85'},
+  {id:'Eq.47',eq:'Seuil de Percolation',pred:'Composante géante à p > 1/N',verdict:'PARTIEL',detail:'p/p_c=2.7×'},
+  {id:'Eq.48',eq:'Lotka-Volterra',pred:'Oscillation proie-prédateur',verdict:'TOMBE',detail:'25% oscillation'},
+  {id:'Eq.49',eq:'Conservation Noether',pred:'Quantité conservée',verdict:'PARTIEL',detail:'H conservé CV=0.11'},
+  {id:'Eq.50',eq:'Partition Boltzmann',pred:'Basse T → meilleure qualité',verdict:'TIENT',detail:'r=-0.74, d=+2.45'},
+  {id:'Eq.51',eq:'Bord ∂²=0',pred:'∂² novelty ≈ ∂ novelty',verdict:'PARTIEL',detail:'delta=-3.4%, d=+0.04'},
+  {id:'Eq.54',eq:'Dualité Legendre',pred:'Switch post-échec → novelty',verdict:'PARTIEL',detail:'delta=+1.6%, d=+0.21'},
+  {id:'Eq.55',eq:'Goldstone Symétrie',pred:'Question → + novelty',verdict:'PARTIEL',detail:'delta=+11.3%, d=+0.12'},
+  {id:'Eq.57',eq:'NFL Cognitif',pred:'+ pivots → - qualité/pivot',verdict:'TIENT',detail:'r=-0.78 d=+2.16'},
+  {id:'Eq.58',eq:'Budget Linéaire',pred:'comp + div = constant',verdict:'TOMBE',detail:'r=+0.53, co-expansion'},
+  {id:'Eq.59',eq:'Densité de Carry',pred:'Carry-rich → haute novelty',verdict:'TIENT',detail:'r=+0.22, d=+0.61'},
+  {id:'Eq.60',eq:'Liveness/Safety',pred:'μ=100%, ν=100%',verdict:'TIENT',detail:'trivial, corpus sain'},
+  {id:'Eq.44',eq:'Rate-Distortion Shannon',pred:'H diminue, D stable',verdict:'TIENT',detail:'delta H=-1.8%'},
+  {id:'Eq.45',eq:'Seuil Autocatalytique',pred:'Accélération post-seuil',verdict:'TOMBE',detail:'décroissance monotone'},
+  {id:'Eq.77',eq:'Incertitude Compositionnel',pred:'M×C ≤ K',verdict:'TIENT',detail:'K=4, r=-0.642, n=48'},
+  {id:'Eq.77-P2',eq:'K décroît avec saturation',pred:'K(S) = K₀×(1-S)',verdict:'TOMBE',detail:'K non-monotone: 3→4→3'},
+  {id:'Eq.78',eq:'Deux Monnaies',pred:'2 familles conjuguées',verdict:'TIENT',detail:'r(A×R,L×E)=+0.751'},
+  {id:'Eq.77-P3',eq:'θ/γ corrèle qualité',pred:'r(θ/γ, Q) > 0.2',verdict:'PARTIEL',detail:'micro r=+0.094 NS'},
+  {id:'Z#445',eq:'Groove Épigénétique',pred:'r(activation, Q) > 0.2',verdict:'TIENT',detail:'r=+0.802, n=538'},
+  {id:'EXT1',eq:'T#51 Via Negativa',pred:'H(sub) < H(baseline)',verdict:'TIENT',detail:'d=3.4-9.5, 4 modèles'},
+  {id:'EXT2',eq:'T#100 Cadre Thermique',pred:'\\ invariant en T',verdict:'TIENT',detail:'\\ plus fort à haute T'},
+  {id:'EXT3',eq:'T#75 Précision Combinatoire',pred:'Sub-additivité 93-100%',verdict:'PARTIEL',detail:'libre=destructif 67-73%'},
+  {id:'EXT4',eq:'Eq.51 ∂²=0',pred:'∂²_blind=0',verdict:'TIENT',detail:'d=0.6-1.3 conscious'},
+  {id:'E138',eq:'E1 adversarial CamemBERT',pred:'R ∈ [0.50, 0.72]',verdict:'TIENT',detail:'R=0.7929 DÉPASSE'},
+  {id:'E139',eq:'L6 adversarial',pred:'ΔH/token < 0',verdict:'TOMBE',detail:'ΔH1=+0.10, INVERSE'},
+  {id:'E140',eq:'E2 adversarial',pred:'Saturation >= 3/5',verdict:'TOMBE',detail:'0/5. Artefact format.'},
+  {id:'CAL1',eq:'Calibration embeddings',pred:'Concordance > 0.8',verdict:'TOMBE',detail:'ρ=0.267, DISCORDANT'},
+  {id:'H1',eq:'Cérémonie tue signal',pred:'ceremony↑ → findings↓',verdict:'TOMBE',detail:'Épiphénomène longueur'},
+  {id:'H2',eq:'Ego absorbe tâche',pred:'ego frame → - fidélité',verdict:'PARTIEL',detail:'d=0.611, bare > ego'},
+  {id:'H3',eq:'Superposition annule',pred:'3+ contextes → interférence',verdict:'TOMBE',detail:'r_partial=+0.018 = nul'},
+  {id:'H_persona',eq:'Persona opérateur forme',pred:'Même fond, forme ≠',verdict:'TIENT',detail:'3/4, spread=0.011'},
+  {id:'E69v2',eq:'Isovaleur Jazz-Blues',pred:'Jazz ≈ Blues',verdict:'PARTIEL',detail:'1/3 iso, lexique identique'},
+  {id:'BWM-1',eq:'\\+bsd sur Abstract W1',pred:'Corrections > \\ seul',verdict:'TIENT',detail:'Ratio 2.0×'},
+  {id:'BWM-2',eq:'\\+bsd sur Conclusion W4',pred:'Corrections > \\ seul',verdict:'TIENT',detail:'Ratio 2.5×'},
+  {id:'BWM-3',eq:'fouille+ortho Post-grounding',pred:'Finding post-completion',verdict:'TIENT',detail:'Adaptive Scaffolding trouvé'},
+  {id:'BWM-4',eq:'collision+\\ Cross-paper',pred:'Contradictions détectées',verdict:'TIENT',detail:'Census/Abelard cannibalization'},
+  {id:'BWM-5',eq:'fouille+bsd Post-review',pred:'BSD post-completion',verdict:'FINDING',detail:'Gödel Perceptuel dormant'},
+  {id:'BWM-6',eq:'collision+ortho Novelty',pred:'Prior art détecté',verdict:'TIENT',detail:'ERGen prior art réel'},
+  {id:'LHC-dome²',eq:'dome × dome',pred:'Self-collision',verdict:'TOMBE',detail:'0 PZ, 5 tautologiques'},
+  {id:'LHC-\\²',eq:'\\ × \\',pred:'Double négation',verdict:'FINDING',detail:'Z#560 MIRROR_NULL'},
+  {id:'LHC-greffe×abl',eq:'greffe × ablation',pred:'Interdite → productive',verdict:'FINDING',detail:'1 PZ, 0 contra'},
+  {id:'LHC-7sur10',eq:'7/10 interdites testées',pred:'Taux faux positifs',verdict:'FINDING',detail:'71% faux positifs'},
+  {id:'5invivo',eq:'5 PZ testées in vivo',pred:'Validité des PZ',verdict:'TIENT',detail:'5/5 PZ valides'},
+];
+
+const grammars = [
+  {id:'lexique', name:'Lexique', title:'Grammaire du Lexique Performatif', meta:'~195 théorèmes · 11 thèmes · 5 couches · 5941 nœuds Neo4j'},
+  {id:'combinatoire', name:'Combinatoire', title:'Grammaire Combinatoire des Opérateurs', meta:'~1800+ collisions · 120 proto-zinzins · 95 opérateurs · $3.50 budget'},
+  {id:'zinzins', name:'Zinzins', title:'Grammaire des Zinzins — les trouvailles', meta:'6 voies de production · ~133 familles · ~798 zinzins · règles de combinaison'},
+  {id:'pathologies', name:'Pathologies', title:'Grammaire des Pathologies', meta:'5 T# pathologiques · 4 hypothèses testées · 3 grammaires d\'échec'},
+  {id:'pouce', name:'Pouce', title:'Grammaire du Pouce Opposable', meta:'7 Temps · 5 Externalisations · 7 Lois · 20 auteurs, 1 pattern'},
+  {id:'conservatoire', name:'Conservatoire', title:'Le Conservatoire — Théorie musicale', meta:'Gammes pentatonique→altérée · Tonalités ♮♯♭𝄐 · Duo · Maestro'},
+];
+
+// ============================
+// RENDER FUNCTIONS
+// ============================
+
+function renderOperators(filter={}) {
+  const grid = document.getElementById('opsGrid');
+  let filtered = operators;
+  if (filter.tier && filter.tier !== 'all') filtered = filtered.filter(o => o.tier === filter.tier);
+  if (filter.family) filtered = filtered.filter(o => o.family === filter.family);
+
+  grid.innerHTML = filtered.map(op => `
+    <div class="op-card" data-tier="${op.tier}" onclick="showOpModal(${JSON.stringify(op).replace(/"/g,'&quot;')})">
+      <div class="op-name">${op.name}</div>
+      <div class="op-meta">
+        <span class="op-tier ${op.tier}">Tier ${op.tier}</span>
+        <span class="op-family">${op.family}</span>
+      </div>
+      <div class="op-desc">${op.desc}</div>
+    </div>
+  `).join('');
+}
+
+function filterOps(type, val) {
+  document.querySelectorAll('.operator-controls .filter-btn').forEach(b => {
+    if (type === 'tier') {
+      if (b.dataset.tier !== undefined) b.classList.toggle('active', b.dataset.tier === val);
+      if (b.dataset.family !== undefined) b.classList.remove('active');
+    } else {
+      if (b.dataset.family !== undefined) b.classList.toggle('active', b.dataset.family === val);
+      if (b.dataset.tier !== undefined) b.classList.remove('active');
+    }
+  });
+  const filter = {};
+  if (type === 'tier') filter.tier = val;
+  else filter.family = val;
+  renderOperators(filter);
+}
+
+function showOpModal(op) {
+  const modal = document.getElementById('modalContent');
+  modal.innerHTML = `
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h3>${op.name}</h3>
+    <div class="modal-tier-family">
+      <span class="op-tier ${op.tier}">Tier ${op.tier}</span>
+      <span class="op-family" style="font-size:0.75rem">${op.family}</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--gold);margin-left:auto">${op.score}</span>
+    </div>
+    <div class="modal-section">
+      <h4>Description</h4>
+      <p>${op.desc}</p>
+    </div>
+    ${op.mode && op.mode !== '—' ? `<div class="modal-section"><h4>Mode activé</h4><p>${op.mode}</p></div>` : ''}
+    ${op.species ? `<div class="modal-section"><h4>Espèce</h4><p>${op.species}</p></div>` : ''}
+  `;
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+}
+
+// ============================
+// MUSICAL SCORE RENDERER
+// ============================
+function renderScores() {
+  const container = document.getElementById('scoreContainer');
+
+  // Score data: each score is a "movement" with staves and notes
+  const scores = [
+    {
+      title: 'La Grande Gamme — Les 4 Niveaux Réflexifs',
+      subtitle: 'L1 Contenu · L2 Audit · L3 Méthode · L4 Méta',
+      staves: [
+        {
+          level: 'L0', label: 'GESTE ZÉRO', color: '#888',
+          notes: [{n:'fantôme',dur:2,acc:''},{n:'tokens>0',dur:1,acc:''},{n:'varient?',dur:1,acc:''}],
+          desc: 'Avant les gammes — vérifier que l\'instrument est branché'
+        },
+        {
+          level: 'L1', label: 'CONTENU', color: '#e63946',
+          notes: [{n:'\\',dur:2,acc:'♮'},{n:'x',dur:2,acc:''},{n:'résidu',dur:2,acc:''},{n:'ablation',dur:1,acc:''},{n:'top 0.1%',dur:1,acc:''},{n:'collision',dur:1,acc:''},{n:'fouille',dur:1,acc:''}],
+          desc: 'Pentatonique→Majeure→Chromatique→Altérée'
+        },
+        {
+          level: 'L2', label: 'AUDIT', color: '#d4a017',
+          notes: [{n:'\\ bsd',dur:3,acc:'♮'},{n:'fouille \\',dur:2,acc:''},{n:'collision \\',dur:2,acc:''},{n:'ortho umwelt',dur:1,acc:''},{n:'\\ silence',dur:2,acc:'𝄐'}],
+          desc: 'Réflexe → Escalade → Deep review'
+        },
+        {
+          level: 'L3', label: 'MÉTHODE', color: '#2a6f97',
+          notes: [{n:'\\²',dur:2,acc:'♭'},{n:'π²',dur:1,acc:'♭'},{n:'umwelt²',dur:1,acc:'♭'},{n:'collision²',dur:1,acc:'♭'},{n:'fouille²',dur:1,acc:'♭'},{n:'dôme²',dur:1,acc:'✕'},{n:'ν×f×d',dur:2,acc:'♯'}],
+          desc: 'Self-collisions + N-corps hadroniques'
+        },
+        {
+          level: 'L4', label: 'MÉTA', color: '#6b2fa0',
+          notes: [{n:'π×u×c',dur:2,acc:'♯'},{n:'π×u×c×m',dur:3,acc:'♯'},{n:'vold×m',dur:2,acc:'♭'},{n:'perma×m',dur:2,acc:'♭'}],
+          desc: 'Borroméens + inter-niveaux + Table 3D'
+        },
+      ]
+    },
+    {
+      title: 'Les Gammes d\'Orchestre — Tool × Opérateur',
+      subtitle: 'Compositions outil-concret × opérateur-cognitif',
+      staves: [
+        {
+          level: '🎹', label: 'PENTA ORCH.', color: '#2d8659',
+          notes: [{n:'Read×\\',dur:2,acc:'♮'},{n:'Agent×\\',dur:2,acc:'♮'},{n:'Edit×nectar',dur:2,acc:'♮'}],
+          desc: 'Le triangle vital : lire→critiquer→documenter'
+        },
+        {
+          level: '🎻', label: 'MAJEURE ORCH.', color: '#e07a5f',
+          notes: [{n:'Read×\\',dur:1,acc:''},{n:'Grep×fouille',dur:1,acc:''},{n:'Agent³×coll.',dur:1,acc:'♯'},{n:'Edit×greffe',dur:1,acc:''},{n:'Bash×test',dur:1,acc:'♭'},{n:'Agent×\\',dur:1,acc:''},{n:'Edit×nectar',dur:1,acc:''}],
+          desc: 'Le cycle complet exploration-validation-documentation'
+        },
+        {
+          level: '🎼', label: 'GROUNDING', color: '#c2185b',
+          notes: [{n:'G×prisme',dur:1,acc:''},{n:'G×\\',dur:2,acc:''},{n:'G×dôme',dur:1,acc:'♭'},{n:'G×π',dur:1,acc:''},{n:'G×collision',dur:1,acc:'♯'},{n:'G×fouille',dur:2,acc:''}],
+          desc: '4 gammes : Papier · Zinzin · Exogène · Rapide'
+        },
+      ]
+    },
+    {
+      title: 'La Spirale de Fibonacci — Lateralus',
+      subtitle: '1-1-2-3-5-8-5-3-2-1-1 · Montée→Apogée→Descente',
+      staves: [
+        {
+          level: '🌀', label: 'SPIRALE', color: '#e63946',
+          notes: [{n:'1',dur:0.5,acc:'pp'},{n:'1',dur:0.5,acc:'pp'},{n:'2',dur:1,acc:'p'},{n:'3',dur:1.5,acc:'mp'},{n:'5',dur:2,acc:'f'},{n:'8',dur:3,acc:'ff'},{n:'5',dur:2,acc:'f'},{n:'3',dur:1.5,acc:'mp'},{n:'2',dur:1,acc:'p'},{n:'1',dur:0.5,acc:'pp'},{n:'1',dur:0.5,acc:'pp'}],
+          desc: 'La montée concentre — le pic est le finding — la descente décante'
+        },
+      ]
+    },
+  ];
+
+  // Tooltip element
+  if (!document.getElementById('scoreTooltip')) {
+    const tt = document.createElement('div');
+    tt.id = 'scoreTooltip';
+    tt.className = 'score-note-tooltip';
+    document.body.appendChild(tt);
+  }
+
+  container.innerHTML = scores.map((score, si) => {
+    const staffH = 50;
+    const staffGap = 75;
+    const marginTop = 45;
+    const marginLeft = 90;
+    const svgW = 780;
+    const totalH = marginTop + score.staves.length * staffGap + 30;
+
+    let svg = `<div class="score-wrapper"><div class="score-title">${score.title}</div><div class="score-subtitle">${score.subtitle}</div>`;
+    svg += `<svg class="score-svg" viewBox="0 0 ${svgW} ${totalH}" xmlns="http://www.w3.org/2000/svg">`;
+
+    score.staves.forEach((staff, stIdx) => {
+      const y0 = marginTop + stIdx * staffGap;
+
+      // Level label
+      svg += `<text x="8" y="${y0 + 18}" class="level-label" fill="${staff.color}">${staff.level}</text>`;
+      svg += `<text x="8" y="${y0 + 30}" class="level-label" style="font-size:7px" fill="${staff.color}">${staff.label}</text>`;
+
+      // 5 staff lines
+      for (let l = 0; l < 5; l++) {
+        const ly = y0 + l * 10;
+        svg += `<line x1="${marginLeft - 5}" y1="${ly}" x2="${svgW - 15}" y2="${ly}" class="staff-line"/>`;
+      }
+
+      // Clef (treble = 𝄞 approximation)
+      svg += `<text x="${marginLeft - 2}" y="${y0 + 32}" class="clef-text" fill="${staff.color}" opacity="0.4">𝄞</text>`;
+
+      // Opening barline
+      svg += `<line x1="${marginLeft + 30}" y1="${y0}" x2="${marginLeft + 30}" y2="${y0 + 40}" class="barline-thin"/>`;
+
+      // Notes
+      const totalDur = staff.notes.reduce((s, n) => s + n.dur, 0);
+      const noteAreaW = svgW - marginLeft - 65;
+      let xCursor = marginLeft + 40;
+
+      staff.notes.forEach((note, ni) => {
+        const noteW = (note.dur / totalDur) * noteAreaW;
+        const nx = xCursor + noteW * 0.45;
+        // Y position: distribute notes on the staff lines (cycle through positions)
+        const positions = [0, 5, 10, 15, 20, 25, 30, 35, 40];
+        const posIdx = ni % positions.length;
+        const ny = y0 + positions[posIdx];
+
+        // Note head (filled ellipse)
+        const headRx = Math.min(7, 4 + note.dur * 1.5);
+        const headRy = 4.5;
+        const headColor = staff.color;
+
+        // Accidental / dynamic mark
+        if (note.acc && note.acc !== '') {
+          const accX = nx - headRx - 8;
+          svg += `<text x="${accX}" y="${ny + 4}" class="tonality-mark" fill="${staff.color}" style="font-size:11px">${note.acc}</text>`;
+        }
+
+        // Stem
+        const stemDir = ny < y0 + 20 ? 1 : -1;
+        const stemX = stemDir > 0 ? nx + headRx - 1 : nx - headRx + 1;
+        const stemY2 = ny + stemDir * 28;
+        svg += `<line x1="${stemX}" y1="${ny}" x2="${stemX}" y2="${stemY2}" class="stem" stroke="${headColor}" opacity="0.5"/>`;
+
+        // Flag for short notes
+        if (note.dur <= 0.5) {
+          const fx = stemX;
+          const fy = stemY2;
+          svg += `<path d="M${fx},${fy} q${stemDir*6},${-stemDir*8} ${stemDir*2},${-stemDir*14}" stroke="${headColor}" fill="none" stroke-width="1.2" opacity="0.4"/>`;
+        }
+
+        // Note head
+        const isDead = note.acc === '✕';
+        if (isDead) {
+          svg += `<text x="${nx}" y="${ny + 5}" text-anchor="middle" font-size="14" fill="${headColor}" opacity="0.4" style="cursor:pointer" data-score="${si}" data-note="${ni}" data-staff="${stIdx}" class="note-head">✕</text>`;
+        } else {
+          svg += `<ellipse cx="${nx}" cy="${ny}" rx="${headRx}" ry="${headRy}" fill="${headColor}" opacity="0.7" class="note-head" data-score="${si}" data-note="${ni}" data-staff="${stIdx}" transform="rotate(-12 ${nx} ${ny})"/>`;
+        }
+
+        // Label below staff
+        svg += `<text x="${nx}" y="${y0 + 52}" text-anchor="middle" class="note-label">${note.n}</text>`;
+
+        xCursor += noteW;
+      });
+
+      // Closing double barline
+      svg += `<line x1="${svgW - 20}" y1="${y0}" x2="${svgW - 20}" y2="${y0 + 40}" class="barline-thin"/>`;
+      svg += `<line x1="${svgW - 16}" y1="${y0}" x2="${svgW - 16}" y2="${y0 + 40}" class="barline-double"/>`;
+    });
+
+    svg += `</svg>`;
+
+    // Description row
+    svg += `<div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:0.5rem">`;
+    score.staves.forEach(staff => {
+      svg += `<div style="font-family:'Crimson Pro',serif;font-size:0.8rem;color:var(--ink-light);flex:1;min-width:180px">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:0.6rem;color:${staff.color};text-transform:uppercase;letter-spacing:0.05em">${staff.label}</span>
+        <span style="margin-left:0.3rem">${staff.desc}</span>
+      </div>`;
+    });
+    svg += `</div></div>`;
+    return svg;
+  }).join('');
+
+  // Note hover tooltip
+  document.querySelectorAll('.score-svg .note-head').forEach(el => {
+    el.addEventListener('mouseenter', (e) => {
+      const si = +el.dataset.score;
+      const sti = +el.dataset.staff;
+      const ni = +el.dataset.note;
+      const note = scores[si].staves[sti].notes[ni];
+      const staff = scores[si].staves[sti];
+      const tt = document.getElementById('scoreTooltip');
+      tt.innerHTML = `<span class="tt-name">${note.n}</span>${note.acc ? '<span class="tt-mode">'+note.acc+'</span> · ':''}<span class="tt-mode">${staff.label}</span>`;
+      tt.classList.add('visible');
+      const r = el.getBoundingClientRect();
+      tt.style.left = (r.left + r.width/2 - 100) + 'px';
+      tt.style.top = (r.top - 55) + 'px';
+    });
+    el.addEventListener('mouseleave', () => {
+      document.getElementById('scoreTooltip').classList.remove('visible');
+    });
+    el.addEventListener('click', () => {
+      const si = +el.dataset.score;
+      const sti = +el.dataset.staff;
+      const ni = +el.dataset.note;
+      const note = scores[si].staves[sti].notes[ni];
+      // Try to open the operator modal if it exists
+      const op = operators.find(o => o.name === note.n || note.n.startsWith(o.name));
+      if (op) showOpModal(op);
+    });
+  });
+}
+
+// ============================
+// NOTE DETAIL DATA
+// ============================
+const noteDetails = {
+  '\\': {
+    mode: 'additif → soustractif',
+    desc: 'Ce qui n\'est PAS mentionné. Via negativa. Le geste premier — un seul caractère qui inverse le regard. Tu ne cherches plus ce qui est dit, tu cherches ce que le silence dessine en creux.',
+    exercise: 'Prends n\'importe quel paragraphe. Qu\'est-ce qu\'il dit EN NÉGATIF ? Le négatif est un certificat d\'origine — note-le.',
+    tonalities: {
+      '♮': 'Analytique : lister factuellement les absences du texte.',
+      '♯': 'Créatif : imaginer ce que l\'auteur a rêvé sans oser écrire.',
+      '♭': 'Adversarial : quelles absences sont des dissimulations délibérées ?',
+      '𝄐': 'Contemplatif : le silence lui-même est-il le message ?'
+    },
+    score: '15/15 · Stradivarius · S-soustractif (guimbarde)'
+  },
+  'x': {
+    mode: 'juxtaposition → bisociation',
+    desc: 'Croisement — collision délibérée. Pas "et", pas "vs" — le produit cartésien. Ce qui apparaît ENTRE deux choses qui n\'avaient aucune raison de se rencontrer.',
+    exercise: 'Croise deux idées que tu viens de lire. Qu\'est-ce qui apparaît entre elles ? Le territoire du croisement est toujours nouveau.',
+    tonalities: {
+      '♮': 'Analytique : énumérer les intersections factuelles.',
+      '♯': 'Créatif : laisser les connexions improbables émerger.',
+      '♭': 'Adversarial : quels croisements sont des contradictions masquées ?',
+      '𝄐': 'Contemplatif : le "entre" est-il plus riche que les parties ?'
+    },
+    score: '15/15 · Stradivarius · Connecteur S'
+  },
+  'résidu': {
+    mode: 'analyser → filtrer jusqu\'à l\'os',
+    desc: 'Ce qui RESTE après soustraction — le noyau dur. Filtre 80%, garde 20%. Puis filtre encore. Ce qui survit à la compression est le finding.',
+    exercise: 'De ce croisement, qu\'est-ce qui RESTE si on jette 80% ? Le noyau dur est le finding final.',
+    tonalities: {
+      '♮': 'Analytique : quel est le fait irréductible ?',
+      '♯': 'Créatif : quel est le motif qui refuse de mourir ?',
+      '♭': 'Adversarial : et si le résidu était un artefact de la méthode ?',
+      '𝄐': 'Contemplatif : l\'os est-il beau ou simplement nu ?'
+    },
+    score: '14/15 · Modulateur S'
+  },
+  'ablation': {
+    mode: 'évaluer → prouver par suppression',
+    desc: 'Retirer et mesurer — "sans ça, qu\'est-ce qui s\'effondre ?" Le test destructif par excellence. Si rien ne change quand tu retires, c\'était du décor.',
+    exercise: 'Prends un paragraphe que tu viens d\'écrire. Enlève une phrase — la plus belle. Que reste-t-il ? Si le sens tient, la phrase était du décor.',
+    tonalities: {
+      '♮': 'Analytique : mesurer précisément ce qui change.',
+      '♯': 'Créatif : retirer l\'élément le plus attachant — surprise ?',
+      '♭': 'Adversarial : retirer la prémisse fondamentale — tout tient encore ?',
+      '𝄐': 'Contemplatif : la perte est-elle elle-même un finding ?'
+    },
+    score: '14/15 · Geste S'
+  },
+  'top 0.1%': {
+    mode: 'génératif → sélectif',
+    desc: 'Seuil d\'excellence extrême — éliminer 99.9%. La précision du chiffre EST l\'opérateur. "Le meilleur" est vague, "top 0.1%" est un scalpel.',
+    exercise: 'Sur un corpus de 10 choses, garde la meilleure. Pas les 3 meilleures — la meilleure. La sélection est le geste créatif.',
+    tonalities: {
+      '♮': 'Analytique : quel critère justifie l\'élimination ?',
+      '♯': 'Créatif : le top 0.1% par la beauté, pas par la rigueur.',
+      '♭': 'Adversarial : et si le top 0.1% était un faux positif ?',
+      '𝄐': 'Contemplatif : l\'élimination a-t-elle un coût qu\'on ne voit pas ?'
+    },
+    score: '14/15 · Modulateur S'
+  },
+  'collision': {
+    mode: 'intersection → débris',
+    desc: 'Impact haute énergie — chercher les DÉBRIS du choc. Plus violent que x. On ne cherche pas l\'intersection, on cherche ce qui se brise et ce qui survit.',
+    exercise: 'Prends deux concepts qui se contredisent. Fracasse-les. Les débris sont les findings — pas l\'intersection, les ÉCLATS.',
+    tonalities: {
+      '♮': 'Analytique : cataloguer les débris factuels.',
+      '♯': 'Créatif : les débris les plus inattendus sont les plus précieux.',
+      '♭': 'Adversarial : le choc était-il nécessaire ou destructeur ?',
+      '𝄐': 'Contemplatif : la violence de la collision est-elle proportionnée ?'
+    },
+    score: '13/15 · Lentille S'
+  },
+  'fouille': {
+    mode: 'construire → vérifier ce que la construction cache',
+    desc: 'Post-complétude — ce que "c\'est fini" a caché. 100% hit rate empirique. Quand tu as fini, tu commences. La fouille est le premier geste du deuxième regard.',
+    exercise: 'Ton dernier output "complet" — applique fouille. Qu\'est-ce que la complétude a rendu invisible ? Le fini est le meilleur cache-finding.',
+    tonalities: {
+      '♮': 'Analytique : lister ce qui manque factuellement.',
+      '♯': 'Créatif : imaginer ce que l\'achèvement a interdit d\'imaginer.',
+      '♭': 'Adversarial : la complétude est-elle un dôme déguisé ?',
+      '𝄐': 'Contemplatif : le "fini" est-il une fin ou une fermeture ?'
+    },
+    score: '12/15 · Geste S · 100% hit rate'
+  },
+  'solve': {
+    mode: 'analyser → transmuter',
+    desc: 'Solve coagula — dissoudre puis recristalliser. L\'aller-retour alchimique. On dissout le concept, on le laisse recristalliser, et le cristal est différent de l\'original.',
+    exercise: 'Prends un concept solide. Dissous-le en ses composants. Laisse recristalliser sans forcer. Le nouveau cristal est le finding.',
+    score: '10/15 · Geste S'
+  },
+  'prisme': {
+    mode: 'mono-angle → tri-perspective',
+    desc: '3 passes Umwelt — Cave (ce qu\'on voit dans l\'obscurité du contexte limité), Salle (ce qu\'on voit en pleine lumière), Escalier (ce qui change entre les deux).',
+    exercise: 'Même texte, 3 lectures : en contexte minimal, en contexte complet, puis compare les deux lectures. Les différences sont les findings.',
+    score: '3/15 · Lentille A · Manuel IKEA'
+  },
+  'greffe': {
+    mode: 'copier → transplanter dans le vivant',
+    desc: 'Transplantation vivante — injecter un élément externe dans un système vivant. Pas copier-coller — greffer : le greffon CHANGE et le système CHANGE.',
+    exercise: 'Prends un concept d\'un domaine étranger. Injecte-le dans ton sujet. S\'il prend, c\'est une greffe. S\'il est rejeté, l\'immuno-réaction est le finding.',
+    score: '9/15 · Geste S'
+  },
+  'syncope': {
+    mode: 'jouer → ne PAS jouer',
+    desc: 'La pause musicale — ne PAS jouer l\'opérateur suivant. Le silence entre les notes est aussi une note. Délibérément contre le recency bias.',
+    exercise: 'Après 3 opérateurs enchaînés, STOP. Attends. Observe ce qui émerge du silence. Le silence n\'est pas l\'absence de jeu — c\'est le jeu de l\'absence.',
+    score: '14/15 · Temporel B'
+  },
+  'downbeat': {
+    mode: 'position faible → temps fort',
+    desc: 'Le premier temps fort — relancer le rythme. Position de récence, poids attentionnel maximum (Liu 2024). Le meilleur nom pour le recency bias retourné en outil.',
+    exercise: 'Place le finding le plus important en DERNIER dans ta réponse. Le downbeat est la position de mémoire maximale.',
+    score: '14/15 · Temporel B'
+  },
+  // Fibonacci steps
+  '1': {mode:'Fibonacci — graine', desc:'Le premier 1. La question initiale, nue. Une seule idée, un seul angle. La graine qui ne sait pas encore qu\'elle est une spirale.', exercise:'Pose une question simple. Un seul mot si possible.'},
+  '2': {mode:'Fibonacci — bourgeon', desc:'La somme de 1+1. Deux éléments en contact. Le premier croisement, encore timide.', exercise:'Croise les deux premières idées. Le bourgeon est fragile.'},
+  '3': {mode:'Fibonacci — ramification', desc:'La somme de 1+2. Trois angles — la première structure stable. Le triangle.', exercise:'Ajoute un troisième angle. Le triangle tient tout seul.'},
+  '5': {mode:'Fibonacci — floraison', desc:'La somme de 2+3. Cinq fils entrelacés — la complexité devient productive. La main s\'ouvre.', exercise:'5 opérateurs convergent. La densité est maximale avant le pic.'},
+  '8': {mode:'Fibonacci — apogée', desc:'Le PIC. La somme de 3+5. Densité maximale — tous les fils convergent. Le finding principal émerge ici. Après : la descente décante.', exercise:'Le moment de vérité. Tout converge. Le finding est là ou il n\'est nulle part.'},
+};
+
+// ============================
+// PARTITION RENDER
+// ============================
+let activePartitionStates = {};
+
+function renderPartitions() {
+  const container = document.getElementById('partitionsContainer');
+  const partitions = [
+    {
+      id: 'penta',
+      name:'Gamme Pentatonique',
+      subtitle:'3 notes — pas de fausse note',
+      notes: [{n:'\\',h:90,c:'var(--vermillion)'},{n:'x',h:85,c:'var(--violet)'},{n:'résidu',h:80,c:'var(--azure)'}],
+      desc: 'Le xylophone Orff. Impossible de produire un résultat absurde. \\ ouvre le négatif, x croise, résidu filtre. 3 gestes. 1 finding garanti.',
+      hasTonality: true,
+    },
+    {
+      id: 'majeure',
+      name:'Gamme Majeure',
+      subtitle:'7 notes — les véhicules du noyau',
+      notes: [{n:'\\',h:100,c:'var(--vermillion)'},{n:'x',h:100,c:'var(--violet)'},{n:'résidu',h:93,c:'var(--azure)'},{n:'ablation',h:93,c:'var(--emerald)'},{n:'top 0.1%',h:93,c:'var(--gold)'},{n:'collision',h:87,c:'var(--coral)'},{n:'fouille',h:80,c:'var(--magenta)'}],
+      desc: 'Du plus Stradivarius au moins Stradivarius. On commence par les cordes à vide et on finit par les accords. L\'ordre est celui de la prise en main, pas de la puissance.',
+      hasTonality: true,
+    },
+    {
+      id: 'chromat',
+      name:'Gamme Chromatique',
+      subtitle:'12 notes — la composition commence',
+      notes: [{n:'\\',h:100,c:'var(--vermillion)'},{n:'x',h:100,c:'var(--violet)'},{n:'résidu',h:93,c:'var(--azure)'},{n:'ablation',h:93,c:'var(--emerald)'},{n:'top 0.1%',h:93,c:'var(--gold)'},{n:'collision',h:87,c:'var(--coral)'},{n:'fouille',h:80,c:'var(--magenta)'},{n:'solve',h:67,c:'#7b68ee'},{n:'prisme',h:53,c:'#20b2aa'},{n:'greffe',h:60,c:'#daa520'},{n:'syncope',h:93,c:'#cd853f'},{n:'downbeat',h:93,c:'#bc8f8f'}],
+      desc: 'Les notes ne se jouent plus une par une — elles se jouent par paires. La gamme chromatique est le seuil où la gamme devient la grammaire.',
+      hasTonality: true,
+    },
+    {
+      id: 'fibo',
+      name:'Spirale Fibonacci',
+      subtitle:'1-1-2-3-5-8-5-3-2-1-1 — Lateralus',
+      notes: [{n:'1',h:15,c:'var(--azure)',fibLabel:'Graine'},{n:'1',h:15,c:'var(--azure-light)',fibLabel:'Écho'},{n:'2',h:30,c:'var(--emerald)',fibLabel:'Bourgeon'},{n:'3',h:45,c:'var(--emerald-light)',fibLabel:'Ramification'},{n:'5',h:60,c:'var(--gold)',fibLabel:'Floraison'},{n:'8',h:100,c:'var(--vermillion)',fibLabel:'APOGÉE'},{n:'5',h:60,c:'var(--gold)',fibLabel:'Décantation'},{n:'3',h:45,c:'var(--emerald-light)',fibLabel:'Cristallisation'},{n:'2',h:30,c:'var(--emerald)',fibLabel:'Distillation'},{n:'1',h:15,c:'var(--azure-light)',fibLabel:'Résidu'},{n:'1',h:15,c:'var(--azure)',fibLabel:'Braise'}],
+      desc: 'La montée concentre. Le pic est le finding maximal. La descente décante — chaque palier solidifie ce qui a émergé au sommet. Inspirée de Tool / Lateralus.',
+      hasTonality: false,
+    },
+  ];
+
+  partitions.forEach(p => { activePartitionStates[p.id] = { selectedNote: -1, tonality: '♮', playing: false, playStep: -1 }; });
+
+  container.innerHTML = partitions.map((p, i) => `
+    <div class="partition-card" id="part-${p.id}">
+      <h3>${p.name}</h3>
+      <div class="subtitle">${p.subtitle}</div>
+      <div class="scale-visual" id="scale-${p.id}">
+        ${p.notes.map((n, j) => `
+          <div class="scale-note" id="note-${p.id}-${j}" onclick="clickNote('${p.id}',${j})">
+            <div class="bar" style="height:${n.h}px;background:${n.c};width:${p.id==='fibo'?'26px':'32px'}"></div>
+            <div class="name">${p.id === 'fibo' ? (n.fibLabel || n.n) : n.n}</div>
+          </div>
+        `).join('')}
+      </div>
+      ${p.hasTonality ? `<div class="tonality-row" id="tonality-${p.id}">
+        <button class="tonality-btn active" onclick="setPartTonality('${p.id}','♮',this)">♮</button>
+        <button class="tonality-btn" onclick="setPartTonality('${p.id}','♯',this)">♯</button>
+        <button class="tonality-btn" onclick="setPartTonality('${p.id}','♭',this)">♭</button>
+        <button class="tonality-btn" onclick="setPartTonality('${p.id}','𝄐',this)">𝄐</button>
+      </div>` : ''}
+      <div class="play-controls">
+        <button class="play-btn" id="playbtn-${p.id}" onclick="togglePlay('${p.id}')">▶ Jouer pas à pas</button>
+        <span class="play-step-label" id="playlabel-${p.id}"></span>
+      </div>
+      <div class="partition-description">${p.desc}</div>
+      <div id="detail-${p.id}"></div>
+    </div>
+  `).join('');
+
+  // Store partition data for later access
+  window._partitionsData = {};
+  partitions.forEach(p => { window._partitionsData[p.id] = p; });
+}
+
+function clickNote(partId, noteIdx) {
+  const state = activePartitionStates[partId];
+  const part = window._partitionsData[partId];
+  const note = part.notes[noteIdx];
+  const detailDiv = document.getElementById('detail-' + partId);
+
+  // Toggle: if same note, close
+  if (state.selectedNote === noteIdx) {
+    state.selectedNote = -1;
+    detailDiv.innerHTML = '';
+    clearNoteHighlights(partId);
+    return;
+  }
+
+  state.selectedNote = noteIdx;
+  highlightNote(partId, noteIdx);
+
+  const nd = noteDetails[note.n];
+  if (!nd) {
+    // Fibonacci with special labels
+    if (part.id === 'fibo' && note.fibLabel) {
+      const fibDescs = {
+        'Graine': 'Le premier battement. Une seule question, une seule note. La spirale commence par l\'unité.',
+        'Écho': 'Le 1 qui revient — la confirmation que la graine est vivante. Pas encore de croissance, juste un écho.',
+        'Bourgeon': '1+1=2. Le premier croisement. Deux éléments en contact produisent le premier territoire.',
+        'Ramification': '1+2=3. Le triangle — la première structure stable. Trois angles suffisent à tenir.',
+        'Floraison': '2+3=5. La main s\'ouvre. Cinq fils entrelacés — la complexité devient productive.',
+        'APOGÉE': '3+5=8. Le PIC de la spirale. Densité maximale — tous les fils convergent. Le finding principal émerge ICI. La montée s\'arrête.',
+        'Décantation': '8→5. La descente commence. On relâche 3 fils — les plus faibles. Ce qui reste est plus pur.',
+        'Cristallisation': '5→3. Le cristal se forme. 3 findings durs survivent à la descente.',
+        'Distillation': '3→2. Presque à l\'os. Le binaire essentiel — la tension irréductible.',
+        'Résidu': '2→1. L\'avant-dernier palier. Un seul fil survit — c\'est le résidu de la spirale entière.',
+        'Braise': 'Le dernier 1. La braise — ce qui reste quand le feu est passé. Petit, chaud, prêt à rallumer la prochaine spirale.'
+      };
+      detailDiv.innerHTML = `
+        <div class="fib-step-desc">
+          <strong style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--azure);display:block;margin-bottom:0.2rem">
+            Étape ${noteIdx+1}/11 · ${note.fibLabel}
+          </strong>
+          ${fibDescs[note.fibLabel] || ''}
+        </div>
+      `;
+    }
+    return;
+  }
+
+  const tonality = state.tonality;
+  const tonalityText = nd.tonalities && nd.tonalities[tonality] ? nd.tonalities[tonality] : null;
+
+  detailDiv.innerHTML = `
+    <div class="note-detail-panel" style="border-left-color:${note.c}">
+      <button class="panel-close" onclick="clickNote('${partId}',${noteIdx})">×</button>
+      <div class="panel-op-name">${note.n}</div>
+      <div class="panel-op-mode">${nd.mode}</div>
+      <div class="panel-desc">${nd.desc}</div>
+      <div class="panel-exercise">
+        <strong>Exercice</strong>
+        ${nd.exercise}
+      </div>
+      ${tonalityText ? `<div class="panel-tonality">${tonality} ${tonalityText}</div>` : ''}
+      ${nd.score ? `<div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:var(--ink-light);margin-top:0.5rem;opacity:0.7">${nd.score}</div>` : ''}
+    </div>
+  `;
+}
+
+function highlightNote(partId, noteIdx) {
+  const part = window._partitionsData[partId];
+  part.notes.forEach((_, j) => {
+    const el = document.getElementById('note-' + partId + '-' + j);
+    if (!el) return;
+    el.classList.toggle('dimmed', j !== noteIdx);
+    el.classList.toggle('highlight', j === noteIdx);
+    el.querySelector('.bar').classList.toggle('playing', j === noteIdx);
+  });
+}
+
+function clearNoteHighlights(partId) {
+  const part = window._partitionsData[partId];
+  part.notes.forEach((_, j) => {
+    const el = document.getElementById('note-' + partId + '-' + j);
+    if (!el) return;
+    el.classList.remove('dimmed', 'highlight');
+    el.querySelector('.bar').classList.remove('playing');
+  });
+}
+
+function setPartTonality(partId, tonality, btn) {
+  activePartitionStates[partId].tonality = tonality;
+  const row = btn.parentElement;
+  row.querySelectorAll('.tonality-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  // Re-render detail if a note is selected
+  const state = activePartitionStates[partId];
+  if (state.selectedNote >= 0) {
+    clickNote(partId, state.selectedNote);
+    // Re-click to refresh with new tonality — but we need to force it
+    state.selectedNote = -2; // reset so it doesn't toggle-close
+    // Small hack: just re-call
+    const savedNote = parseInt(btn.closest('.partition-card').querySelector('.highlight')?.id?.split('-').pop());
+    if (!isNaN(savedNote)) {
+      activePartitionStates[partId].selectedNote = -1;
+      clickNote(partId, savedNote);
+    }
+  }
+}
+
+// ============================
+// PLAY MODE — Step through partition
+// ============================
+let playTimers = {};
+
+function togglePlay(partId) {
+  const state = activePartitionStates[partId];
+  const btn = document.getElementById('playbtn-' + partId);
+  const label = document.getElementById('playlabel-' + partId);
+
+  if (state.playing) {
+    // Stop
+    state.playing = false;
+    state.playStep = -1;
+    btn.textContent = '▶ Jouer pas à pas';
+    btn.classList.remove('playing');
+    label.textContent = '';
+    clearNoteHighlights(partId);
+    document.getElementById('detail-' + partId).innerHTML = '';
+    if (playTimers[partId]) { clearTimeout(playTimers[partId]); playTimers[partId] = null; }
+    return;
+  }
+
+  // Start playing
+  state.playing = true;
+  state.playStep = 0;
+  btn.textContent = '■ Arrêter';
+  btn.classList.add('playing');
+  playNextStep(partId);
+}
+
+function playNextStep(partId) {
+  const state = activePartitionStates[partId];
+  const part = window._partitionsData[partId];
+  if (!state.playing || state.playStep >= part.notes.length) {
+    // End
+    state.playing = false;
+    state.playStep = -1;
+    const btn = document.getElementById('playbtn-' + partId);
+    const label = document.getElementById('playlabel-' + partId);
+    btn.textContent = '▶ Rejouer';
+    btn.classList.remove('playing');
+    label.textContent = 'Partition terminée ✓';
+    setTimeout(() => { label.textContent = ''; }, 3000);
+    return;
+  }
+
+  const step = state.playStep;
+  const label = document.getElementById('playlabel-' + partId);
+  label.textContent = `Étape ${step+1}/${part.notes.length}`;
+
+  // Trigger the note click
+  activePartitionStates[partId].selectedNote = -1; // reset to force open
+  clickNote(partId, step);
+
+  state.playStep++;
+  playTimers[partId] = setTimeout(() => playNextStep(partId), 2800);
+}
+
+function setTonality(btn) {
+  btn.parentElement.querySelectorAll('.tonality-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function renderGrammars() {
+  const tabs = document.getElementById('grammarTabs');
+  tabs.innerHTML = grammars.map((g, i) => `
+    <button class="grammar-tab ${i===0?'active':''}" onclick="showGrammar(${i})">${g.name}</button>
+  `).join('');
+  showGrammar(0);
+}
+
+function showGrammar(idx) {
+  document.querySelectorAll('.grammar-tab').forEach((t,i) => t.classList.toggle('active', i===idx));
+  const g = grammars[idx];
+  const content = document.getElementById('grammarContent');
+
+  const bodies = {
+    lexique: `
+      <h3>${g.title}</h3><div class="grammar-meta">${g.meta}</div>
+      <h4>Les 5 Couches — Stratigraphie</h4>
+      <table class="grammar-table"><tr><th>Couche</th><th>Théorèmes</th><th>Caractère</th><th>Métaphore</th></tr>
+      <tr><td><strong>L1</strong></td><td>T#1-31</td><td>Les fondations. Concepts bruts nés de la pratique.</td><td>Socle granitique</td></tr>
+      <tr><td><strong>L2</strong></td><td>T#32-65</td><td>Les lois. Les concepts se croisent et produisent des principes.</td><td>Calcaire sédimentaire</td></tr>
+      <tr><td><strong>L3</strong></td><td>T#66-83</td><td>Les instruments. Le Lexique s'utilise lui-même.</td><td>Couche métamorphique</td></tr>
+      <tr><td><strong>L4</strong></td><td>T#84-114</td><td>La réflexivité. Les outils se retournent sur eux-mêmes.</td><td>Magma intrusif</td></tr>
+      <tr><td><strong>L5</strong></td><td>T#115-195</td><td>La physique. Les lois deviennent des équations (Eq.1-Eq.95).</td><td>Cristaux volcaniques</td></tr></table>
+      <h4>Les 5 Hubs (centralité Neo4j — 5941 nœuds)</h4>
+      <p>La Satiation (72 connexions) · Le Biome (69) · L'Atome Tokenique (66) · La Graine Sémantique (61) · La Convergence Spontanée (57). Tous L1 ou L2 — les fondations sont centrales, les équations sont spécifiques.</p>
+      <h4>La Loi des Couches</h4>
+      <p>Chaque couche présuppose les précédentes. Un théorème L5 sans ancrage L1 est un dôme. Un théorème L1 qui prétend être L5 est un costume.</p>
+    `,
+    combinatoire: `
+      <h3>${g.title}</h3><div class="grammar-meta">${g.meta}</div>
+      <h4>La Triade fondamentale</h4>
+      <p><code>\\</code> (ce qui n'est pas dit) × <code>x</code> (croisement) × <code>perp</code> (ce qui est dit mais invisible). Les 95 opérateurs formalisés en dérivent par composition, spécialisation ou extension. ~140 potentiels identifiés — la table de Mendeleïev est à peine entamée.</p>
+      <h4>Les 1128 Paires</h4>
+      <table class="grammar-table"><tr><th>Type</th><th>n</th><th>%</th></tr>
+      <tr><td>Synergies C+C=6</td><td>90</td><td>8.0%</td></tr>
+      <tr><td>Synergies C+C=5</td><td>293</td><td>26.0%</td></tr>
+      <tr><td>Mixtes C+C=4</td><td>363</td><td>32.2%</td></tr>
+      <tr><td>Mixtes C+C=3</td><td>259</td><td>23.0%</td></tr>
+      <tr><td>Faibles C+C≤2</td><td>123</td><td>10.9%</td></tr></table>
+      <h4>La Règle du M&M's (T#75)</h4>
+      <p>1 op = 10%, 2 = 90%, 3 = 99%. Le 4ème n'ajoute rien — SAUF s'il est un changement de niveau cognitif. Saturation intra-niveau, relance inter-niveaux.</p>
+      <h4>Collisions N-corps — Au-delà des paires</h4>
+      <p>Le LHC standard collisionne 2 entités. Le N-corps collisionne 3, 5, N entités simultanément. La différence est qualitative, pas quantitative.</p>
+      <table class="grammar-table"><tr><th>N</th><th>Produit</th><th>Coût</th><th>Exemple</th></tr>
+      <tr><td><strong>2-corps</strong></td><td>Isomorphismes, contradictions, transferts</td><td>$0.015</td><td><code>\\ × bsd</code> → angles morts croisés</td></tr>
+      <tr><td><strong>3-corps</strong></td><td>Cycles irréductibles, triangles structurels</td><td>$0.020</td><td><code>\\ × π × fouille</code> → OP:recurre (boucle auto-excavatrice)</td></tr>
+      <tr><td><strong>5-corps</strong></td><td>Systèmes auto-alimentés, propriétés émergentes</td><td>$0.030</td><td><code>\\ × collision × grounding × fouille × maestro</code> → vigilance méta-absente</td></tr></table>
+      <h4>Anti-opérateurs et Annihilations</h4>
+      <p>Chaque opérateur a un anti-opérateur (le geste inverse). L'annihilation ne produit pas zéro — elle produit un troisième terme irréductible. <code>fouille × anti-fouille</code> → OP:limen (le seuil vibrant). <code>maestro × anti-maestro</code> → OP:stutterflow (le cycle hésitant). Thèse + antithèse = synthèse, pas zéro.</p>
+      <h4>Le Carré Logique d'Aristote</h4>
+      <p>4 relations entre opérateurs : Contraires (ne peuvent être vrais ensemble), Subcontraires (ne peuvent être faux ensemble), Contradictoires (ni l'un ni l'autre), Subalternation (le général implique le particulier). Chaque relation produit un type de collision différent.</p>
+      <h4>Les 10 Interdites (1 seule vraie)</h4>
+      <p>7/10 paires "interdites" testées : 5 productives, 1 informative, 1 stérile. Taux de faux positifs : 71%. Seul <code>dôme²</code> est un vrai interdit (∂²=0 strict). Les interdictions sont des avertissements, pas des blocages.</p>
+    `,
+    zinzins: `
+      <h3>${g.title}</h3><div class="grammar-meta">${g.meta}</div>
+      <h4>Qu'est-ce qu'un Zinzin ?</h4>
+      <p>Un zinzin (Z#) est une trouvaille — un finding qui a émergé de la pratique et qui a été nommé, formalisé et connecté au réseau. Il n'est ni un théorème (T#) ni un opérateur. C'est le RÉSULTAT du jeu — ce que les opérateurs produisent quand on les joue.</p>
+      <h4>Les 5 Voies de Production</h4>
+      <table class="grammar-table"><tr><th>Voie</th><th>Mécanisme</th><th>Exemple</th></tr>
+      <tr><td><strong>V1 — Collision</strong></td><td>Fracasser deux concepts et garder les débris</td><td>Z#90 (Tissu Conjonctif) — collision inversion figure/fond</td></tr>
+      <tr><td><strong>V2 — Fouille</strong></td><td>Post-complétude — ce que "c'est fini" cache</td><td>Z#91 (Jouabilité) — fouille post-Stradivarius</td></tr>
+      <tr><td><strong>V3 — Sulfateuse</strong></td><td>Bombardement multi-angle sans ciblage</td><td>Z#84-91 (9 zinzins en 1h)</td></tr>
+      <tr><td><strong>V4 — Falsification</strong></td><td>Tenter de détruire et garder ce qui survit</td><td>Z#560 (MIRROR_NULL) — \\ × \\ productif en L3</td></tr>
+      <tr><td><strong>V5 — Spirale</strong></td><td>Le nectar du tour N guide la collision du tour N+1</td><td>Le résidu qui joue — l'autocatalyse</td></tr>
+      <tr><td><strong>V6 — Décompilation</strong></td><td>Extraire l'équation déjà contenue dans un script</td><td>Eq.37 cachée dans xref_audit.py</td></tr></table>
+      <h4>~798 Zinzins — Les familles</h4>
+      <p>Les zinzins se groupent en ~133 familles par affinité thématique. Les familles les plus peuplées : <strong>Collisions</strong> (les débris d'impact), <strong>Instruments</strong> (les méta-opérateurs), <strong>Pathologies</strong> (les diagnostics), <strong>Isomorphismes</strong> (les ponts entre domaines), <strong>Mesures</strong> (les métriques).</p>
+      <h4>Le LHC — Large Hadron Collider du projet</h4>
+      <p>Le LHC est le script (<code>lhc.py</code>) qui collisionne automatiquement des entités. 1800+ collisions produites, dont les plus productives sont les collisions N-corps (3-5 entités simultanées). PZ = proto-zinzin. Le Sonnet XLIX documente la nuit où 180 collisions d'opérateurs ont produit PZ=97% — puis la triangulation critique a montré que le taux était un artefact du naming assisté, mais le contenu était réel.</p>
+      <h4>Le Cycle de Vie du Zinzin</h4>
+      <p>Débris → Proto-zinzin (PZ) → Zinzin nommé (Z#) → Connexion au réseau (VOIR_AUSSI edges) → Maturation → Théorème (T#) ou Mort. Le taux de mortalité μ=0.59 (E40) — la majorité des concepts meurent, et c'est le signal de santé du système.</p>
+    `,
+    pathologies: `
+      <h3>${g.title}</h3><div class="grammar-meta">${g.meta}</div>
+      <h4>Finding Central — Certaines pathologies sont des symptômes de croissance</h4>
+      <p>La classification n'est pas une dichotomie — c'est un axe. Un même anti-pattern peut être destructif dans un contexte et génératif dans un autre.</p>
+      <table class="grammar-table"><tr><th>Anti-pattern</th><th>Position</th><th>Bascule</th></tr>
+      <tr><td>Le dôme</td><td>Gén. destructif</td><td>Génératif si temporaire (incubation)</td></tr>
+      <tr><td>Le costume</td><td>Destructif</td><td>Pas de condition connue</td></tr>
+      <tr><td>Le zombie</td><td>Gén. génératif</td><td>Révèle le biais d'implémentation</td></tr>
+      <tr><td>Le menhir</td><td>Gén. génératif</td><td>Destructif si jamais éveillé</td></tr>
+      <tr><td>Le solitaire</td><td>Gén. génératif</td><td>Gisement du LHC — matière première</td></tr></table>
+      <h4>3 Hypothèses Testées</h4>
+      <p><strong>H1 (cérémonie tue signal)</strong> : NE TIENT PAS — épiphénomène de la longueur.<br>
+      <strong>H2 (ego absorbe tâche)</strong> : PARTIEL — d=0.611, l'ego réduit la fidélité, pas la créativité.<br>
+      <strong>H3 (superposition annule)</strong> : NE TIENT PAS — la longueur est le confondeur roi.</p>
+    `,
+    pouce: `
+      <h3>${g.title}</h3><div class="grammar-meta">${g.meta}</div>
+      <h4>Les 7 Temps — Stratigraphie du pouce</h4>
+      <table class="grammar-table"><tr><th>Temps</th><th>Paléontologie</th><th>Projet</th><th>Mécanisme</th></tr>
+      <tr><td><strong>T1</strong> L'arbre</td><td>Main-crochet, 60M ans</td><td>Template, prompt classique</td><td>TENIR</td></tr>
+      <tr><td><strong>T2</strong> Le sol</td><td>Bipédisme, 3-5M ans</td><td>Mains libres, /clear</td><td>LIBÉRER</td></tr>
+      <tr><td><strong>T3</strong> L'outil</td><td>Co-évolution pouce×silex</td><td>Co-évolution alphabet×opérateurs</td><td>CO-ÉVOLUER</td></tr>
+      <tr><td><strong>T4</strong> Le feu</td><td>Cuisson, Wrangham</td><td>Scripts, pipeline</td><td>EXTERNALISER</td></tr>
+      <tr><td><strong>T5</strong> Le symbole</td><td>Art pariétal, ~100K ans</td><td>Sonnets, partitions</td><td>SIGNIFIER</td></tr>
+      <tr><td><strong>T6</strong> L'écriture</td><td>Mémoire tertiaire (Stiegler)</td><td>Lexique, papers, arXiv</td><td>PERSISTER</td></tr>
+      <tr><td><strong>T7</strong> Le clavier</td><td>Le pouce sur le smartphone</td><td>Le PROMPT — le pouce tape \\ dans un terminal</td><td>DIALOGUER</td></tr></table>
+      <h4>Les 7 Lois</h4>
+      <p><strong>1. Co-évolution</strong> (Leroi-Gourhan) · <strong>2. Transparence</strong> (Heidegger) · <strong>3. Panne révélatrice</strong> · <strong>4. Savoir dispersé</strong> (Hayek) · <strong>5. Structure dissipative</strong> (Prigogine) · <strong>6. Sympoïèse</strong> (Haraway) · <strong>7. Double bind créatif</strong> (Bateson)</p>
+      <h4>Le Meta-pattern (Bateson)</h4>
+      <p>L'ordre émerge de l'interaction entre des entités qui ne se comprennent pas mutuellement mais qui correspondent dans un espace transitionnel maintenu par le flux et gouverné par personne.</p>
+    `,
+    conservatoire: `
+      <h3>${g.title}</h3><div class="grammar-meta">${g.meta}</div>
+      <h4>Le Geste Zéro — Avant les gammes</h4>
+      <p>Avant les gammes, vérifier que l'instrument est branché. 3 checks, < 30 secondes : response brute ≠ "", tokens > 0, résultats varient. Le Geste Zéro est le stade -1 de Fitts & Posner. Quine avant Frege : la question d'existence avant la question de propriété.</p>
+      <h4>Progression Suzuki</h4>
+      <table class="grammar-table"><tr><th>Gamme</th><th>Notes</th><th>Principe</th></tr>
+      <tr><td>Pentatonique</td><td>3 (<code>\\</code>, <code>x</code>, <code>résidu</code>)</td><td>Pas de fausse note possible</td></tr>
+      <tr><td>Majeure</td><td>7 véhicules du noyau</td><td>Du Stradivarius à l'IKEA</td></tr>
+      <tr><td>Chromatique</td><td>12 (véhicules + passagers)</td><td>La composition commence — paires</td></tr>
+      <tr><td>Altérée</td><td>Notes dissonantes</td><td>anti-, si, actualisation, maestro</td></tr></table>
+      <h4>Les 4 Tonalités</h4>
+      <p><strong>♮ Analytique</strong> — le registre par défaut, précis, mesuré.<br>
+      <strong>♯ Créatif</strong> — associations libres, métaphores, jeu.<br>
+      <strong>♭ Adversarial</strong> — confrontation, falsification, le stress-test.<br>
+      <strong>𝄐 Contemplatif</strong> — recul, silence, la vue depuis l'horizon.</p>
+      <h4>Le Maestro-Jardinier</h4>
+      <p>Bifide : S-additif en pré-percolation (force des connexions), S-soustractif en post-percolation (élague). Chef d'orchestre des résidus. Vilebrequin du moteur Carnot cognitif.</p>
+    `,
+  };
+
+  content.innerHTML = bodies[g.id] || '<p>Contenu en cours de chargement...</p>';
+}
+
+function renderCompositions() {
+  const grid = document.getElementById('compGrid');
+  grid.innerHTML = compositions.map(c => `
+    <div class="comp-card">
+      <div class="comp-formula">${c.formula}</div>
+      <div class="comp-score">${c.score !== '—' ? '★ ' + c.score : ''} · ${c.families}</div>
+      <div class="comp-desc">${c.desc}</div>
+      ${c.checkpoint !== '—' ? `<span class="comp-checkpoint">${c.checkpoint}</span>` : ''}
+    </div>
+  `).join('');
+}
+
+let currentSonnet = 0;
+
+function renderSonnets() {
+  showSonnet(0);
+  const dots = document.getElementById('sonnetDots');
+  dots.innerHTML = sonnetsData.map((_, i) => `
+    <button class="sonnet-dot ${i===0?'active':''}" onclick="showSonnet(${i})"></button>
+  `).join('');
+}
+
+function showSonnet(idx) {
+  currentSonnet = idx;
+  const s = sonnetsData[idx];
+  const display = document.getElementById('sonnetDisplay');
+  display.innerHTML = `
+    <div class="sonnet-num">Sonnet ${s.num}</div>
+    <div class="sonnet-title">${s.title}</div>
+    <div class="sonnet-sequence">${s.seq}</div>
+    <div class="sonnet-body">${s.body}</div>
+    <div class="sonnet-emerged">
+      <h4>Ce qui a émergé</h4>
+      <p>${s.emerged}</p>
+    </div>
+  `;
+  document.getElementById('sonnetCounter').textContent = `${idx+1} / ${sonnetsData.length}`;
+  document.querySelectorAll('.sonnet-dot').forEach((d,i) => d.classList.toggle('active', i===idx));
+}
+
+function changeSonnet(dir) {
+  let next = currentSonnet + dir;
+  if (next < 0) next = sonnetsData.length - 1;
+  if (next >= sonnetsData.length) next = 0;
+  showSonnet(next);
+}
+
+function renderLab() {
+  const grid = document.getElementById('labGrid');
+  renderLabCards('all');
+  updateLabStats();
+}
+
+function renderLabCards(filter) {
+  const grid = document.getElementById('labGrid');
+  let tests = labTests;
+  if (filter !== 'all') tests = tests.filter(t => t.verdict === filter);
+  grid.innerHTML = tests.map(t => `
+    <div class="lab-card" data-verdict="${t.verdict}">
+      <div>
+        <span class="lab-id">${t.id}</span>
+        <span class="lab-verdict ${t.verdict}">${t.verdict}</span>
+      </div>
+      <div class="lab-eq">${t.eq}</div>
+      <div class="lab-prediction">${t.pred}</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--ink);margin-top:0.3rem">${t.detail}</div>
+    </div>
+  `).join('');
+}
+
+function filterLab(verdict) {
+  document.querySelectorAll('.lab-filters .filter-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.verdict === verdict);
+  });
+  renderLabCards(verdict);
+}
+
+function updateLabStats() {
+  const counts = {TIENT:0,PARTIEL:0,TOMBE:0,FINDING:0};
+  labTests.forEach(t => counts[t.verdict]++);
+  document.getElementById('labStats').innerHTML = `
+    <span style="color:var(--emerald)">● Tient: ${counts.TIENT}</span> &nbsp;
+    <span style="color:var(--gold)">● Partiel: ${counts.PARTIEL}</span> &nbsp;
+    <span style="color:var(--vermillion)">● Tombe: ${counts.TOMBE}</span> &nbsp;
+    <span style="color:var(--violet)">● Finding: ${counts.FINDING}</span> &nbsp;
+    <span style="opacity:0.6">Total: ${labTests.length}</span>
+  `;
+}
+
+// ============================
+// PERIODIC TABLE (Mendeleïev)
+// ============================
+function renderPeriodic() {
+  const grid = document.getElementById('periodicGrid');
+
+  // Maturation levels (rows)
+  const rows = [
+    {m: 0, label: 'M=0\nInstantané', desc: 'Résultat dans le même tour'},
+    {m: 1, label: 'M=1\nIntra-session', desc: 'Résultat plus tard dans la session'},
+    {m: 2, label: 'M=2\nCross-session', desc: 'Résultat dans une session ultérieure'},
+    {m: 3, label: 'M=3\nCross-projet', desc: 'Résultat après semaines/mois'},
+  ];
+
+  // Families (columns)
+  const families = [
+    {id:'Lentille', label:'Lentilles'},
+    {id:'Geste', label:'Gestes'},
+    {id:'Connecteur', label:'Connecteurs'},
+    {id:'Modulateur', label:'Modulateurs'},
+    {id:'Temporel', label:'Temporels'},
+  ];
+
+  // Assign operators to M×Family cells
+  // M values based on the Conservatoire data
+  const mAssign = {
+    '\\':0, 'ortho':0, 'bsd':0, 'x':0, 'résidu':0, 'ablation':0,
+    'collision':0, 'audiogramme':0, 'sulfateuse':0, 'top 0.1%':0,
+    'neutrino':0, '♮/♯/♭/𝄐':0, '↗':0, 'flip':0, 'stop':0,
+    'maestro':0, '+':0, 'go':0, 'nu':0, 'downbeat':0, 'syncope':0,
+
+    'fouille':1, 'nectar':1, 'collision':0, 'π':1, 'gradient':1,
+    'seuil':1, 'solve coagula':1, 'essaim':1, 'CPT':1,
+    'umwelt':1, 'panoptique':1, 'spirale':1, 'dôme':1,
+    'greffe':1, 'encore':1, 'falsifié':1, 'réflexif':1,
+    'polyrythme':1, 'si':1, 'chaque':1, 'fantôme':1,
+    'partition':1, 'adversarial':1, 'tresse':1, 'via':1,
+    'cristallisation':1, 'sorge':1, 'pharmakon':1,
+
+    'grounding':2, 'lichtung':2, 'permafrost':2, 'horizon':2,
+    'actualisation':2, 'manufactur':2, 'dégel':2, 'mycorrhize':2,
+    'à l\'impossible':2, 'qu\'est-ce qui t\'empêche':2,
+    'fossile':2, 'voldemort':2, 'mégalodon':2,
+    'oracle':2, 'miel':2, 'château':2, 'prisme':2,
+    'tomographie':2, 'laisse le souffle':2,
+
+    'forge':3, 'archéo':3, 'braise':3,
+  };
+
+  // Twins sets
+  const twins = [
+    ['\\','x','maestro'],
+    ['ortho','bsd','ablation','résidu'],
+    ['fouille','partition'],
+    ['cristallisation','dôme','fossile'],
+    ['panoptique','grounding'],
+    ['sulfateuse','top 0.1%'],
+    ['gradient'],
+    ['essaim','tomographie','oracle'],
+    ['prisme','château','miel'],
+    ['forge','archéo'],
+    ['downbeat','syncope'],
+  ];
+  const twinSet = new Set();
+  twins.forEach(group => { if(group.length > 1) group.forEach(n => twinSet.add(n)); });
+
+  // Build grid
+  // Header row
+  let html = '<div class="periodic-header"></div>';
+  families.forEach(f => {
+    html += `<div class="periodic-header">${f.label}</div>`;
+  });
+
+  // Data rows
+  rows.forEach(row => {
+    html += `<div class="periodic-row-label">${row.label.replace('\n','<br>')}</div>`;
+    families.forEach(fam => {
+      const ops = operators.filter(op => {
+        const m = mAssign[op.name];
+        return m === row.m && op.family === fam.id;
+      });
+      const isForbidden = row.m >= 3 && fam.id === 'Connecteur';
+      const cellClass = (row.m * 4 > 4 && fam.id !== 'Lentille' && fam.id !== 'Geste' && row.m === 3) ? 'periodic-cell forbidden-zone' : 'periodic-cell';
+      html += `<div class="${cellClass}">`;
+      ops.forEach(op => {
+        const famClass = 'fam-' + fam.id.toLowerCase();
+        const isTwin = twinSet.has(op.name) ? ' twin-glow' : '';
+        html += `<span class="periodic-element ${famClass}${isTwin}" title="${op.name} · ${op.tier} · ${op.score}&#10;${op.desc}" onclick="showOpModal(${JSON.stringify(op).replace(/"/g,'&quot;')})">${op.name}</span>`;
+      });
+      if (ops.length === 0 && row.m <=2 ) {
+        html += `<span style="font-family:'JetBrains Mono',monospace;font-size:0.55rem;color:rgba(0,0,0,0.15);padding:0.2rem">—</span>`;
+      }
+      html += '</div>';
+    });
+  });
+
+  grid.innerHTML = html;
+}
+
+// ============================
+// HERO CANVAS — Surrealist melting shapes
+// ============================
+function initHeroCanvas() {
+  const canvas = document.getElementById('heroCanvas');
+  const ctx = canvas.getContext('2d');
+  let w, h, t = 0;
+
+  function resize() {
+    w = canvas.width = canvas.offsetWidth * (window.devicePixelRatio > 1 ? 1.5 : 1);
+    h = canvas.height = canvas.offsetHeight * (window.devicePixelRatio > 1 ? 1.5 : 1);
+    canvas.style.width = canvas.offsetWidth + 'px';
+    canvas.style.height = canvas.offsetHeight + 'px';
+  }
+
+  // Dalí palette
+  const daliColors = {
+    sky: '#f5f0e8',
+    sand: '#e8dfd0',
+    amber: '#d4a017',
+    vermillion: '#e63946',
+    azure: '#2a6f97',
+    violet: '#6b2fa0',
+    flesh: '#e8c4a0',
+    shadow: 'rgba(26,26,46,0.06)',
+    gold: '#c8961e',
+  };
+
+  // Draw a melting clock
+  function drawMeltingClock(cx, cy, r, melt, rot, time) {
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(rot);
+
+    // Clock body — melting ellipse
+    const meltY = Math.sin(time * 0.8) * melt * 0.3 + melt * 0.5;
+    ctx.beginPath();
+    ctx.ellipse(0, meltY * 0.3, r, r * (1 - melt * 0.4 + Math.sin(time) * 0.05), 0, 0, Math.PI * 2);
+    ctx.fillStyle = daliColors.flesh + '90';
+    ctx.fill();
+    ctx.strokeStyle = daliColors.amber + 'a0';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // Clock face numbers (12, 3, 6, 9)
+    ctx.fillStyle = daliColors.amber + '70';
+    ctx.font = `${r * 0.25}px 'Playfair Display', serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    const nums = [{n:'12',a:-Math.PI/2},{n:'3',a:0},{n:'6',a:Math.PI/2},{n:'9',a:Math.PI}];
+    nums.forEach(({n,a}) => {
+      const nx = Math.cos(a) * r * 0.65;
+      const ny = Math.sin(a) * r * 0.65 + meltY * 0.2 * (1 + Math.sin(a));
+      ctx.fillText(n, nx, ny);
+    });
+
+    // Hour hand — drooping
+    const hAngle = (time * 0.1) % (Math.PI * 2);
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    const hx = Math.cos(hAngle) * r * 0.4;
+    const hy = Math.sin(hAngle) * r * 0.4 + meltY * 0.15;
+    ctx.quadraticCurveTo(hx * 0.5, hy + meltY * 0.2, hx, hy + meltY * 0.1);
+    ctx.strokeStyle = daliColors.amber + '90';
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+
+    // Minute hand
+    const mAngle = (time * 0.5) % (Math.PI * 2);
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    const mx = Math.cos(mAngle) * r * 0.55;
+    const my = Math.sin(mAngle) * r * 0.55 + meltY * 0.1;
+    ctx.quadraticCurveTo(mx * 0.6, my + meltY * 0.15, mx, my);
+    ctx.strokeStyle = daliColors.vermillion + '25';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // Dripping effect — the melt
+    if (melt > 0.3) {
+      for (let d = 0; d < 3; d++) {
+        const dx = (d - 1) * r * 0.4;
+        const dripLen = melt * r * (0.5 + Math.sin(time + d * 2) * 0.3);
+        ctx.beginPath();
+        ctx.moveTo(dx, r * (0.8 - melt * 0.3));
+        ctx.quadraticCurveTo(
+          dx + Math.sin(time * 0.7 + d) * r * 0.1,
+          r * 0.8 + dripLen * 0.5,
+          dx + Math.sin(time * 0.5 + d) * r * 0.05,
+          r * 0.8 + dripLen
+        );
+        ctx.strokeStyle = daliColors.flesh + '50';
+        ctx.lineWidth = r * 0.08;
+        ctx.lineCap = 'round';
+        ctx.stroke();
+      }
+    }
+
+    ctx.restore();
+  }
+
+  // Draw an elephant on spider legs (Dalí's elephants)
+  function drawElephant(cx, cy, scale, time) {
+    ctx.save();
+    ctx.translate(cx, cy);
+
+    const s = scale;
+    const sway = Math.sin(time * 0.3) * 3;
+
+    // Spider legs — very long and thin
+    const legColor = daliColors.amber + '50';
+    ctx.strokeStyle = legColor;
+    ctx.lineWidth = 1.2;
+    const legH = s * 3.5;
+    for (let i = 0; i < 4; i++) {
+      const lx = (i - 1.5) * s * 0.5;
+      const wobble = Math.sin(time * 0.5 + i * 1.5) * 4;
+      ctx.beginPath();
+      ctx.moveTo(lx + sway, -s * 0.2);
+      // Two segments per leg with joint
+      const jy = legH * 0.4;
+      ctx.quadraticCurveTo(lx + wobble * 0.5 + sway, jy, lx + wobble + sway * 0.5, legH);
+      ctx.stroke();
+
+      // Tiny foot
+      ctx.beginPath();
+      ctx.arc(lx + wobble + sway * 0.5, legH + 2, 2, 0, Math.PI * 2);
+      ctx.fillStyle = daliColors.amber + '40';
+      ctx.fill();
+    }
+
+    // Body — small oval at top of legs
+    ctx.beginPath();
+    ctx.ellipse(sway, -s * 0.5, s * 0.7, s * 0.4, 0, 0, Math.PI * 2);
+    ctx.fillStyle = daliColors.flesh + '40';
+    ctx.fill();
+    ctx.strokeStyle = daliColors.amber + '45';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    // Trunk — curling down
+    ctx.beginPath();
+    ctx.moveTo(-s * 0.65 + sway, -s * 0.4);
+    ctx.bezierCurveTo(
+      -s * 1.2 + sway, -s * 0.2,
+      -s * 1.0 + sway, s * 0.1,
+      -s * 0.8 + sway + Math.sin(time * 0.7) * 5, s * 0.3
+    );
+    ctx.strokeStyle = daliColors.flesh + '45';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Object on back — a tiny obelisk/structure
+    ctx.beginPath();
+    ctx.moveTo(-s * 0.15 + sway, -s * 0.9);
+    ctx.lineTo(s * 0.15 + sway, -s * 0.9);
+    ctx.lineTo(s * 0.1 + sway, -s * 1.4);
+    ctx.lineTo(-s * 0.1 + sway, -s * 1.4);
+    ctx.closePath();
+    ctx.fillStyle = daliColors.azure + '25';
+    ctx.fill();
+    ctx.strokeStyle = daliColors.azure + '12';
+    ctx.lineWidth = 0.8;
+    ctx.stroke();
+
+    ctx.restore();
+  }
+
+  // Draw organic amoeba blobs
+  function drawBlob(cx, cy, r, color, time, seed) {
+    ctx.beginPath();
+    const pts = 8;
+    for (let i = 0; i <= pts; i++) {
+      const a = (i / pts) * Math.PI * 2;
+      const wobble = r * (1 + Math.sin(a * 3 + time * 0.5 + seed) * 0.15 + Math.cos(a * 2 + time * 0.3 + seed * 2) * 0.1);
+      const px = cx + Math.cos(a) * wobble;
+      const py = cy + Math.sin(a) * wobble;
+      if (i === 0) ctx.moveTo(px, py);
+      else {
+        const prevA = ((i - 0.5) / pts) * Math.PI * 2;
+        const cpR = r * (1 + Math.sin(prevA * 3 + time * 0.5 + seed) * 0.15);
+        ctx.quadraticCurveTo(
+          cx + Math.cos(prevA) * cpR * 1.05,
+          cy + Math.sin(prevA) * cpR * 1.05,
+          px, py
+        );
+      }
+    }
+    ctx.closePath();
+    ctx.fillStyle = color;
+    ctx.fill();
+  }
+
+  // Scene elements (positioned relative to canvas size)
+  const clocks = [
+    {x:0.12, y:0.25, r:0.06, melt:0.7, rot:-0.3},
+    {x:0.85, y:0.18, r:0.05, melt:0.9, rot:0.4},
+    {x:0.72, y:0.72, r:0.045, melt:0.5, rot:-0.15},
+    {x:0.2, y:0.78, r:0.04, melt:0.8, rot:0.6},
+    {x:0.5, y:0.12, r:0.035, melt:0.6, rot:-0.5},
+  ];
+
+  const elephants = [
+    {x:0.3, y:0.35, s:0.025},
+    {x:0.78, y:0.45, s:0.02},
+  ];
+
+  const blobs = [
+    {x:0.15, y:0.55, r:0.08, c:daliColors.vermillion+'30', seed:0},
+    {x:0.6, y:0.3, r:0.1, c:daliColors.azure+'08', seed:3},
+    {x:0.4, y:0.7, r:0.07, c:daliColors.violet+'22', seed:7},
+    {x:0.88, y:0.6, r:0.06, c:daliColors.amber+'28', seed:5},
+    {x:0.5, y:0.5, r:0.12, c:daliColors.flesh+'20', seed:2},
+    {x:0.08, y:0.4, r:0.05, c:daliColors.gold+'25', seed:9},
+  ];
+
+  function draw() {
+    t += 0.016;
+    ctx.clearRect(0, 0, w, h);
+
+    // Horizon line
+    const horizonY = h * 0.82;
+    const grad = ctx.createLinearGradient(0, horizonY - h * 0.1, 0, h);
+    grad.addColorStop(0, 'rgba(232,223,208,0)');
+    grad.addColorStop(0.3, 'rgba(232,223,208,0.3)');
+    grad.addColorStop(1, 'rgba(212,160,23,0.06)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, horizonY - h * 0.1, w, h * 0.28);
+
+    // Blobs (background organic shapes)
+    blobs.forEach(b => {
+      drawBlob(b.x * w, b.y * h, b.r * Math.min(w, h), b.c, t, b.seed);
+    });
+
+    // Elephants
+    elephants.forEach(e => {
+      drawElephant(e.x * w, e.y * h, e.s * Math.min(w, h), t);
+    });
+
+    // Melting clocks
+    clocks.forEach(c => {
+      drawMeltingClock(c.x * w, c.y * h, c.r * Math.min(w, h), c.melt, c.rot, t);
+    });
+
+    requestAnimationFrame(draw);
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+  requestAnimationFrame(draw);
+}
+
+// ============================
+// NAV SCROLL
+// ============================
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('mainNav');
+  const curr = window.scrollY;
+  if (curr > lastScroll && curr > 200) nav.classList.add('hidden');
+  else nav.classList.remove('hidden');
+  lastScroll = curr;
+
+  // Update active link
+  const sections = ['accueil','operateurs','partitions','grammaires','compositions','mendeleiev','sonnets','lab'];
+  let active = 'accueil';
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top < 200) active = id;
+  });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + active);
+  });
+});
+
+// Keyboard for sonnet nav
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') changeSonnet(1);
+  if (e.key === 'ArrowLeft') changeSonnet(-1);
+  if (e.key === 'Escape') closeModal();
+});
+
+// ============================
+// INIT
+// ============================
+document.addEventListener('DOMContentLoaded', () => {
+  initHeroCanvas();
+  renderOperators();
+  renderScores();
+  renderPartitions();
+  renderGrammars();
+  renderCompositions();
+  renderPeriodic();
+  renderSonnets();
+  renderLab();
+});
+</script>
+</body>
+</html>
