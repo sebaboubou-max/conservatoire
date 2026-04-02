@@ -38,6 +38,111 @@ body {
   line-height: 1.7;
   overflow-x: hidden;
 }
+.glossary-fab {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 1400;
+  border: none;
+  background: linear-gradient(135deg, var(--ink), var(--azure));
+  color: var(--sand);
+  padding: 0.9rem 1.1rem;
+  border-radius: 999px;
+  box-shadow: 0 16px 32px rgba(26,26,46,0.22);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+}
+.glossary-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(18,22,28,0.48);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.24s ease;
+  z-index: 1350;
+}
+.glossary-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.glossary-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(440px, 92vw);
+  height: 100vh;
+  transform: translateX(102%);
+  transition: transform 0.28s ease;
+  z-index: 1360;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(212,160,23,0.14), transparent 30%),
+    linear-gradient(180deg, rgba(255,255,255,0.94), rgba(255,255,255,0.9));
+  border-left: 1px solid var(--line);
+  box-shadow: -24px 0 48px rgba(26,26,46,0.12);
+  display: flex;
+  flex-direction: column;
+}
+.glossary-drawer.open {
+  transform: translateX(0);
+}
+.glossary-headbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.1rem;
+  border-bottom: 1px solid var(--line);
+}
+.glossary-headbar h3 {
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+}
+.glossary-close {
+  border: none;
+  background: transparent;
+  color: var(--ink);
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+.glossary-body {
+  overflow-y: auto;
+  padding: 1rem 1.1rem 1.4rem;
+}
+.glossary-grid {
+  display: grid;
+  gap: 0.85rem;
+}
+.glossary-card {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 1rem;
+  background: rgba(255,255,255,0.76);
+}
+.glossary-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-bottom: 0.4rem;
+}
+.glossary-head strong {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.08rem;
+}
+.glossary-head span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.glossary-short {
+  margin: 0 0 0.45rem;
+  color: var(--deep);
+  font-style: italic;
+}
 .scroll-progress {
   position: fixed;
   inset: 0 0 auto 0;
@@ -368,6 +473,73 @@ section.lens-muted {
   background: radial-gradient(circle, rgba(42,111,151,0.14), transparent 70%);
   pointer-events: none;
 }
+.orbit-map-wrap {
+  margin-bottom: 1rem;
+  padding: 0.65rem;
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(255,255,255,0.68));
+  border: 1px solid var(--line);
+}
+.orbit-map {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.orbit-edge {
+  stroke: rgba(26,26,46,0.12);
+  stroke-width: 1.5;
+}
+.orbit-ring {
+  fill: none;
+  stroke: rgba(26,26,46,0.08);
+}
+.orbit-ring-main {
+  stroke-dasharray: 4 8;
+}
+.orbit-ring-outer {
+  stroke-dasharray: 2 10;
+}
+.orbit-core circle {
+  fill: rgba(26,26,46,0.92);
+}
+.orbit-core-title,
+.orbit-core-sub,
+.orbit-node-code,
+.orbit-node-label {
+  text-anchor: middle;
+  pointer-events: none;
+}
+.orbit-core-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 21px;
+  fill: #f7f1e4;
+}
+.orbit-core-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  fill: rgba(247,241,228,0.82);
+}
+.orbit-node circle {
+  fill: rgba(255,255,255,0.9);
+  stroke: rgba(26,26,46,0.14);
+  stroke-width: 1.5;
+}
+.orbit-node:hover circle,
+.orbit-node.active circle {
+  fill: rgba(230,57,70,0.12);
+  stroke: rgba(230,57,70,0.38);
+}
+.orbit-node-code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  fill: var(--accent);
+}
+.orbit-node-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  fill: var(--ink);
+}
 .orbit-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -473,6 +645,13 @@ section.lens-muted {
   font-family: 'Playfair Display', serif;
   font-size: 1.2rem;
 }
+.commit-journal summary {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
 .theme-blurb {
   margin: 0 0 0.8rem;
   color: var(--ink-light);
@@ -573,6 +752,97 @@ section.lens-muted {
   border-left: 3px solid var(--gold);
   background: rgba(212,160,23,0.08);
   border-radius: 0 14px 14px 0;
+}
+.case-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.case-card {
+  background: var(--card);
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-soft);
+  padding: 1.2rem;
+}
+.case-head h3 {
+  margin: 0 0 0.35rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.28rem;
+}
+.case-column {
+  border-radius: 16px;
+  padding: 1rem;
+  min-height: 170px;
+}
+.case-column.before {
+  background: rgba(26,26,46,0.05);
+}
+.case-column.after {
+  background: rgba(212,160,23,0.1);
+}
+.case-label {
+  display: inline-flex;
+  margin-bottom: 0.6rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+.playground-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 1rem;
+}
+.playground-form {
+  display: grid;
+  gap: 0.9rem;
+}
+.playground-form label {
+  display: grid;
+  gap: 0.4rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+.playground-form select {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  padding: 0.8rem 0.95rem;
+  background: rgba(255,255,255,0.84);
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 1rem;
+  color: var(--ink);
+}
+.playground-output {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.86), rgba(255,255,255,0.68));
+  padding: 1.1rem 1.2rem;
+}
+.playground-output h3 {
+  margin: 0 0 0.35rem;
+  font-family: 'Playfair Display', serif;
+}
+.playground-output p {
+  margin: 0.35rem 0;
+}
+.playground-badge {
+  display: inline-flex;
+  margin-top: 0.45rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(23,50,71,0.08);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--deep);
 }
 .search-input {
   width: 100%;
@@ -685,7 +955,7 @@ code {
   }
 }
 @media (max-width: 1000px) {
-  .hero, .continent-head, .tri-grid, .table-grid, .stack-grid, .split-callout { grid-template-columns: 1fr; }
+  .hero, .continent-head, .tri-grid, .table-grid, .stack-grid, .split-callout, .case-grid, .playground-grid { grid-template-columns: 1fr; }
   .hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 720px) {
@@ -693,6 +963,8 @@ code {
   .hero-stats { grid-template-columns: 1fr; }
   .page { padding-inline: 0.85rem; }
   .nav-links { max-width: 100%; }
+  .glossary-drawer { width: 100vw; }
+  .orbit-map-wrap { padding: 0.3rem; }
 }
 </style>
 </head>
@@ -713,6 +985,7 @@ code {
     <a href="#mendeleiev">mendeleïev</a>
     <a href="#routes">routes</a>
     <a href="#runtime">runtime</a>
+    <a href="#atelier">atelier</a>
     <a href="#lutherie">lutherie</a>
     <a href="#partitions-live">partitions</a>
     <a href="#recherche">recherche</a>
@@ -730,12 +1003,12 @@ code {
       <div class="invitation-text">Depuis le 15 mars 2026, le projet a changé de nature. Il ne fonctionne plus comme un atelier de prompts ou un conservatoire autonome, mais comme un système de recherche gouverné: un OS méthodologique où opérateurs, grammaires, partitions, LHC, runtime Ralph, surfaces de vérité, atlas d&#x27;axes et contrats d&#x27;évidence coopèrent.</div>
       <div class="hero-actions"><a href="#poetique">Ami</a><a href="#routes">Bâtisseur</a><a href="#runtime">Reviewer</a></div>
       <div class="hero-stats">
-        <div class="hero-stat"><span class="num">1762</span><span class="label">commits relus depuis le 18 mars</span></div>
+        <div class="hero-stat"><span class="num">1759</span><span class="label">commits relus depuis le 18 mars</span></div>
         <div class="hero-stat"><span class="num">32</span><span class="label">axes explicites</span></div>
         <div class="hero-stat"><span class="num">40</span><span class="label">pipelines explicites</span></div>
         <div class="hero-stat"><span class="num">817</span><span class="label">collisions grammaire</span></div>
-        <div class="hero-stat"><span class="num">2005</span><span class="label">entrées gouvernées Ralph</span></div>
-        <div class="hero-stat"><span class="num">0.4813</span><span class="label">cross-ratio gouverné</span></div>
+        <div class="hero-stat"><span class="num">2136</span><span class="label">entrées gouvernées Ralph</span></div>
+        <div class="hero-stat"><span class="num">0.492</span><span class="label">cross-ratio gouverné</span></div>
       </div>
     </div>
     <aside class="hero-side">
@@ -749,7 +1022,7 @@ code {
         <a href="METHODOLOGIE_CONSERVATOIRE_GRANDE_SYNTHESE_15MARS_02AVRIL.md">Markdown source</a>
         <a href="conservatoire.html">Legacy 24 mars</a>
         <a href="methodologie_conservatoire_archive_20260324.html">Archive legacy</a>
-        <a href="methodologie_conservatoire_archive_20260402_130632.html">Archive intermédiaire</a>
+        <a href="methodologie_conservatoire_archive_20260402_131708.html">Archive intermédiaire</a>
       </div>
       <div class="chamber-note">
         <span class="chamber-note-label">Mélodie fantôme</span>
@@ -764,7 +1037,7 @@ code {
       <article class="metric-card"><span class="metric-label">Théorèmes</span><strong class="metric-value">150 T# (max T#205)</strong></article>
       <article class="metric-card"><span class="metric-label">Équations</span><strong class="metric-value">Eq.1-Eq.143</strong></article>
       <article class="metric-card"><span class="metric-label">Partitions / Sonnets</span><strong class="metric-value">68</strong></article>
-      <article class="metric-card"><span class="metric-label">Ralph surface</span><strong class="metric-value">PREUVE</strong></article>
+      <article class="metric-card"><span class="metric-label">Ralph surface</span><strong class="metric-value">AVEUGLE</strong></article>
       <article class="metric-card"><span class="metric-label">E489 can speak</span><strong class="metric-value">yes</strong></article>
       <article class="metric-card"><span class="metric-label">Loi Gold Standard</span><strong class="metric-value">gold standard = route + collision + consumer + validation</strong></article>
       <article class="metric-card"><span class="metric-label">Loi Megalodon</span><strong class="metric-value">magnitude without opposability must pick the next collision</strong></article>
@@ -787,6 +1060,7 @@ code {
       <div class="panel constellation-shell">
         <h3>Carte orbitale</h3>
         <p class="note">Clique une étoile pour te téléporter vers le bloc voulu. Le document assume maintenant sa topologie.</p>
+        <div class="orbit-map-wrap"><svg class="orbit-map" viewBox="0 0 720 550" role="img" aria-label="Carte orbitale des grands blocs"><defs><radialGradient id="orbitGlow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="rgba(176,138,50,0.36)"/><stop offset="100%" stop-color="rgba(176,138,50,0)"/></radialGradient></defs><circle cx="360" cy="275" r="138" class="orbit-ring orbit-ring-main"></circle><circle cx="360" cy="275" r="212" class="orbit-ring orbit-ring-outer"></circle><circle cx="360" cy="275" r="76" fill="url(#orbitGlow)"></circle><line x1="360" y1="275" x2="360.0" y2="100.0" class="orbit-edge" /><line x1="360" y1="275" x2="540.0" y2="180.0" class="orbit-edge" /><line x1="360" y1="275" x2="540.0" y2="370.0" class="orbit-edge" /><line x1="360" y1="275" x2="360.0" y2="450.0" class="orbit-edge" /><line x1="360" y1="275" x2="180.0" y2="370.0" class="orbit-edge" /><line x1="360" y1="275" x2="180.0" y2="180.0" class="orbit-edge" /><line x1="360" y1="275" x2="80.0" y2="275.0" class="orbit-edge" /><line x1="360" y1="275" x2="640.0" y2="275.0" class="orbit-edge" /><g class="orbit-core"><circle cx="360" cy="275" r="58"></circle><text x="360" y="268" class="orbit-core-title">OS</text><text x="360" y="291" class="orbit-core-sub">méthodologique</text></g><a href="#bascules" class="orbit-node" data-orbit-target="bascules"><circle cx="360.0" cy="100.0" r="34"></circle><text x="360.0" y="98.0" class="orbit-node-code">B</text><text x="360.0" y="152.0" class="orbit-node-label">Bascules</text></a><a href="#continents" class="orbit-node" data-orbit-target="continents"><circle cx="540.0" cy="180.0" r="34"></circle><text x="540.0" y="178.0" class="orbit-node-code">C</text><text x="540.0" y="232.0" class="orbit-node-label">Continents</text></a><a href="#invariants" class="orbit-node" data-orbit-target="invariants"><circle cx="540.0" cy="370.0" r="34"></circle><text x="540.0" y="368.0" class="orbit-node-code">N</text><text x="540.0" y="422.0" class="orbit-node-label">Nœuds</text></a><a href="#routes" class="orbit-node" data-orbit-target="routes"><circle cx="360.0" cy="450.0" r="34"></circle><text x="360.0" y="448.0" class="orbit-node-code">R</text><text x="360.0" y="502.0" class="orbit-node-label">Routes</text></a><a href="#runtime" class="orbit-node" data-orbit-target="runtime"><circle cx="180.0" cy="370.0" r="34"></circle><text x="180.0" y="368.0" class="orbit-node-code">LHC</text><text x="180.0" y="422.0" class="orbit-node-label">Runtime</text></a><a href="#lutherie" class="orbit-node" data-orbit-target="lutherie"><circle cx="180.0" cy="180.0" r="34"></circle><text x="180.0" y="178.0" class="orbit-node-code">L</text><text x="180.0" y="232.0" class="orbit-node-label">Lutherie</text></a><a href="#partitions-live" class="orbit-node" data-orbit-target="partitions-live"><circle cx="80.0" cy="275.0" r="34"></circle><text x="80.0" y="273.0" class="orbit-node-code">P</text><text x="80.0" y="327.0" class="orbit-node-label">Partitions</text></a><a href="#recherche" class="orbit-node" data-orbit-target="recherche"><circle cx="640.0" cy="275.0" r="34"></circle><text x="640.0" y="273.0" class="orbit-node-code">Φ</text><text x="640.0" y="327.0" class="orbit-node-label">Recherche</text></a></svg></div>
         <div class="orbit-grid"><button class="orbit-card" type="button" data-orbit-target="bascules"><span class="orbit-code">B</span><strong>Bascules</strong><span>Les plaques qui ont déplacé le centre de gravité du projet.</span></button><button class="orbit-card" type="button" data-orbit-target="continents"><span class="orbit-code">C</span><strong>Continents</strong><span>La carte large des domaines désormais pris en charge.</span></button><button class="orbit-card" type="button" data-orbit-target="invariants"><span class="orbit-code">N</span><strong>Nœuds</strong><span>Les points fixes, gyroscopes et contraintes de retenue.</span></button><button class="orbit-card" type="button" data-orbit-target="routes"><span class="orbit-code">R</span><strong>Routes</strong><span>Familles, pipelines, triades, Hercule et destinations.</span></button><button class="orbit-card" type="button" data-orbit-target="runtime"><span class="orbit-code">LHC</span><strong>Runtime</strong><span>Le droit du batch vivant, Ralph, A32, replay et veto.</span></button><button class="orbit-card" type="button" data-orbit-target="lutherie"><span class="orbit-code">L</span><strong>Lutherie</strong><span>Les timbres et registres qui rendent le projet transmissible.</span></button><button class="orbit-card" type="button" data-orbit-target="partitions-live"><span class="orbit-code">P</span><strong>Partitions</strong><span>Le document comme instrument, pas seulement comme digest.</span></button><button class="orbit-card" type="button" data-orbit-target="recherche"><span class="orbit-code">Φ</span><strong>Recherche</strong><span>Ce que tout cela implique pour la philosophie et la science.</span></button></div>
       </div>
     </div>
@@ -817,11 +1091,14 @@ code {
       <p class="section-desc">On ne peut pas résumer sérieusement le projet sans absorber les fronts de commits qui l’ont reconfiguré.</p>
     </div>
     <div class="panel">
-      <div class="commit-weather"><button class="day-btn" data-day-filter="2026-03-18" style="--day-scale:91;"><span class="day-date">03-18</span><span class="day-count">91</span></button><button class="day-btn" data-day-filter="2026-03-19" style="--day-scale:445;"><span class="day-date">03-19</span><span class="day-count">445</span></button><button class="day-btn" data-day-filter="2026-03-20" style="--day-scale:1;"><span class="day-date">03-20</span><span class="day-count">1</span></button><button class="day-btn" data-day-filter="2026-03-23" style="--day-scale:4;"><span class="day-date">03-23</span><span class="day-count">4</span></button><button class="day-btn" data-day-filter="2026-03-24" style="--day-scale:54;"><span class="day-date">03-24</span><span class="day-count">54</span></button><button class="day-btn" data-day-filter="2026-03-25" style="--day-scale:97;"><span class="day-date">03-25</span><span class="day-count">97</span></button><button class="day-btn" data-day-filter="2026-03-26" style="--day-scale:442;"><span class="day-date">03-26</span><span class="day-count">442</span></button><button class="day-btn" data-day-filter="2026-03-27" style="--day-scale:223;"><span class="day-date">03-27</span><span class="day-count">223</span></button><button class="day-btn" data-day-filter="2026-03-28" style="--day-scale:159;"><span class="day-date">03-28</span><span class="day-count">159</span></button><button class="day-btn" data-day-filter="2026-03-29" style="--day-scale:119;"><span class="day-date">03-29</span><span class="day-count">119</span></button><button class="day-btn" data-day-filter="2026-03-30" style="--day-scale:73;"><span class="day-date">03-30</span><span class="day-count">73</span></button><button class="day-btn" data-day-filter="2026-03-31" style="--day-scale:23;"><span class="day-date">03-31</span><span class="day-count">23</span></button><button class="day-btn" data-day-filter="2026-04-01" style="--day-scale:29;"><span class="day-date">04-01</span><span class="day-count">29</span></button><button class="day-btn active" data-day-filter="2026-04-02" style="--day-scale:2;"><span class="day-date">04-02</span><span class="day-count">2</span></button></div>
-      <article class="day-panel" data-day-panel="2026-03-18"><h3>2026-03-18</h3><p>91 commits repérés sur le repo ce jour-là.</p></article><article class="day-panel" data-day-panel="2026-03-19"><h3>2026-03-19</h3><p>445 commits repérés sur le repo ce jour-là.</p></article><article class="day-panel" data-day-panel="2026-03-20"><h3>2026-03-20</h3><p>1 commits repérés sur le repo ce jour-là.</p></article><article class="day-panel" data-day-panel="2026-03-23"><h3>2026-03-23</h3><p>4 commits repérés sur le repo ce jour-là.</p></article><article class="day-panel" data-day-panel="2026-03-24"><h3>2026-03-24</h3><p>54 commits repérés sur le repo ce jour-là.</p></article><article class="day-panel" data-day-panel="2026-03-25"><h3>2026-03-25</h3><p>97 commits repérés sur le repo ce jour-là.</p></article><article class="day-panel" data-day-panel="2026-03-26"><h3>2026-03-26</h3><p>442 commits repérés sur le repo ce jour-là.</p></article><article class="day-panel" data-day-panel="2026-03-27"><h3>2026-03-27</h3><p>223 commits repérés sur le repo ce jour-là.</p></article><article class="day-panel" data-day-panel="2026-03-28"><h3>2026-03-28</h3><p>159 commits repérés sur le repo ce jour-là.</p></article><article class="day-panel" data-day-panel="2026-03-29"><h3>2026-03-29</h3><p>119 commits repérés sur le repo ce jour-là.</p></article><article class="day-panel" data-day-panel="2026-03-30"><h3>2026-03-30</h3><p>73 commits repérés sur le repo ce jour-là.</p></article><article class="day-panel" data-day-panel="2026-03-31"><h3>2026-03-31</h3><p>23 commits repérés sur le repo ce jour-là.</p></article><article class="day-panel" data-day-panel="2026-04-01"><h3>2026-04-01</h3><p>29 commits repérés sur le repo ce jour-là.</p></article><article class="day-panel active" data-day-panel="2026-04-02"><h3>2026-04-02</h3><p>2 commits repérés sur le repo ce jour-là.</p></article>
+      <div class="commit-weather"><button class="day-btn" data-day-filter="2026-03-18" style="--day-scale:88;"><span class="day-date">03-18</span><span class="day-count">88</span></button><button class="day-btn" data-day-filter="2026-03-19" style="--day-scale:445;"><span class="day-date">03-19</span><span class="day-count">445</span></button><button class="day-btn" data-day-filter="2026-03-20" style="--day-scale:1;"><span class="day-date">03-20</span><span class="day-count">1</span></button><button class="day-btn" data-day-filter="2026-03-23" style="--day-scale:4;"><span class="day-date">03-23</span><span class="day-count">4</span></button><button class="day-btn" data-day-filter="2026-03-24" style="--day-scale:54;"><span class="day-date">03-24</span><span class="day-count">54</span></button><button class="day-btn" data-day-filter="2026-03-25" style="--day-scale:97;"><span class="day-date">03-25</span><span class="day-count">97</span></button><button class="day-btn" data-day-filter="2026-03-26" style="--day-scale:442;"><span class="day-date">03-26</span><span class="day-count">442</span></button><button class="day-btn" data-day-filter="2026-03-27" style="--day-scale:223;"><span class="day-date">03-27</span><span class="day-count">223</span></button><button class="day-btn" data-day-filter="2026-03-28" style="--day-scale:159;"><span class="day-date">03-28</span><span class="day-count">159</span></button><button class="day-btn" data-day-filter="2026-03-29" style="--day-scale:119;"><span class="day-date">03-29</span><span class="day-count">119</span></button><button class="day-btn" data-day-filter="2026-03-30" style="--day-scale:73;"><span class="day-date">03-30</span><span class="day-count">73</span></button><button class="day-btn" data-day-filter="2026-03-31" style="--day-scale:23;"><span class="day-date">03-31</span><span class="day-count">23</span></button><button class="day-btn" data-day-filter="2026-04-01" style="--day-scale:29;"><span class="day-date">04-01</span><span class="day-count">29</span></button><button class="day-btn active" data-day-filter="2026-04-02" style="--day-scale:2;"><span class="day-date">04-02</span><span class="day-count">2</span></button></div>
+      <article class="day-panel" data-day-panel="2026-03-18"><h3>2026-03-18</h3><p>88 commits repérés sur le repo ce jour-là.</p></article><article class="day-panel" data-day-panel="2026-03-19"><h3>2026-03-19</h3><p>445 commits repérés sur le repo ce jour-là.</p></article><article class="day-panel" data-day-panel="2026-03-20"><h3>2026-03-20</h3><p>1 commits repérés sur le repo ce jour-là.</p></article><article class="day-panel" data-day-panel="2026-03-23"><h3>2026-03-23</h3><p>4 commits repérés sur le repo ce jour-là.</p></article><article class="day-panel" data-day-panel="2026-03-24"><h3>2026-03-24</h3><p>54 commits repérés sur le repo ce jour-là.</p></article><article class="day-panel" data-day-panel="2026-03-25"><h3>2026-03-25</h3><p>97 commits repérés sur le repo ce jour-là.</p></article><article class="day-panel" data-day-panel="2026-03-26"><h3>2026-03-26</h3><p>442 commits repérés sur le repo ce jour-là.</p></article><article class="day-panel" data-day-panel="2026-03-27"><h3>2026-03-27</h3><p>223 commits repérés sur le repo ce jour-là.</p></article><article class="day-panel" data-day-panel="2026-03-28"><h3>2026-03-28</h3><p>159 commits repérés sur le repo ce jour-là.</p></article><article class="day-panel" data-day-panel="2026-03-29"><h3>2026-03-29</h3><p>119 commits repérés sur le repo ce jour-là.</p></article><article class="day-panel" data-day-panel="2026-03-30"><h3>2026-03-30</h3><p>73 commits repérés sur le repo ce jour-là.</p></article><article class="day-panel" data-day-panel="2026-03-31"><h3>2026-03-31</h3><p>23 commits repérés sur le repo ce jour-là.</p></article><article class="day-panel" data-day-panel="2026-04-01"><h3>2026-04-01</h3><p>29 commits repérés sur le repo ce jour-là.</p></article><article class="day-panel active" data-day-panel="2026-04-02"><h3>2026-04-02</h3><p>2 commits repérés sur le repo ce jour-là.</p></article>
     </div>
-    <div class="filter-row" style="margin-top:1rem;"><button class="filter-btn active" data-theme-filter="physique">Physique opératoire / F459</button><button class="filter-btn" data-theme-filter="lingua">Rosette / Lingua Mentis / W10</button><button class="filter-btn" data-theme-filter="workflow">Meta-workflow / Conservatoire / DIAPASON</button><button class="filter-btn" data-theme-filter="lhc">LHC / Ralph / Evidence Ops</button><button class="filter-btn" data-theme-filter="research">Axes / Pipelines / Megalodon / Hercule</button><button class="filter-btn" data-theme-filter="poetry">Partitions / Sonnets / Poétique du geste</button></div>
-    <div class="panel"><details class="theme-panel" data-theme-panel="physique" open><summary><span>Physique opératoire / F459</span><span class="badge">41 commits</span></summary><p class="theme-blurb">La période du 27 au 29 mars a fait passer les opérateurs d&#x27;une taxonomie locale à une physique mesurée: classes, invariants de direction, falsifications, scaling et attracteurs.</p><ul class="commit-list"><li><code>2026-04-01</code> <strong>7326f404</strong> feat(session21): 7/9 JACHERE + Z#6596-6598 Fermion Fondateur ★★★★★</li><li><code>2026-04-01</code> <strong>df18b2fd</strong> feat(E473): gate Boson/Fermion + Z#6593 cécité négation MiniLM ★★★★★</li><li><code>2026-03-29</code> <strong>f1fbd190</strong> feat(E313+E315): Table Périodique F459 falsifiée — 2D/3D, bassin lexical émergent invariant</li><li><code>2026-03-28</code> <strong>28398736</strong> feat(E255): script F459 α cross-model — GPT-4o-mini + DeepSeek sur 3 ops</li><li><code>2026-03-28</code> <strong>4f04121e</strong> docs(EMPIRICAL): E238+E254 — Chimie Liaisons, falsification seuil Boson, E255 design</li><li><code>2026-03-28</code> <strong>686f1220</strong> feat(extraction): EXTRACTION_20260327_W1_F459_ROSETTE_SPRINT — essaim 8 angles</li><li><code>2026-03-28</code> <strong>c4b862a0</strong> feat(W5): E238 Phase 1 — modèle séquence-rôle × Boson/Fermion (N=5 paires)</li><li><code>2026-03-28</code> <strong>6e12e9fb</strong> feat(extraction): EXTRACTION_20260328_F459_TABLE_PERIODIQUE — essaim 7 angles</li><li><code>2026-03-28</code> <strong>0fa79239</strong> feat(zinzins): Z#3355 Luo OLRG 2024 — scaling consistency condition x F459</li><li><code>2026-03-28</code> <strong>b6c75523</strong> docs(w1-colm): intègre F459 enrichissement §6 — KR≈0 attracteur fixe instantané</li><li><code>2026-03-27</code> <strong>117dc47b</strong> docs(F459+gem55): table périodique 10 ops + thermodynamique du nommer + 5 Z# (2×★★★★★)</li><li><code>2026-03-27</code> <strong>64b0c68f</strong> feat(F459): Z#3271+3284 falsification → classificateur binaire + E207 script + hooks update</li></ul></details><details class="theme-panel" data-theme-panel="lingua"><summary><span>Rosette / Lingua Mentis / W10</span><span class="badge">33 commits</span></summary><p class="theme-blurb">Le projet a gagné une ontologie: les opérateurs comme indexes performatifs distribués, la Rosette comme gyroscope d&#x27;invariants, W10 comme surface de publication de cette bascule.</p><ul class="commit-list"><li><code>2026-03-30</code> <strong>aaadf4ea</strong> chore(DIAPASON): update session 11 state — W5 V1.0, W7 V0.6, W10 V0.4</li><li><code>2026-03-30</code> <strong>5c953d5b</strong> feat(papers): paper patches W1/W4/W5/W6/W7/W10 + Peirce collision analyses</li><li><code>2026-03-29</code> <strong>729f8229</strong> feat(rosette): extension pharmakon — K(r) parabolique E311 integre</li><li><code>2026-03-29</code> <strong>be1306cf</strong> docs(pierre-de-rosette): Loi 4 Évaporation — marquer comme IMPLÉMENTÉE 2026-03-29</li><li><code>2026-03-29</code> <strong>47f93316</strong> feat(Z3703-3705+Rosette): sente×canal, régime observateur, divergence P-space</li><li><code>2026-03-29</code> <strong>9e257a3f</strong> feat(audit+W10): fouille essaim — circuit hooks fixe, biais documentes, W10 &quot;The Performative Index&quot;</li><li><code>2026-03-29</code> <strong>cfd79bc3</strong> feat(miels): Lingua Mentis + Z#3710 Convergence β≈0.5 — miel_history 33 entries</li><li><code>2026-03-29</code> <strong>333d7ff3</strong> feat(W10): §5.1 Z#3701+3703 — deux grammaires + felicity gates pré-performatifs</li><li><code>2026-03-29</code> <strong>1ef3c8e7</strong> feat(extraction): EXTRACTION_20260329_LINGUA_MENTIS — essaim 8 angles assemble</li><li><code>2026-03-29</code> <strong>282ea90b</strong> docs: 4 nectars distilles + Z#3617 Mentalese Dyadique + Partition LXII</li><li><code>2026-03-29</code> <strong>8cbd1e99</strong> feat(W10): Mentalese DYADIQUE — Extended Mind (Clark 1998) + Umwelt collision</li><li><code>2026-03-29</code> <strong>6f210a54</strong> feat(W10): Expertise Reversal = claim le plus fort — bridge Kalyuga × LLM thinking</li></ul></details><details class="theme-panel" data-theme-panel="workflow"><summary><span>Meta-workflow / Conservatoire / DIAPASON</span><span class="badge">124 commits</span></summary><p class="theme-blurb">Le centre de gravité a bougé. Le Conservatoire n&#x27;est plus un souverain isolé; il vit dans l&#x27;orbite du meta-workflow, de DIAPASON et des régimes maestro.</p><ul class="commit-list"><li><code>2026-04-02</code> <strong>7cc34f52</strong> docs: publish grande synthese methodologie conservatoire</li><li><code>2026-04-01</code> <strong>e39900e5</strong> docs(session21): JACHERE 8-9 audit conclusif + DIAPASON Z★ session21</li><li><code>2026-04-01</code> <strong>7326f404</strong> feat(session21): 7/9 JACHERE + Z#6596-6598 Fermion Fondateur ★★★★★</li><li><code>2026-04-01</code> <strong>7e66b44a</strong> feat(maestro): add lens-oracle tractation protocols</li><li><code>2026-04-01</code> <strong>b54d6025</strong> feat(session20): resurrect CWJ+OP:ka, JACHERE_HABITABLE, verification_gate hook</li><li><code>2026-03-31</code> <strong>d4392f1d</strong> feat(zinzins): Z#4272-4276 — Gemini collision: Vanilla vs Meta-Workflow test + 4 findings</li><li><code>2026-03-30</code> <strong>871c573c</strong> feat(meta-workflow): §16-20 massive enrichment — syntax, taxonomy, data, lutherie, constraints</li><li><code>2026-03-30</code> <strong>aaadf4ea</strong> chore(DIAPASON): update session 11 state — W5 V1.0, W7 V0.6, W10 V0.4</li><li><code>2026-03-30</code> <strong>2528ba41</strong> feat(meta-workflow): §14-15 — type system + operator gravity + 3 new checkpoints</li><li><code>2026-03-30</code> <strong>40448bd8</strong> forge(Z#4217-4219): E416/E422 falsification+equifinality — DIAPASON hot findings</li><li><code>2026-03-30</code> <strong>6403cf54</strong> refactor(session10): DIAPASON calibration + Z#4208-4210 forge</li><li><code>2026-03-29</code> <strong>840d8730</strong> chore(session): persist zinzins + briefings + diapason — Z#max=3792</li></ul></details><details class="theme-panel" data-theme-panel="lhc"><summary><span>LHC / Ralph / Evidence Ops</span><span class="badge">51 commits</span></summary><p class="theme-blurb">Le four collisionnel a cessé d&#x27;être un simple accélérateur d&#x27;idées pour devenir un runtime gouverné avec veto, surfaces de vérité, autorités de lancement et replays.</p><ul class="commit-list"><li><code>2026-04-01</code> <strong>c81f35b5</strong> feat(lhc): E495 closed-loop STEP 1d + architecture report</li><li><code>2026-04-01</code> <strong>28bf3297</strong> feat(lhc): E498 drift sensor + ralph STEP 1c réactivé + Z#6609-6610</li><li><code>2026-04-01</code> <strong>fc5e82ce</strong> fix(lhc): hash-based partner rotation in E486 — Z#2309 drops from 49% to 14%</li><li><code>2026-04-01</code> <strong>9f264185</strong> feat(lhc): Z#6607-6608 corpus centrality — Z#2309 dominance is structural, not a governor bug</li><li><code>2026-04-01</code> <strong>dfda947a</strong> fix(lhc): disable E490 STEP 1c — circular substitution Z#2309→Z#18 in ANTAGONISME_MAP PROCESSUS</li><li><code>2026-04-01</code> <strong>efcaa955</strong> feat(lhc): closed-loop governor pipeline — E490 diversity gate + E495 feedback governor</li><li><code>2026-04-01</code> <strong>72a430d4</strong> fix(lhc): close archive feedback loop for governed Ralph batches</li><li><code>2026-04-01</code> <strong>a14e9bb7</strong> Add E491 governed transition bridge and next-cycle prompt pack</li><li><code>2026-04-01</code> <strong>4b470e78</strong> feat(lhc): e489 cross-ratio monitor + 8 tests e486/e487 + codex5 stderr fix</li><li><code>2026-04-01</code> <strong>9a09f776</strong> feat(lhc): E486-E487 curriculum governor déployable — 864 prescriptions cross-type</li><li><code>2026-04-01</code> <strong>ceee08cf</strong> feat(lhc): curriculum governor empirique — Z#6602-6604, 5/5 anti-patterns résolus</li><li><code>2026-04-01</code> <strong>64c31ae8</strong> feat(e470): enforce pair-level gate for bivoie lhc</li></ul></details><details class="theme-panel" data-theme-panel="research"><summary><span>Axes / Pipelines / Megalodon / Hercule</span><span class="badge">167 commits</span></summary><p class="theme-blurb">Le projet s&#x27;est doté d&#x27;une carte explicite: axes, pipelines, familles, triades, standards d&#x27;opposabilité, et même un programme Hercule pour piloter l&#x27;ampleur des fronts.</p><ul class="commit-list"><li><code>2026-04-02</code> <strong>4bf26c36</strong> feat(research): add maestro research routing and megalodon stack</li><li><code>2026-04-01</code> <strong>efcaa955</strong> feat(lhc): closed-loop governor pipeline — E490 diversity gate + E495 feedback governor</li><li><code>2026-04-01</code> <strong>bdc99792</strong> feat(E482): pipeline hard constraint + κ_rs computation</li><li><code>2026-04-01</code> <strong>26406d78</strong> feat(session20): Z#6590-6591 + fix ZID lock + audit pipeline diagnostic</li><li><code>2026-03-30</code> <strong>85f4ad11</strong> feat(E384+solve_coagula): pipeline persona-attracteur validé + Z#3935 quadruples socratiques</li><li><code>2026-03-29</code> <strong>064a5547</strong> feat(collision): Big LHC Scientifique — pipeline multi-sources + 121 collisions</li><li><code>2026-03-29</code> <strong>7bd155c6</strong> feat(E276+pipeline): Phonologie×Bifurcation + gamme scientifique domain-agnostique</li><li><code>2026-03-28</code> <strong>93bddc0e</strong> fix(hooks): post-bash-error-capture.py — pipeline de persistence re-enabled</li><li><code>2026-03-28</code> <strong>bcce9d02</strong> feat(G/I/S-deep): essaim 4 axes — Mendeleïev + LHC + Meta-Workflow + Conservatoire</li><li><code>2026-03-28</code> <strong>75febb47</strong> feat(W5): E232/E236/E238 KR sweep pipeline + calibration + Z#3423-3425</li><li><code>2026-03-27</code> <strong>86638ff0</strong> fix(W1): NR10 CPT leak removed + plan updated with 5 Gemini research pistes</li><li><code>2026-03-27</code> <strong>6dc24316</strong> feat(gem): #53 Cognitive Invariants Rosetta — RESULT + RESEARCH</li></ul></details><details class="theme-panel" data-theme-panel="poetry"><summary><span>Partitions / Sonnets / Poétique du geste</span><span class="badge">37 commits</span></summary><p class="theme-blurb">La poésie n&#x27;est pas un habillage. Les partitions, sonnets et gestes musicaux restent des instruments de transmission, de calibration et de reprise, à condition d&#x27;être retendus par la preuve.</p><ul class="commit-list"><li><code>2026-04-01</code> <strong>62dd31de</strong> feat(session20): E469 verdict + TROIS VOIES Lexique + Partition LXIX + E470 design</li><li><code>2026-03-29</code> <strong>7dae3a10</strong> feat(Z3717+ERRATUM): Le Golem lit la partition mieux que son créateur</li><li><code>2026-03-29</code> <strong>282ea90b</strong> docs: 4 nectars distilles + Z#3617 Mentalese Dyadique + Partition LXII</li><li><code>2026-03-29</code> <strong>7f60c48c</strong> feat(W10+Partition): E262 resultats integres + CLT grounding + Partition LXII</li><li><code>2026-03-28</code> <strong>3fb2085c</strong> feat(G/I/S): tripartition Invariants/Grammar/Strategies propagée dans 6 docs</li><li><code>2026-03-28</code> <strong>7431ea9e</strong> docs: Gemini 14 rounds terminal — tripartition + bilan complet</li><li><code>2026-03-28</code> <strong>15fe5751</strong> docs: \\\ émote finding — incommensurabilité humain-LLM + Partition LXII Traversée</li><li><code>2026-03-28</code> <strong>8568f503</strong> feat: 3/3 Gemini bets CONFIRMED + Partitions Ouvertes dans le Conservatoire</li><li><code>2026-03-27</code> <strong>911af4f5</strong> feat(e171+scorer+zinzins): tri-partition concessive + W4 auto-diagnostic</li><li><code>2026-03-27</code> <strong>783b43c2</strong> feat(zinzins): F450-F452 — portée×Lakatos + non-monotonie + opérationnalisation \ Co-Authored-By: Claude Sonnet 4.6 &lt;noreply@anthropic.com&gt;</li><li><code>2026-03-26</code> <strong>fc20b010</strong> feat(zinzins+sonnets): Sonnet LIV + F441 + collision fix + pollen proto-zinzins</li><li><code>2026-03-26</code> <strong>8e30c9be</strong> fix(audit): triple audit — 2 🔴 corrigés dans les zinzins et sonnet</li></ul></details></div>
+    <details class="panel commit-journal" style="margin-top:1rem;" open>
+      <summary>Journal tectonique détaillé</summary>
+      <div class="filter-row" style="margin-top:1rem;"><button class="filter-btn active" data-theme-filter="physique">Physique opératoire / F459</button><button class="filter-btn" data-theme-filter="lingua">Rosette / Lingua Mentis / W10</button><button class="filter-btn" data-theme-filter="workflow">Meta-workflow / Conservatoire / DIAPASON</button><button class="filter-btn" data-theme-filter="lhc">LHC / Ralph / Evidence Ops</button><button class="filter-btn" data-theme-filter="research">Axes / Pipelines / Megalodon / Hercule</button><button class="filter-btn" data-theme-filter="poetry">Partitions / Sonnets / Poétique du geste</button></div>
+      <div><details class="theme-panel" data-theme-panel="physique" open><summary><span>Physique opératoire / F459</span><span class="badge">41 commits</span></summary><p class="theme-blurb">La période du 27 au 29 mars a fait passer les opérateurs d&#x27;une taxonomie locale à une physique mesurée: classes, invariants de direction, falsifications, scaling et attracteurs.</p><ul class="commit-list"><li><code>2026-04-01</code> <strong>7326f404</strong> feat(session21): 7/9 JACHERE + Z#6596-6598 Fermion Fondateur ★★★★★</li><li><code>2026-04-01</code> <strong>df18b2fd</strong> feat(E473): gate Boson/Fermion + Z#6593 cécité négation MiniLM ★★★★★</li><li><code>2026-03-29</code> <strong>f1fbd190</strong> feat(E313+E315): Table Périodique F459 falsifiée — 2D/3D, bassin lexical émergent invariant</li><li><code>2026-03-28</code> <strong>28398736</strong> feat(E255): script F459 α cross-model — GPT-4o-mini + DeepSeek sur 3 ops</li><li><code>2026-03-28</code> <strong>4f04121e</strong> docs(EMPIRICAL): E238+E254 — Chimie Liaisons, falsification seuil Boson, E255 design</li><li><code>2026-03-28</code> <strong>686f1220</strong> feat(extraction): EXTRACTION_20260327_W1_F459_ROSETTE_SPRINT — essaim 8 angles</li><li><code>2026-03-28</code> <strong>c4b862a0</strong> feat(W5): E238 Phase 1 — modèle séquence-rôle × Boson/Fermion (N=5 paires)</li><li><code>2026-03-28</code> <strong>6e12e9fb</strong> feat(extraction): EXTRACTION_20260328_F459_TABLE_PERIODIQUE — essaim 7 angles</li><li><code>2026-03-28</code> <strong>0fa79239</strong> feat(zinzins): Z#3355 Luo OLRG 2024 — scaling consistency condition x F459</li><li><code>2026-03-28</code> <strong>b6c75523</strong> docs(w1-colm): intègre F459 enrichissement §6 — KR≈0 attracteur fixe instantané</li><li><code>2026-03-27</code> <strong>117dc47b</strong> docs(F459+gem55): table périodique 10 ops + thermodynamique du nommer + 5 Z# (2×★★★★★)</li><li><code>2026-03-27</code> <strong>64b0c68f</strong> feat(F459): Z#3271+3284 falsification → classificateur binaire + E207 script + hooks update</li></ul></details><details class="theme-panel" data-theme-panel="lingua"><summary><span>Rosette / Lingua Mentis / W10</span><span class="badge">33 commits</span></summary><p class="theme-blurb">Le projet a gagné une ontologie: les opérateurs comme indexes performatifs distribués, la Rosette comme gyroscope d&#x27;invariants, W10 comme surface de publication de cette bascule.</p><ul class="commit-list"><li><code>2026-03-30</code> <strong>aaadf4ea</strong> chore(DIAPASON): update session 11 state — W5 V1.0, W7 V0.6, W10 V0.4</li><li><code>2026-03-30</code> <strong>5c953d5b</strong> feat(papers): paper patches W1/W4/W5/W6/W7/W10 + Peirce collision analyses</li><li><code>2026-03-29</code> <strong>729f8229</strong> feat(rosette): extension pharmakon — K(r) parabolique E311 integre</li><li><code>2026-03-29</code> <strong>be1306cf</strong> docs(pierre-de-rosette): Loi 4 Évaporation — marquer comme IMPLÉMENTÉE 2026-03-29</li><li><code>2026-03-29</code> <strong>47f93316</strong> feat(Z3703-3705+Rosette): sente×canal, régime observateur, divergence P-space</li><li><code>2026-03-29</code> <strong>9e257a3f</strong> feat(audit+W10): fouille essaim — circuit hooks fixe, biais documentes, W10 &quot;The Performative Index&quot;</li><li><code>2026-03-29</code> <strong>cfd79bc3</strong> feat(miels): Lingua Mentis + Z#3710 Convergence β≈0.5 — miel_history 33 entries</li><li><code>2026-03-29</code> <strong>333d7ff3</strong> feat(W10): §5.1 Z#3701+3703 — deux grammaires + felicity gates pré-performatifs</li><li><code>2026-03-29</code> <strong>1ef3c8e7</strong> feat(extraction): EXTRACTION_20260329_LINGUA_MENTIS — essaim 8 angles assemble</li><li><code>2026-03-29</code> <strong>282ea90b</strong> docs: 4 nectars distilles + Z#3617 Mentalese Dyadique + Partition LXII</li><li><code>2026-03-29</code> <strong>8cbd1e99</strong> feat(W10): Mentalese DYADIQUE — Extended Mind (Clark 1998) + Umwelt collision</li><li><code>2026-03-29</code> <strong>6f210a54</strong> feat(W10): Expertise Reversal = claim le plus fort — bridge Kalyuga × LLM thinking</li></ul></details><details class="theme-panel" data-theme-panel="workflow"><summary><span>Meta-workflow / Conservatoire / DIAPASON</span><span class="badge">124 commits</span></summary><p class="theme-blurb">Le centre de gravité a bougé. Le Conservatoire n&#x27;est plus un souverain isolé; il vit dans l&#x27;orbite du meta-workflow, de DIAPASON et des régimes maestro.</p><ul class="commit-list"><li><code>2026-04-02</code> <strong>7cc34f52</strong> docs: publish grande synthese methodologie conservatoire</li><li><code>2026-04-01</code> <strong>e39900e5</strong> docs(session21): JACHERE 8-9 audit conclusif + DIAPASON Z★ session21</li><li><code>2026-04-01</code> <strong>7326f404</strong> feat(session21): 7/9 JACHERE + Z#6596-6598 Fermion Fondateur ★★★★★</li><li><code>2026-04-01</code> <strong>7e66b44a</strong> feat(maestro): add lens-oracle tractation protocols</li><li><code>2026-04-01</code> <strong>b54d6025</strong> feat(session20): resurrect CWJ+OP:ka, JACHERE_HABITABLE, verification_gate hook</li><li><code>2026-03-31</code> <strong>d4392f1d</strong> feat(zinzins): Z#4272-4276 — Gemini collision: Vanilla vs Meta-Workflow test + 4 findings</li><li><code>2026-03-30</code> <strong>871c573c</strong> feat(meta-workflow): §16-20 massive enrichment — syntax, taxonomy, data, lutherie, constraints</li><li><code>2026-03-30</code> <strong>aaadf4ea</strong> chore(DIAPASON): update session 11 state — W5 V1.0, W7 V0.6, W10 V0.4</li><li><code>2026-03-30</code> <strong>2528ba41</strong> feat(meta-workflow): §14-15 — type system + operator gravity + 3 new checkpoints</li><li><code>2026-03-30</code> <strong>40448bd8</strong> forge(Z#4217-4219): E416/E422 falsification+equifinality — DIAPASON hot findings</li><li><code>2026-03-30</code> <strong>6403cf54</strong> refactor(session10): DIAPASON calibration + Z#4208-4210 forge</li><li><code>2026-03-29</code> <strong>840d8730</strong> chore(session): persist zinzins + briefings + diapason — Z#max=3792</li></ul></details><details class="theme-panel" data-theme-panel="lhc"><summary><span>LHC / Ralph / Evidence Ops</span><span class="badge">51 commits</span></summary><p class="theme-blurb">Le four collisionnel a cessé d&#x27;être un simple accélérateur d&#x27;idées pour devenir un runtime gouverné avec veto, surfaces de vérité, autorités de lancement et replays.</p><ul class="commit-list"><li><code>2026-04-01</code> <strong>c81f35b5</strong> feat(lhc): E495 closed-loop STEP 1d + architecture report</li><li><code>2026-04-01</code> <strong>28bf3297</strong> feat(lhc): E498 drift sensor + ralph STEP 1c réactivé + Z#6609-6610</li><li><code>2026-04-01</code> <strong>fc5e82ce</strong> fix(lhc): hash-based partner rotation in E486 — Z#2309 drops from 49% to 14%</li><li><code>2026-04-01</code> <strong>9f264185</strong> feat(lhc): Z#6607-6608 corpus centrality — Z#2309 dominance is structural, not a governor bug</li><li><code>2026-04-01</code> <strong>dfda947a</strong> fix(lhc): disable E490 STEP 1c — circular substitution Z#2309→Z#18 in ANTAGONISME_MAP PROCESSUS</li><li><code>2026-04-01</code> <strong>efcaa955</strong> feat(lhc): closed-loop governor pipeline — E490 diversity gate + E495 feedback governor</li><li><code>2026-04-01</code> <strong>72a430d4</strong> fix(lhc): close archive feedback loop for governed Ralph batches</li><li><code>2026-04-01</code> <strong>a14e9bb7</strong> Add E491 governed transition bridge and next-cycle prompt pack</li><li><code>2026-04-01</code> <strong>4b470e78</strong> feat(lhc): e489 cross-ratio monitor + 8 tests e486/e487 + codex5 stderr fix</li><li><code>2026-04-01</code> <strong>9a09f776</strong> feat(lhc): E486-E487 curriculum governor déployable — 864 prescriptions cross-type</li><li><code>2026-04-01</code> <strong>ceee08cf</strong> feat(lhc): curriculum governor empirique — Z#6602-6604, 5/5 anti-patterns résolus</li><li><code>2026-04-01</code> <strong>64c31ae8</strong> feat(e470): enforce pair-level gate for bivoie lhc</li></ul></details><details class="theme-panel" data-theme-panel="research"><summary><span>Axes / Pipelines / Megalodon / Hercule</span><span class="badge">167 commits</span></summary><p class="theme-blurb">Le projet s&#x27;est doté d&#x27;une carte explicite: axes, pipelines, familles, triades, standards d&#x27;opposabilité, et même un programme Hercule pour piloter l&#x27;ampleur des fronts.</p><ul class="commit-list"><li><code>2026-04-02</code> <strong>4bf26c36</strong> feat(research): add maestro research routing and megalodon stack</li><li><code>2026-04-01</code> <strong>efcaa955</strong> feat(lhc): closed-loop governor pipeline — E490 diversity gate + E495 feedback governor</li><li><code>2026-04-01</code> <strong>bdc99792</strong> feat(E482): pipeline hard constraint + κ_rs computation</li><li><code>2026-04-01</code> <strong>26406d78</strong> feat(session20): Z#6590-6591 + fix ZID lock + audit pipeline diagnostic</li><li><code>2026-03-30</code> <strong>85f4ad11</strong> feat(E384+solve_coagula): pipeline persona-attracteur validé + Z#3935 quadruples socratiques</li><li><code>2026-03-29</code> <strong>064a5547</strong> feat(collision): Big LHC Scientifique — pipeline multi-sources + 121 collisions</li><li><code>2026-03-29</code> <strong>7bd155c6</strong> feat(E276+pipeline): Phonologie×Bifurcation + gamme scientifique domain-agnostique</li><li><code>2026-03-28</code> <strong>93bddc0e</strong> fix(hooks): post-bash-error-capture.py — pipeline de persistence re-enabled</li><li><code>2026-03-28</code> <strong>bcce9d02</strong> feat(G/I/S-deep): essaim 4 axes — Mendeleïev + LHC + Meta-Workflow + Conservatoire</li><li><code>2026-03-28</code> <strong>75febb47</strong> feat(W5): E232/E236/E238 KR sweep pipeline + calibration + Z#3423-3425</li><li><code>2026-03-27</code> <strong>86638ff0</strong> fix(W1): NR10 CPT leak removed + plan updated with 5 Gemini research pistes</li><li><code>2026-03-27</code> <strong>6dc24316</strong> feat(gem): #53 Cognitive Invariants Rosetta — RESULT + RESEARCH</li></ul></details><details class="theme-panel" data-theme-panel="poetry"><summary><span>Partitions / Sonnets / Poétique du geste</span><span class="badge">36 commits</span></summary><p class="theme-blurb">La poésie n&#x27;est pas un habillage. Les partitions, sonnets et gestes musicaux restent des instruments de transmission, de calibration et de reprise, à condition d&#x27;être retendus par la preuve.</p><ul class="commit-list"><li><code>2026-04-01</code> <strong>62dd31de</strong> feat(session20): E469 verdict + TROIS VOIES Lexique + Partition LXIX + E470 design</li><li><code>2026-03-29</code> <strong>7dae3a10</strong> feat(Z3717+ERRATUM): Le Golem lit la partition mieux que son créateur</li><li><code>2026-03-29</code> <strong>282ea90b</strong> docs: 4 nectars distilles + Z#3617 Mentalese Dyadique + Partition LXII</li><li><code>2026-03-29</code> <strong>7f60c48c</strong> feat(W10+Partition): E262 resultats integres + CLT grounding + Partition LXII</li><li><code>2026-03-28</code> <strong>3fb2085c</strong> feat(G/I/S): tripartition Invariants/Grammar/Strategies propagée dans 6 docs</li><li><code>2026-03-28</code> <strong>7431ea9e</strong> docs: Gemini 14 rounds terminal — tripartition + bilan complet</li><li><code>2026-03-28</code> <strong>15fe5751</strong> docs: \\\ émote finding — incommensurabilité humain-LLM + Partition LXII Traversée</li><li><code>2026-03-28</code> <strong>8568f503</strong> feat: 3/3 Gemini bets CONFIRMED + Partitions Ouvertes dans le Conservatoire</li><li><code>2026-03-27</code> <strong>911af4f5</strong> feat(e171+scorer+zinzins): tri-partition concessive + W4 auto-diagnostic</li><li><code>2026-03-27</code> <strong>783b43c2</strong> feat(zinzins): F450-F452 — portée×Lakatos + non-monotonie + opérationnalisation \ Co-Authored-By: Claude Sonnet 4.6 &lt;noreply@anthropic.com&gt;</li><li><code>2026-03-26</code> <strong>fc20b010</strong> feat(zinzins+sonnets): Sonnet LIV + F441 + collision fix + pollen proto-zinzins</li><li><code>2026-03-26</code> <strong>8e30c9be</strong> fix(audit): triple audit — 2 🔴 corrigés dans les zinzins et sonnet</li></ul></details></div>
+    </details>
   </section>
 
   <section id="continents" data-lens="builder reviewer philosophe operateur">
@@ -907,21 +1184,49 @@ code {
       <div class="panel">
         <h3>État Ralph</h3>
         <ul>
-          <li>Run: <strong>complete</strong></li>
-          <li>Batch running: <strong>false</strong></li>
-          <li>Collisions runtime: <strong>291</strong></li>
-          <li>Entrées gouvernées: <strong>2005</strong></li>
-          <li>Surface: <strong>PREUVE</strong></li>
-          <li>Fenêtre: <strong>OPEN_POSTRUN_WINDOW</strong></li>
+          <li>Run: <strong>running</strong></li>
+          <li>Batch running: <strong>true</strong></li>
+          <li>Collisions runtime: <strong>131</strong></li>
+          <li>Entrées gouvernées: <strong>2136</strong></li>
+          <li>Surface: <strong>AVEUGLE</strong></li>
+          <li>Fenêtre: <strong>BLOCKED_BATCH_RUNNING</strong></li>
         </ul>
       </div>
     </div>
     <div class="runtime-note"><strong>Note de droit live :</strong> Le snapshot actuel garde deux couches à la fois: une mémoire postrun mesurable et un droit live qui peut se rebloquer dès qu&#x27;un nouveau batch repart.</div>
+    <div class="route-grid" style="margin-top:1rem;"><article class="case-card"><div class="case-head"><h3>Le faux triomphe tué par la chaîne de preuve</h3><p class="poetic-lead">On passe d&#x27;un enthousiasme narratif à une juridiction machine.</p></div><div class="case-grid"><div class="case-column before"><span class="case-label">Avant</span><p>Un cross-ratio élevé est vu en cours de run; on le traite comme une preuve et on raconte déjà la victoire.</p></div><div class="case-column after"><span class="case-label">Après</span><p>Le même signal est retenu tant que le batch vit. Il traverse E489 -&gt; E493 -&gt; E500 -&gt; E503 -&gt; E504 -&gt; E505 -&gt; E506 avant de devenir opposable.</p></div></div><div class="note-strip"><span class="note-chip">signal visible</span><span class="note-chip">preuve retenue</span><span class="note-chip">replay armé</span><span class="note-chip">veto runtime</span><span class="note-chip">launch authority</span></div></article><article class="case-card"><div class="case-head"><h3>La trouvaille poétique devenue evidence ops</h3><p class="poetic-lead">La poésie n&#x27;est plus opposée à la preuve; elle devient l&#x27;amont d&#x27;une chaîne contractuelle.</p></div><div class="case-grid"><div class="case-column before"><span class="case-label">Avant</span><p>Une partition ou un sonnet reste un bel objet de transmission, fort pour sentir le geste mais faible pour convaincre un reviewer hostile.</p></div><div class="case-column after"><span class="case-label">Après</span><p>Le conservatoire reste l&#x27;instrument d&#x27;accord, mais la trouvaille se prolonge vers manifest, truth surface, benchmark et reviewer pack sous A32.</p></div></div><div class="note-strip"><span class="note-chip">partition</span><span class="note-chip">meta-workflow</span><span class="note-chip">manifest</span><span class="note-chip">benchmark</span><span class="note-chip">reviewer pack</span></div></article></div>
     <div class="table-grid" style="margin-top:1rem;">
       <div class="panel"><h3>Axes aboutis</h3><table><thead><tr><th>Axe</th><th>Potentiel</th><th>Validation</th><th>Pression</th><th>État</th></tr></thead><tbody><tr><td>A32-evidence-ops-reproducibility</td><td>9</td><td>10</td><td>-1</td><td>ABOUTI_CONTRACTUEL</td></tr><tr><td>A12-ralph</td><td>3</td><td>9</td><td>-6</td><td>ABOUTI_CONTRACTUEL</td></tr><tr><td>A17-plumbing</td><td>4</td><td>8</td><td>-4</td><td>ABOUTI_CONTRACTUEL</td></tr><tr><td>A31-field-labs-measurable-terrain</td><td>8</td><td>7</td><td>1</td><td>ABOUTI_EN_COURS</td></tr><tr><td>A22-empirical-tests</td><td>7</td><td>7</td><td>0</td><td>ABOUTI_EN_COURS</td></tr></tbody></table></div>
       <div class="panel"><h3>Axes pressurisés</h3><table><thead><tr><th>Axe</th><th>Potentiel</th><th>Validation</th><th>Pression</th><th>État</th></tr></thead><tbody><tr><td>A30-rebuttal-companion-governance</td><td>8</td><td>2</td><td>6</td><td>MEGALODON_LATENT</td></tr><tr><td>A29-publication-strategy</td><td>8</td><td>2</td><td>6</td><td>MEGALODON_LATENT</td></tr><tr><td>A20-exogenous</td><td>6</td><td>0</td><td>6</td><td>MEGALODON_LATENT</td></tr><tr><td>A27-transmission-curriculum</td><td>5</td><td>0</td><td>5</td><td>MEGALODON_LATENT</td></tr><tr><td>A25-fouille-archeology</td><td>5</td><td>0</td><td>5</td><td>MEGALODON_LATENT</td></tr></tbody></table></div>
       <div class="panel"><h3>Pipelines aboutis</h3><table><thead><tr><th>Pipeline</th><th>Potentiel</th><th>Validation</th><th>Pression</th><th>État</th></tr></thead><tbody><tr><td>A12-ralph::feeds_runtime_truth::A32-evidence-ops-reproducibility</td><td>7</td><td>10</td><td>-3</td><td>ABOUTI_CONTRACTUEL</td></tr><tr><td>A17-plumbing::contracts::A32-evidence-ops-reproducibility</td><td>7</td><td>9</td><td>-2</td><td>ABOUTI_CONTRACTUEL</td></tr><tr><td>A32-evidence-ops-reproducibility::benchmarks::A22-empirical-tests</td><td>6</td><td>9</td><td>-3</td><td>ABOUTI_CONTRACTUEL</td></tr><tr><td>A10-lhc::forges::A9-zinzins</td><td>2</td><td>7</td><td>-5</td><td>ABOUTI_EN_COURS</td></tr><tr><td>A28-reviewer-program-reading::specifies::A32-evidence-ops-reproducibility</td><td>8</td><td>6</td><td>2</td><td>ABOUTI_EN_COURS</td></tr></tbody></table></div>
       <div class="panel"><h3>Pipelines pressurisés</h3><table><thead><tr><th>Pipeline</th><th>Potentiel</th><th>Validation</th><th>Pression</th><th>État</th></tr></thead><tbody><tr><td>A29-publication-strategy::structures::A30-rebuttal-companion-governance</td><td>8</td><td>0</td><td>8</td><td>MEGALODON_LATENT</td></tr><tr><td>A31-field-labs-measurable-terrain::exports_to::A13-grounding</td><td>7</td><td>0</td><td>7</td><td>MEGALODON_LATENT</td></tr><tr><td>A30-rebuttal-companion-governance::defends::A14-wpapers</td><td>7</td><td>0</td><td>7</td><td>MEGALODON_LATENT</td></tr><tr><td>A20-exogenous::returns_to::A31-field-labs-measurable-terrain</td><td>7</td><td>0</td><td>7</td><td>MEGALODON_LATENT</td></tr><tr><td>A30-rebuttal-companion-governance::requires::A32-evidence-ops-reproducibility</td><td>9</td><td>3</td><td>6</td><td>MEGALODON_LATENT</td></tr></tbody></table></div>
+    </div>
+  </section>
+
+  <section id="atelier" data-lens="builder reviewer musicien operateur">
+    <div class="section-header">
+      <span class="section-number">Atelier</span>
+      <h2>Mini-console combinatoire</h2>
+      <p class="section-desc">Pas un vrai moteur LHC, mais un petit simulateur d’orientation: combine deux opérateurs et une destination, puis regarde quel timbre de travail cela suggère.</p>
+    </div>
+    <div class="playground-grid">
+      <div class="panel">
+        <form class="playground-form" id="playgroundForm">
+          <label>Premier opérateur
+            <select id="playgroundOperatorA"><option value="backslash">\ · soustractif</option><option value="bsd">bsd · fouille</option><option value="ortho">ortho · recadrage</option><option value="xorizon">XORIZON · borne</option><option value="trou">TROU-ACTIF · creux</option><option value="essection">ESSECTION · ablation</option><option value="claustro">CLAUSTROPHANIE · faux-ouvert</option></select>
+          </label>
+          <label>Second opérateur
+            <select id="playgroundOperatorB"><option value="backslash">\ · soustractif</option><option value="bsd">bsd · fouille</option><option value="ortho">ortho · recadrage</option><option value="xorizon">XORIZON · borne</option><option value="trou">TROU-ACTIF · creux</option><option value="essection">ESSECTION · ablation</option><option value="claustro">CLAUSTROPHANIE · faux-ouvert</option></select>
+          </label>
+          <label>Destination
+            <select id="playgroundDestination"><option value="runtime">runtime</option><option value="reviewer">reviewer</option><option value="terrain">terrain</option><option value="poetique">poétique</option></select>
+          </label>
+        </form>
+      </div>
+      <div class="playground-output" id="playgroundOutput">
+        <h3>Contrepoint de départ</h3>
+        <p>Choisis deux opérateurs et un front. La sortie ne prétend pas prouver; elle aide à sentir quel consumer et quel risque doivent suivre.</p>
+      </div>
     </div>
   </section>
 
@@ -984,15 +1289,28 @@ code {
     <div class="button-row">
       <a href="conservatoire.html">Legacy du 24 mars</a>
       <a href="methodologie_conservatoire_archive_20260324.html">Archive legacy</a>
-      <a href="methodologie_conservatoire_archive_20260402_130632.html">Archive intermédiaire</a>
+      <a href="methodologie_conservatoire_archive_20260402_131708.html">Archive intermédiaire</a>
       <a class="alt" href="METHODOLOGIE_CONSERVATOIRE_GRANDE_SYNTHESE_15MARS_02AVRIL.md">Markdown source</a>
     </div>
   </section>
 
   <footer>
-    Généré le 2026-04-02T13:06:32+02:00. Cette version garde le souffle du vieux Conservatoire, réintègre la tectonique des commits récents, et expose enfin les continents réels du projet avec des filtres, des mouvements et des routes.
+    Généré le 2026-04-02T13:17:08+02:00. Cette version garde le souffle du vieux Conservatoire, réintègre la tectonique des commits récents, et expose enfin les continents réels du projet avec des filtres, des mouvements et des routes.
   </footer>
 </div>
+<button class="glossary-fab" id="glossaryFab" type="button">Glossaire / invariants</button>
+<div class="glossary-overlay" id="glossaryOverlay"></div>
+<aside class="glossary-drawer" id="glossaryDrawer" aria-hidden="true">
+  <div class="glossary-headbar">
+    <h3>Glossaire express</h3>
+    <button class="glossary-close" id="glossaryClose" type="button" aria-label="Fermer le glossaire">×</button>
+  </div>
+  <div class="glossary-body">
+    <p class="note">Les termes les plus denses du projet, regroupés en un seul lieu pour éviter la chasse au trésor.</p>
+    <input class="search-input" id="glossarySearch" type="search" placeholder="Filtrer le glossaire par terme, tag ou définition…">
+    <div class="glossary-grid" id="glossaryGrid"><article class="glossary-card" data-glossary-search="f459 physique le moment où les opérateurs cessent d&#x27;être une taxonomie et deviennent des classes mesurées avec longueur, kill rate, bosons, fermions et attracteurs."><div class="glossary-head"><strong>F459</strong><span>physique</span></div><p class="glossary-short">Physique empirique des opérateurs.</p><p>Le moment où les opérateurs cessent d&#x27;être une taxonomie et deviennent des classes mesurées avec longueur, kill rate, bosons, fermions et attracteurs.</p></article><article class="glossary-card" data-glossary-search="a32 evidence manifests, truth surfaces, harnesses, benchmarks transverses et reviewer packs: la couche qui transforme une trouvaille en preuve opposable."><div class="glossary-head"><strong>A32</strong><span>evidence</span></div><p class="glossary-short">Contrat d&#x27;évidence reproductible.</p><p>Manifests, truth surfaces, harnesses, benchmarks transverses et reviewer packs: la couche qui transforme une trouvaille en preuve opposable.</p></article><article class="glossary-card" data-glossary-search="ralph runtime la machine qui exécute les collisions tout en restant sous droit: mesure avant verdict, veto avant emballement, replay avant célébration."><div class="glossary-head"><strong>Ralph</strong><span>runtime</span></div><p class="glossary-short">Runtime gouverné du batch vivant.</p><p>La machine qui exécute les collisions tout en restant sous droit: mesure avant verdict, veto avant emballement, replay avant célébration.</p></article><article class="glossary-card" data-glossary-search="meta-workflow orchestration choisit quel geste jouer, à quel checkpoint, sous quel statut et vers quelle destination, au lieu de laisser un document local décider seul."><div class="glossary-head"><strong>Meta-workflow</strong><span>orchestration</span></div><p class="glossary-short">Routeur des campagnes.</p><p>Choisit quel geste jouer, à quel checkpoint, sous quel statut et vers quelle destination, au lieu de laisser un document local décider seul.</p></article><article class="glossary-card" data-glossary-search="rosette invariant ne sert pas à lancer une campagne, mais à juger si une trouvaille touche un invariant ou seulement une contingence locale."><div class="glossary-head"><strong>Rosette</strong><span>invariant</span></div><p class="glossary-short">Gyroscope de profondeur.</p><p>Ne sert pas à lancer une campagne, mais à juger si une trouvaille touche un invariant ou seulement une contingence locale.</p></article><article class="glossary-card" data-glossary-search="conservatoire transmission le lieu où l&#x27;on calibre régimes, timbres, gradients et partitions pour jouer juste; plus un centre souverain isolé."><div class="glossary-head"><strong>Conservatoire</strong><span>transmission</span></div><p class="glossary-short">Chambre d&#x27;accord du projet.</p><p>Le lieu où l&#x27;on calibre régimes, timbres, gradients et partitions pour jouer juste; plus un centre souverain isolé.</p></article><article class="glossary-card" data-glossary-search="lingua mentis ontologie déplace les opérateurs hors du prompt engineering vers une théorie dyadique humain-llm du geste langagier."><div class="glossary-head"><strong>Lingua Mentis</strong><span>ontologie</span></div><p class="glossary-short">Opérateurs comme indexes performatifs distribués.</p><p>Déplace les opérateurs hors du prompt engineering vers une théorie dyadique humain-LLM du geste langagier.</p></article><article class="glossary-card" data-glossary-search="megalodon métrique mesure la grandeur déjà puissante mais encore insuffisamment opposable. plus la pression est haute, plus le front mérite d&#x27;être durci."><div class="glossary-head"><strong>Megalodon</strong><span>métrique</span></div><p class="glossary-short">Pression entre potentiel et validation.</p><p>Mesure la grandeur déjà puissante mais encore insuffisamment opposable. Plus la pression est haute, plus le front mérite d&#x27;être durci.</p></article><article class="glossary-card" data-glossary-search="mendeleïev cartographie ne décrit pas seulement ce qui existe; aide à voir les trous fertiles, les eka-axes et les ponts qui devraient exister si la carte est juste."><div class="glossary-head"><strong>Mendeleïev</strong><span>cartographie</span></div><p class="glossary-short">Table prédictive des cases manquantes.</p><p>Ne décrit pas seulement ce qui existe; aide à voir les trous fertiles, les eka-axes et les ponts qui devraient exister si la carte est juste.</p></article><article class="glossary-card" data-glossary-search="field episode terrain le paquet d&#x27;admissibilité terrain qui empêche le projet de rester endogène: contexte, geste, mesure, friction, verdict, suite."><div class="glossary-head"><strong>Field episode</strong><span>terrain</span></div><p class="glossary-short">Unité minimale de retour au monde.</p><p>Le paquet d&#x27;admissibilité terrain qui empêche le projet de rester endogène: contexte, geste, mesure, friction, verdict, suite.</p></article></div>
+  </div>
+</aside>
 <script>
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const activateByDataset = (buttonsSelector, panelsSelector, attribute) => {
@@ -1031,6 +1349,35 @@ lensButtons.forEach((button) => {
   button.addEventListener('click', () => applyReaderLens(button.dataset.readerLens));
 });
 applyReaderLens('all');
+const glossaryFab = document.querySelector('#glossaryFab');
+const glossaryDrawer = document.querySelector('#glossaryDrawer');
+const glossaryOverlay = document.querySelector('#glossaryOverlay');
+const glossaryClose = document.querySelector('#glossaryClose');
+const openGlossary = () => {
+  if (!glossaryDrawer || !glossaryOverlay) return;
+  glossaryDrawer.classList.add('open');
+  glossaryOverlay.classList.add('open');
+  glossaryDrawer.setAttribute('aria-hidden', 'false');
+};
+const closeGlossary = () => {
+  if (!glossaryDrawer || !glossaryOverlay) return;
+  glossaryDrawer.classList.remove('open');
+  glossaryOverlay.classList.remove('open');
+  glossaryDrawer.setAttribute('aria-hidden', 'true');
+};
+if (glossaryFab) glossaryFab.addEventListener('click', openGlossary);
+if (glossaryClose) glossaryClose.addEventListener('click', closeGlossary);
+if (glossaryOverlay) glossaryOverlay.addEventListener('click', closeGlossary);
+const glossarySearch = document.querySelector('#glossarySearch');
+if (glossarySearch) {
+  glossarySearch.addEventListener('input', (event) => {
+    const query = event.target.value.trim().toLowerCase();
+    document.querySelectorAll('.glossary-card').forEach((card) => {
+      const haystack = card.dataset.glossarySearch || '';
+      card.style.display = !query || haystack.includes(query) ? '' : 'none';
+    });
+  });
+}
 const axisSearch = document.querySelector('#axis-search');
 if (axisSearch) {
   axisSearch.addEventListener('input', (event) => {
@@ -1080,10 +1427,21 @@ document.querySelectorAll('[data-reset-partition]').forEach((button) => {
 });
 const navLinks = Array.from(document.querySelectorAll('.nav-links a'));
 const orbitCards = Array.from(document.querySelectorAll('[data-orbit-target]'));
+const orbitNodes = Array.from(document.querySelectorAll('.orbit-node'));
 orbitCards.forEach((card) => {
   card.addEventListener('click', () => {
     const target = document.getElementById(card.dataset.orbitTarget);
     if (target) target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+  });
+});
+orbitNodes.forEach((node) => {
+  node.addEventListener('click', (event) => {
+    const href = node.getAttribute('href');
+    if (!href) return;
+    const target = document.querySelector(href);
+    if (!target) return;
+    event.preventDefault();
+    target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
   });
 });
 const sections = navLinks
@@ -1108,6 +1466,10 @@ const syncNav = () => {
   orbitCards.forEach((card) => {
     card.classList.toggle('active', visible && card.dataset.orbitTarget === visible.id);
   });
+  orbitNodes.forEach((node) => {
+    const href = node.getAttribute('href');
+    node.classList.toggle('active', visible && href === ('#' + visible.id));
+  });
 };
 const scrollProgressBar = document.querySelector('#scrollProgressBar');
 const syncProgress = () => {
@@ -1122,6 +1484,7 @@ window.addEventListener('scroll', syncProgress, { passive: true });
 syncNav();
 syncProgress();
 const chamberNotes = ["Tu peux tailler des Menhirs. Ou tu peux jouer.", "La preuve peut être visible et juridiquement retenue.", "La Rosette juge la profondeur; elle n'ouvre pas la campagne.", "Une case n'est pas un territoire tant qu'elle ne change aucune commande.", "Une partition n'est pas un résumé du geste: c'est ce qui survit à son oubli."];
+const playgroundData = {"operators": {"backslash": {"id": "backslash", "label": "\\", "family": "soustractif"}, "bsd": {"id": "bsd", "label": "bsd", "family": "fouille"}, "ortho": {"id": "ortho", "label": "ortho", "family": "recadrage"}, "xorizon": {"id": "xorizon", "label": "XORIZON", "family": "borne"}, "trou": {"id": "trou", "label": "TROU-ACTIF", "family": "creux"}, "essection": {"id": "essection", "label": "ESSECTION", "family": "ablation"}, "claustro": {"id": "claustro", "label": "CLAUSTROPHANIE", "family": "faux-ouvert"}}, "destinations": {"runtime": {"id": "runtime", "label": "runtime"}, "reviewer": {"id": "reviewer", "label": "reviewer"}, "terrain": {"id": "terrain", "label": "terrain"}, "poetique": {"id": "poetique", "label": "poétique"}}};
 const chamberNoteText = document.querySelector('#chamberNoteText');
 if (chamberNoteText && chamberNotes.length) {
   let chamberIndex = 0;
@@ -1136,6 +1499,68 @@ if (chamberNoteText && chamberNotes.length) {
     }, 4200);
   }
 }
+const playgroundOperatorA = document.querySelector('#playgroundOperatorA');
+const playgroundOperatorB = document.querySelector('#playgroundOperatorB');
+const playgroundDestination = document.querySelector('#playgroundDestination');
+const playgroundOutput = document.querySelector('#playgroundOutput');
+const computePlayground = () => {
+  if (!playgroundOperatorA || !playgroundOperatorB || !playgroundDestination || !playgroundOutput) return;
+  const opA = playgroundData.operators[playgroundOperatorA.value];
+  const opB = playgroundData.operators[playgroundOperatorB.value];
+  const destination = playgroundData.destinations[playgroundDestination.value];
+  if (!opA || !opB || !destination) return;
+  let timbre = 'contrepoint stable';
+  let risk = 'risque contrôlé';
+  let consumer = 'meta-workflow -> conservatoire -> consumer local';
+  let note = 'Le duo produit une lecture solide mais encore locale.';
+  const ids = [opA.id, opB.id];
+  if (ids.includes('backslash') && ids.includes('bsd')) {
+    timbre = 'fouille soustractive';
+    risk = 'trou fertile, pas preuve';
+    consumer = 'fouille -> Z/E -> formalisation';
+    note = 'Bon pour rouvrir une clôture et faire émerger un manque structurant.';
+  } else if (ids.includes('xorizon') && ids.includes('trou')) {
+    timbre = 'borne creusée';
+    risk = 'claim universel qui casse';
+    consumer = 'review hostile -> falsification -> reroute';
+    note = 'Le bon duo pour tester où une belle doctrine cesse de tenir.';
+  } else if (ids.includes('essection') && ids.includes('claustro')) {
+    timbre = 'tribunal d’ablation';
+    risk = 'fausse ouverture détectée';
+    consumer = 'runtime tribunal -> patch perimeter -> handoff';
+    note = 'Très fort pour démonter une surface séduisante qui cache une fermeture.';
+  } else if (ids.includes('ortho') && ids.includes('backslash')) {
+    timbre = 'recadrage dissymétrique';
+    risk = 'nettoyage sans seconde passe';
+    consumer = 'meta-workflow -> route révisée';
+    note = 'Bon duo pour remettre une campagne dans sa bonne direction sans l’étouffer.';
+  }
+  if (destination.id === 'runtime') {
+    consumer = 'E489 -> E493 -> E500 -> E503 -> E504 -> E505/E506';
+    risk += ' · batch vivant = retenue juridique';
+  } else if (destination.id === 'reviewer') {
+    consumer = 'A32 -> benchmark -> reviewer pack';
+    note += ' Le résultat doit devenir testable et citable.';
+  } else if (destination.id === 'terrain') {
+    consumer = 'field episode -> verdict E -> famille F';
+    note += ' Sans terrain mesurable, la combinaison reste endogène.';
+  } else if (destination.id === 'poetique') {
+    consumer = 'partition -> conservatoire -> transmission';
+    note += ' Ici, la justesse et la reprise comptent autant que l’opposabilité.';
+  }
+  playgroundOutput.innerHTML = `
+    <h3>${opA.label} × ${opB.label} -> ${destination.label}</h3>
+    <p><strong>Timbre :</strong> ${timbre}</p>
+    <p><strong>Risque :</strong> ${risk}</p>
+    <p><strong>Consumer :</strong> ${consumer}</p>
+    <p>${note}</p>
+    <span class="playground-badge">${opA.family} / ${opB.family}</span>
+  `;
+};
+[playgroundOperatorA, playgroundOperatorB, playgroundDestination].forEach((element) => {
+  if (element) element.addEventListener('change', computePlayground);
+});
+computePlayground();
 function initHeroCanvas() {
   const canvas = document.getElementById('heroCanvas');
   if (!canvas) return;
