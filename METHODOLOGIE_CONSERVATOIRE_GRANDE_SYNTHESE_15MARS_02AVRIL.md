@@ -5,7 +5,7 @@
 - Référence proche du 15 mars : `/home/sebas/Smash_App/docs/notepads/METHODOLOGIE_RECHERCHE.md` en `V2.0` du `12 mars 2026`.
 - Référence consolidée : `/home/sebas/Smash_App/docs/notepads/METHODOLOGIE_RECHERCHE.md` en `V4.0` du `30 mars 2026`.
 - Archive HTML poétique de référence : `/home/sebas/Téléchargements/conservatoire.html`.
-- Généré le `2026-04-02T12:55:20+02:00`.
+- Généré le `2026-04-02T12:58:25+02:00`.
 
 ## Thèse
 
@@ -258,9 +258,9 @@ Le gain méthodologique ici n’est pas métaphorique seulement. Le projet sait 
 | --- | --- |
 | État du run | running |
 | Batch running | true |
-| Collisions runtime | 191 |
-| Entrées gouvernées | 1905 |
-| Cross-ratio gouverné | 0.4913 |
+| Collisions runtime | 241 |
+| Entrées gouvernées | 1955 |
+| Cross-ratio gouverné | 0.4859 |
 | Cross-ratio non gouverné | 0.1613 |
 | Surface | AVEUGLE |
 | Preuve positive | false |
@@ -269,7 +269,7 @@ Le gain méthodologique ici n’est pas métaphorique seulement. Le projet sait 
 Lecture froide :
 
 - `E489 can speak = yes`
-- `cross_ratio_governed = 0.4913`
+- `cross_ratio_governed = 0.4859`
 - `cross_ratio_ungoverned = 0.1613`
 - `next_step = attendre la chute du batch puis rejouer E489/E493/E500`
 
@@ -426,7 +426,7 @@ Le vieux HTML n'était pas seulement plus décoré. Il portait une vérité du p
 
 - HTML legacy : `conservatoire.html`
 - Archive legacy : `methodologie_conservatoire_archive_20260324.html`
-- Archive précédente de la synthèse HTML : `methodologie_conservatoire_archive_20260402_125520.html`
+- Archive précédente de la synthèse HTML : `methodologie_conservatoire_archive_20260402_125825.html`
 - Nouvelle synthèse HTML : `methodologie_conservatoire.html`
 - Markdown source : `METHODOLOGIE_CONSERVATOIRE_GRANDE_SYNTHESE_15MARS_02AVRIL.md`
 

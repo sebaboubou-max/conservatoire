@@ -72,7 +72,6 @@ nav {
   border-radius: 999px;
 }
 .nav-links a:hover { background: var(--ink); color: var(--sand); }
-.nav-links a.active { background: var(--ink); color: var(--sand); }
 .page {
   max-width: 1440px;
   margin: 0 auto;
@@ -215,7 +214,7 @@ section {
 .labor-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
 .continent-grid { grid-template-columns: 1fr; }
 .tri-grid, .table-grid, .stack-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.metric-card, .route-card, .labor-card, .continent-card, .poetic-panel, .instrument-panel, .mode-panel, .day-panel, .partition-card {
+.metric-card, .route-card, .labor-card, .continent-card, .poetic-panel, .instrument-panel, .mode-panel, .day-panel {
   background: var(--card);
   border-radius: 18px;
   border: 1px solid var(--line);
@@ -446,7 +445,7 @@ th {
   flex-wrap: wrap;
   gap: 0.65rem;
 }
-.button-row a, .button-row button {
+.button-row a {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
@@ -457,40 +456,8 @@ th {
   border-radius: 999px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.74rem;
-  border: none;
-  cursor: pointer;
 }
 .button-row a.alt { background: var(--vermillion); }
-.partition-card {
-  padding: 1.2rem;
-}
-.partition-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 1rem;
-}
-.note-strip {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.55rem;
-  margin-top: 1rem;
-}
-.note-chip {
-  padding: 0.55rem 0.8rem;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,0.72);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.72rem;
-  transition: all 0.2s ease;
-}
-.note-chip.active {
-  background: var(--vermillion);
-  color: #fff7f8;
-  border-color: var(--vermillion);
-  transform: translateY(-1px);
-}
 footer {
   margin-top: 3rem;
   padding-top: 1.2rem;
@@ -531,7 +498,6 @@ code {
     <a href="#routes">routes</a>
     <a href="#runtime">runtime</a>
     <a href="#lutherie">lutherie</a>
-    <a href="#partitions-live">partitions</a>
     <a href="#recherche">recherche</a>
     <a href="#poetique">poétique</a>
     <a href="#archives">archives</a>
@@ -549,8 +515,8 @@ code {
         <div class="hero-stat"><span class="num">32</span><span class="label">axes explicites</span></div>
         <div class="hero-stat"><span class="num">40</span><span class="label">pipelines explicites</span></div>
         <div class="hero-stat"><span class="num">817</span><span class="label">collisions grammaire</span></div>
-        <div class="hero-stat"><span class="num">1955</span><span class="label">entrées gouvernées Ralph</span></div>
-        <div class="hero-stat"><span class="num">0.4859</span><span class="label">cross-ratio gouverné</span></div>
+        <div class="hero-stat"><span class="num">1905</span><span class="label">entrées gouvernées Ralph</span></div>
+        <div class="hero-stat"><span class="num">0.4913</span><span class="label">cross-ratio gouverné</span></div>
       </div>
     </div>
     <aside class="hero-side">
@@ -564,7 +530,7 @@ code {
         <a href="METHODOLOGIE_CONSERVATOIRE_GRANDE_SYNTHESE_15MARS_02AVRIL.md">Markdown source</a>
         <a href="conservatoire.html">Legacy 24 mars</a>
         <a href="methodologie_conservatoire_archive_20260324.html">Archive legacy</a>
-        <a href="methodologie_conservatoire_archive_20260402_125825.html">Archive intermédiaire</a>
+        <a href="methodologie_conservatoire_archive_20260402_125520.html">Archive intermédiaire</a>
       </div>
     </aside>
   </section>
@@ -699,8 +665,8 @@ code {
         <ul>
           <li>Run: <strong>running</strong></li>
           <li>Batch running: <strong>true</strong></li>
-          <li>Collisions runtime: <strong>241</strong></li>
-          <li>Entrées gouvernées: <strong>1955</strong></li>
+          <li>Collisions runtime: <strong>191</strong></li>
+          <li>Entrées gouvernées: <strong>1905</strong></li>
           <li>Surface: <strong>AVEUGLE</strong></li>
           <li>Fenêtre: <strong>BLOCKED_BATCH_RUNNING</strong></li>
         </ul>
@@ -723,15 +689,6 @@ code {
     </div>
     <div class="filter-row"><button class="filter-btn active" data-instrument-filter="tabla">Tabla</button><button class="filter-btn" data-instrument-filter="mbira">Mbira</button><button class="filter-btn" data-instrument-filter="shakuhachi">Shakuhachi</button><button class="filter-btn" data-instrument-filter="gamelan">Gamelan</button><button class="filter-btn" data-instrument-filter="didgeridoo">Didgeridoo</button><button class="filter-btn" data-instrument-filter="orgue">Orgue</button></div>
     <div class="panel"><article class="instrument-panel active" data-instrument-panel="tabla"><h3>Rythme nommé, scripts nommés</h3><p class="poetic-lead">Tabla</p><p>Le vieux Conservatoire avait raison: le tabla correspond aux scripts nommés, aux gestes scandés, aux phases qui frappent le temps. `lhc.py`, `xref_audit.py`, `e500` ou `e507` ne sont pas des outils neutres; ce sont des percussions dirigées.</p></article><article class="instrument-panel" data-instrument-panel="mbira"><h3>Mélodies fantômes et émergence</h3><p class="poetic-lead">Mbira</p><p>La mbira porte les motifs qui apparaissent entre deux lignes plutôt que dans l&#x27;une d&#x27;elles. C&#x27;est la bonne image pour les partitions fantômes, les restes fertiles, les résidus qui hantent encore la méthode après le geste principal.</p></article><article class="instrument-panel" data-instrument-panel="shakuhachi"><h3>Un souffle, une pensée</h3><p class="poetic-lead">Shakuhachi</p><p>Le shakuhachi rappelle qu&#x27;un `read` ou une percée théorique saine doit garder une unité respiratoire. Sans cette discipline du souffle, l&#x27;orchestrateur confond volume de lecture et justesse de session.</p></article><article class="instrument-panel" data-instrument-panel="gamelan"><h3>Cognition distribuée et essaim</h3><p class="poetic-lead">Gamelan</p><p>Le gamelan est la bonne image pour l&#x27;essaim: plusieurs voix indépendantes, aucun centre mélodique unique, mais une forme globale stable. C&#x27;est la lutherie native des waves, des lanes et des subagents combinatoires.</p></article><article class="instrument-panel" data-instrument-panel="didgeridoo"><h3>Delta, permafrost, basse continue</h3><p class="poetic-lead">Didgeridoo</p><p>Le drone du didgeridoo est le delta sonore: ce qui tient la session sans apparaître au premier plan. Dans le repo, ce sont les couches froides, les rythmes de veille, la mémoire et les contraintes lentes qui empêchent la recherche de se dissoudre.</p></article><article class="instrument-panel" data-instrument-panel="orgue"><h3>Registration et changement de timbre</h3><p class="poetic-lead">Orgue</p><p>L&#x27;orgue dit que changer de modèle n&#x27;est pas juste changer de qualité: c&#x27;est tirer un autre registre. Opus, Sonnet, GPT, Gemini, Claude Code, Codex Web, subagent, maestro: même partition, timbres différents, obligations différentes.</p></article></div>
-  </section>
-
-  <section id="partitions-live">
-    <div class="section-header">
-      <span class="section-number">Répertoire</span>
-      <h2>Micro-partitions jouables</h2>
-      <p class="section-desc">La page doit aussi se jouer. Ces micro-partitions condensent des séquences fertiles du projet et permettent de relire le document comme instrument, pas seulement comme explication.</p>
-    </div>
-    <div class="labor-grid"><article class="partition-card" data-partition="ouverture"><div class="partition-head"><div><h3>Ouverture vivante</h3><p class="poetic-lead">Session opening</p></div><div class="button-row"><button class="filter-btn partition-play" data-play-partition="ouverture">Play</button><button class="filter-btn partition-reset" data-reset-partition="ouverture">Reset</button></div></div><p>Le cadrage sans fermeture, la montée de tension juste avant la vraie percussion.</p><div class="note-strip"><span class="note-chip" data-partition-note="ouverture" data-note-index="0">ortho+umwelt</span><span class="note-chip" data-partition-note="ouverture" data-note-index="1">\ bsd</span><span class="note-chip" data-partition-note="ouverture" data-note-index="2">fouille+\</span><span class="note-chip" data-partition-note="ouverture" data-note-index="3">collision+\</span><span class="note-chip" data-partition-note="ouverture" data-note-index="4">\ silence</span></div></article><article class="partition-card" data-partition="runtime"><div class="partition-head"><div><h3>Chaîne postrun gouvernée</h3><p class="poetic-lead">Runtime proof chain</p></div><div class="button-row"><button class="filter-btn partition-play" data-play-partition="runtime">Play</button><button class="filter-btn partition-reset" data-reset-partition="runtime">Reset</button></div></div><p>La partition juridique du LHC quand le batch tombe et que la preuve doit devenir opposable.</p><div class="note-strip"><span class="note-chip" data-partition-note="runtime" data-note-index="0">E489</span><span class="note-chip" data-partition-note="runtime" data-note-index="1">E493</span><span class="note-chip" data-partition-note="runtime" data-note-index="2">E500</span><span class="note-chip" data-partition-note="runtime" data-note-index="3">E503</span><span class="note-chip" data-partition-note="runtime" data-note-index="4">E504</span><span class="note-chip" data-partition-note="runtime" data-note-index="5">E505</span><span class="note-chip" data-partition-note="runtime" data-note-index="6">E506</span></div></article><article class="partition-card" data-partition="transmission"><div class="partition-head"><div><h3>Transmission vers preuve</h3><p class="poetic-lead">Conservatoire -&gt; A32</p></div><div class="button-row"><button class="filter-btn partition-play" data-play-partition="transmission">Play</button><button class="filter-btn partition-reset" data-reset-partition="transmission">Reset</button></div></div><p>Comment une trouvaille cesse d’être une belle forme seule et entre dans la chaîne evidence ops.</p><div class="note-strip"><span class="note-chip" data-partition-note="transmission" data-note-index="0">Partition</span><span class="note-chip" data-partition-note="transmission" data-note-index="1">Sonnet</span><span class="note-chip" data-partition-note="transmission" data-note-index="2">Meta-workflow</span><span class="note-chip" data-partition-note="transmission" data-note-index="3">Axe</span><span class="note-chip" data-partition-note="transmission" data-note-index="4">Pipeline</span><span class="note-chip" data-partition-note="transmission" data-note-index="5">Manifest</span><span class="note-chip" data-partition-note="transmission" data-note-index="6">Reviewer pack</span></div></article></div>
   </section>
 
   <section id="poetique">
@@ -774,13 +731,13 @@ code {
     <div class="button-row">
       <a href="conservatoire.html">Legacy du 24 mars</a>
       <a href="methodologie_conservatoire_archive_20260324.html">Archive legacy</a>
-      <a href="methodologie_conservatoire_archive_20260402_125825.html">Archive intermédiaire</a>
+      <a href="methodologie_conservatoire_archive_20260402_125520.html">Archive intermédiaire</a>
       <a class="alt" href="METHODOLOGIE_CONSERVATOIRE_GRANDE_SYNTHESE_15MARS_02AVRIL.md">Markdown source</a>
     </div>
   </section>
 
   <footer>
-    Généré le 2026-04-02T12:58:25+02:00. Cette version garde le souffle du vieux Conservatoire, réintègre la tectonique des commits récents, et expose enfin les continents réels du projet avec des filtres, des mouvements et des routes.
+    Généré le 2026-04-02T12:55:20+02:00. Cette version garde le souffle du vieux Conservatoire, réintègre la tectonique des commits récents, et expose enfin les continents réels du projet avec des filtres, des mouvements et des routes.
   </footer>
 </div>
 <script>
@@ -809,58 +766,6 @@ if (axisSearch) {
     });
   });
 }
-const partitionTimers = {};
-const setPartitionStep = (partId, step) => {
-  document.querySelectorAll(`[data-partition-note="${partId}"]`).forEach((note) => {
-    note.classList.toggle('active', Number(note.dataset.noteIndex) === step);
-  });
-};
-document.querySelectorAll('[data-play-partition]').forEach((button) => {
-  button.addEventListener('click', () => {
-    const partId = button.dataset.playPartition;
-    const notes = Array.from(document.querySelectorAll(`[data-partition-note="${partId}"]`));
-    if (!notes.length) return;
-    if (partitionTimers[partId]) {
-      clearInterval(partitionTimers[partId]);
-    }
-    let step = -1;
-    partitionTimers[partId] = setInterval(() => {
-      step = (step + 1) % notes.length;
-      setPartitionStep(partId, step);
-    }, 650);
-    setTimeout(() => {
-      if (partitionTimers[partId]) {
-        clearInterval(partitionTimers[partId]);
-        delete partitionTimers[partId];
-      }
-    }, notes.length * 650 + 50);
-  });
-});
-document.querySelectorAll('[data-reset-partition]').forEach((button) => {
-  button.addEventListener('click', () => {
-    const partId = button.dataset.resetPartition;
-    if (partitionTimers[partId]) {
-      clearInterval(partitionTimers[partId]);
-      delete partitionTimers[partId];
-    }
-    setPartitionStep(partId, -1);
-  });
-});
-const navLinks = Array.from(document.querySelectorAll('.nav-links a'));
-const sections = navLinks
-  .map((link) => document.querySelector(link.getAttribute('href')))
-  .filter(Boolean);
-const syncNav = () => {
-  const visible = sections.find((section) => {
-    const rect = section.getBoundingClientRect();
-    return rect.top <= 120 && rect.bottom > 120;
-  });
-  navLinks.forEach((link) => {
-    link.classList.toggle('active', visible && link.getAttribute('href') === `#${visible.id}`);
-  });
-};
-window.addEventListener('scroll', syncNav, { passive: true });
-syncNav();
 </script>
 </body>
 </html>
